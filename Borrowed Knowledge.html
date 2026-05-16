@@ -1,0 +1,416 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7675</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>51.05</td>
+      <td>52.94</td>
+      <td>1.89</td>
+      <td>136</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102483" target="_blank" rel="noopener noreferrer"><img src="img/Owlin_Historian.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Owlin Historian.html" target="_blank" rel="noopener noreferrer">Owlin Historian</a></td>
+      <td>8.70</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3763</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>53.05</td>
+      <td>54.92</td>
+      <td>1.87</td>
+      <td>122</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102471" target="_blank" rel="noopener noreferrer"><img src="img/Elite_Interceptor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elite Interceptor.html" target="_blank" rel="noopener noreferrer">Elite Interceptor</a></td>
+      <td>5.06</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>1807</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>52.25</td>
+      <td>52.88</td>
+      <td>0.63</td>
+      <td>104</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102465" target="_blank" rel="noopener noreferrer"><img src="img/Ajani's_Response.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ajani's Response.html" target="_blank" rel="noopener noreferrer">Ajani's Response</a></td>
+      <td>6.23</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>66355</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>53.15</td>
+      <td>53.45</td>
+      <td>0.30</td>
+      <td>116</td>
+      <td>59.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102663" target="_blank" rel="noopener noreferrer"><img src="img/Molten_Note.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Molten Note.html" target="_blank" rel="noopener noreferrer">Molten Note</a></td>
+      <td>4.73</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>70267</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>53.05</td>
+      <td>53.23</td>
+      <td>0.18</td>
+      <td>201</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102675" target="_blank" rel="noopener noreferrer"><img src="img/Pursue_the_Past.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pursue the Past.html" target="_blank" rel="noopener noreferrer">Pursue the Past</a></td>
+      <td>7.57</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>57879</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>46.50</td>
+      <td>46.64</td>
+      <td>0.14</td>
+      <td>581</td>
+      <td>46.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td>11.49</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38319</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>51.20</td>
+      <td>50.50</td>
+      <td>-0.70</td>
+      <td>101</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44187</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>52.20</td>
+      <td>50.49</td>
+      <td>-1.71</td>
+      <td>103</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>79069</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>52.00</td>
+      <td>50.26</td>
+      <td>-1.74</td>
+      <td>189</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102702" target="_blank" rel="noopener noreferrer"><img src="img/Wilt_in_the_Heat.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wilt in the Heat.html" target="_blank" rel="noopener noreferrer">Wilt in the Heat</a></td>
+      <td>6.96</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>2459</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>51.10</td>
+      <td>48.72</td>
+      <td>-2.38</td>
+      <td>117</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102467" target="_blank" rel="noopener noreferrer"><img src="img/Ascendant_Dustspeaker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ascendant Dustspeaker.html" target="_blank" rel="noopener noreferrer">Ascendant Dustspeaker</a></td>
+      <td>8.88</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>43861</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>52.10</td>
+      <td>48.78</td>
+      <td>-3.32</td>
+      <td>123</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>74831</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>51.25</td>
+      <td>46.30</td>
+      <td>-4.95</td>
+      <td>216</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102689" target="_blank" rel="noopener noreferrer"><img src="img/Spirit_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spirit Mascot.html" target="_blank" rel="noopener noreferrer">Spirit Mascot</a></td>
+      <td>7.80</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>41579</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>52.40</td>
+      <td>46.53</td>
+      <td>-5.87</td>
+      <td>144</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>82981</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>51.95</td>
+      <td>44.44</td>
+      <td>-7.51</td>
+      <td>198</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>11587</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>51.65</td>
+      <td>42.45</td>
+      <td>-9.20</td>
+      <td>139</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102495" target="_blank" rel="noopener noreferrer"><img src="img/Stone_Docent.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stone Docent.html" target="_blank" rel="noopener noreferrer">Stone Docent</a></td>
+      <td>7.36</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>64399</th>
+      <td>uncommon</td>
+      <td>WR</td>
+      <td>11.49</td>
+      <td><a href=".//Borrowed Knowledge.html" target="_blank" rel="noopener noreferrer">Borrowed Knowledge</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102637" target="_blank" rel="noopener noreferrer"><img src="img/Borrowed_Knowledge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>46.5</td>
+      <td>51.30</td>
+      <td>38.61</td>
+      <td>-12.69</td>
+      <td>101</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102657" target="_blank" rel="noopener noreferrer"><img src="img/Kirol,_History_Buff.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Kirol, History Buff.html" target="_blank" rel="noopener noreferrer">Kirol, History Buff</a></td>
+      <td>5.69</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+  </tbody>
+</table>

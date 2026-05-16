@@ -1,0 +1,777 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>52765</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.35</td>
+      <td>72.73</td>
+      <td>15.38</td>
+      <td>132</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>60263</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>56.25</td>
+      <td>65.19</td>
+      <td>8.94</td>
+      <td>135</td>
+      <td>54.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102644" target="_blank" rel="noopener noreferrer"><img src="img/Elemental_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elemental Mascot.html" target="_blank" rel="noopener noreferrer">Elemental Mascot</a></td>
+      <td>8.81</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>76563</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>58.95</td>
+      <td>67.24</td>
+      <td>8.29</td>
+      <td>116</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102694" target="_blank" rel="noopener noreferrer"><img src="img/Stress_Dream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stress Dream.html" target="_blank" rel="noopener noreferrer">Stress Dream</a></td>
+      <td>3.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>94493</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>58.80</td>
+      <td>65.00</td>
+      <td>6.20</td>
+      <td>140</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>70043</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>55.70</td>
+      <td>61.40</td>
+      <td>5.70</td>
+      <td>114</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102674" target="_blank" rel="noopener noreferrer"><img src="img/Pterafractyl.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pterafractyl.html" target="_blank" rel="noopener noreferrer">Pterafractyl</a></td>
+      <td>8.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>50483</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>56.65</td>
+      <td>62.26</td>
+      <td>5.61</td>
+      <td>106</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102614" target="_blank" rel="noopener noreferrer"><img src="img/Noxious_Newt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Noxious Newt.html" target="_blank" rel="noopener noreferrer">Noxious Newt</a></td>
+      <td>6.17</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86343</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.15</td>
+      <td>62.63</td>
+      <td>5.48</td>
+      <td>190</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>13645</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>54.90</td>
+      <td>60.38</td>
+      <td>5.48</td>
+      <td>106</td>
+      <td>52.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102501" target="_blank" rel="noopener noreferrer"><img src="img/Deluge_Virtuoso.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deluge Virtuoso.html" target="_blank" rel="noopener noreferrer">Deluge Virtuoso</a></td>
+      <td>9.53</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15927</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.30</td>
+      <td>62.71</td>
+      <td>5.41</td>
+      <td>118</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102508" target="_blank" rel="noopener noreferrer"><img src="img/Flow_State.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flow State.html" target="_blank" rel="noopener noreferrer">Flow State</a></td>
+      <td>4.58</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>44289</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.75</td>
+      <td>63.07</td>
+      <td>5.32</td>
+      <td>176</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19187</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>58.05</td>
+      <td>63.03</td>
+      <td>4.98</td>
+      <td>119</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102518" target="_blank" rel="noopener noreferrer"><img src="img/Matterbending_Mage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Matterbending Mage.html" target="_blank" rel="noopener noreferrer">Matterbending Mage</a></td>
+      <td>4.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>17557</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>56.30</td>
+      <td>61.26</td>
+      <td>4.96</td>
+      <td>191</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>13971</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.90</td>
+      <td>62.68</td>
+      <td>4.78</td>
+      <td>142</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102502" target="_blank" rel="noopener noreferrer"><img src="img/Divergent_Equation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Divergent Equation.html" target="_blank" rel="noopener noreferrer">Divergent Equation</a></td>
+      <td>6.14</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>78845</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.05</td>
+      <td>61.81</td>
+      <td>4.76</td>
+      <td>199</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>72651</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>58.20</td>
+      <td>62.73</td>
+      <td>4.53</td>
+      <td>110</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102682" target="_blank" rel="noopener noreferrer"><img src="img/Sanar,_Unfinished_Genius.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sanar, Unfinished Genius.html" target="_blank" rel="noopener noreferrer">Sanar, Unfinished Genius</a></td>
+      <td>4.32</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>21469</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.60</td>
+      <td>61.38</td>
+      <td>3.78</td>
+      <td>246</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21143</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>56.95</td>
+      <td>60.53</td>
+      <td>3.58</td>
+      <td>114</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19513</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>55.25</td>
+      <td>58.12</td>
+      <td>2.87</td>
+      <td>117</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102519" target="_blank" rel="noopener noreferrer"><img src="img/Muse_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse Seeker.html" target="_blank" rel="noopener noreferrer">Muse Seeker</a></td>
+      <td>6.29</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>78193</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>58.25</td>
+      <td>61.02</td>
+      <td>2.77</td>
+      <td>118</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102699" target="_blank" rel="noopener noreferrer"><img src="img/Vibrant_Outburst.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vibrant Outburst.html" target="_blank" rel="noopener noreferrer">Vibrant Outburst</a></td>
+      <td>4.13</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>84061</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>56.95</td>
+      <td>59.38</td>
+      <td>2.43</td>
+      <td>224</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>18209</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>55.50</td>
+      <td>57.89</td>
+      <td>2.39</td>
+      <td>133</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102515" target="_blank" rel="noopener noreferrer"><img src="img/Landscape_Painter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Landscape Painter.html" target="_blank" rel="noopener noreferrer">Landscape Painter</a></td>
+      <td>8.96</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38095</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>55.90</td>
+      <td>58.25</td>
+      <td>2.35</td>
+      <td>103</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102576" target="_blank" rel="noopener noreferrer"><img src="img/Goblin_Glasswright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Goblin Glasswright.html" target="_blank" rel="noopener noreferrer">Goblin Glasswright</a></td>
+      <td>7.47</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>69391</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.80</td>
+      <td>59.46</td>
+      <td>1.66</td>
+      <td>111</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102672" target="_blank" rel="noopener noreferrer"><img src="img/Proctor's_Gaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Proctor's Gaze.html" target="_blank" rel="noopener noreferrer">Proctor's Gaze</a></td>
+      <td>5.12</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>86669</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>56.55</td>
+      <td>57.97</td>
+      <td>1.42</td>
+      <td>138</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102725" target="_blank" rel="noopener noreferrer"><img src="img/Titan's_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Titan's Grave.html" target="_blank" rel="noopener noreferrer">Titan's Grave</a></td>
+      <td>7.67</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>81779</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.55</td>
+      <td>58.77</td>
+      <td>1.22</td>
+      <td>211</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15275</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.40</td>
+      <td>58.47</td>
+      <td>1.07</td>
+      <td>236</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>91233</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.60</td>
+      <td>58.57</td>
+      <td>0.97</td>
+      <td>1050</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td>2.04</td>
+      <td>U</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>60589</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.00</td>
+      <td>57.89</td>
+      <td>0.89</td>
+      <td>152</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85365</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.15</td>
+      <td>57.84</td>
+      <td>0.69</td>
+      <td>268</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>75585</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>55.90</td>
+      <td>56.44</td>
+      <td>0.54</td>
+      <td>101</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102691" target="_blank" rel="noopener noreferrer"><img src="img/Stadium_Tidalmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stadium Tidalmage.html" target="_blank" rel="noopener noreferrer">Stadium Tidalmage</a></td>
+      <td>10.02</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83083</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.50</td>
+      <td>57.89</td>
+      <td>0.39</td>
+      <td>114</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>52439</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>59.75</td>
+      <td>59.62</td>
+      <td>-0.13</td>
+      <td>104</td>
+      <td>61.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102620" target="_blank" rel="noopener noreferrer"><img src="img/Snarl_Song.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snarl Song.html" target="_blank" rel="noopener noreferrer">Snarl Song</a></td>
+      <td>4.65</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43963</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>57.65</td>
+      <td>56.46</td>
+      <td>-1.19</td>
+      <td>147</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>12341</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>56.55</td>
+      <td>51.75</td>
+      <td>-4.80</td>
+      <td>143</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102497" target="_blank" rel="noopener noreferrer"><img src="img/Banishing_Betrayal.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Banishing Betrayal.html" target="_blank" rel="noopener noreferrer">Banishing Betrayal</a></td>
+      <td>8.95</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38421</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>2.04</td>
+      <td><a href=".//Cyclonic Rift.html" target="_blank" rel="noopener noreferrer">Cyclonic Rift</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102766" target="_blank" rel="noopener noreferrer"><img src="img/Cyclonic_Rift.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.6</td>
+      <td>56.75</td>
+      <td>50.44</td>
+      <td>-6.31</td>
+      <td>113</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+  </tbody>
+</table>

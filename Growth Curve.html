@@ -1,0 +1,1309 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>47788</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>54.40</td>
+      <td>60.69</td>
+      <td>6.29</td>
+      <td>173</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102606" target="_blank" rel="noopener noreferrer"><img src="img/Environmental_Scientist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Environmental Scientist.html" target="_blank" rel="noopener noreferrer">Environmental Scientist</a></td>
+      <td>3.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>65718</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.75</td>
+      <td>58.97</td>
+      <td>6.22</td>
+      <td>117</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102661" target="_blank" rel="noopener noreferrer"><img src="img/Mind_into_Matter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mind into Matter.html" target="_blank" rel="noopener noreferrer">Mind into Matter</a></td>
+      <td>2.66</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>16492</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>49.55</td>
+      <td>54.62</td>
+      <td>5.07</td>
+      <td>119</td>
+      <td>51.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td>10.13</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>12580</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.75</td>
+      <td>56.44</td>
+      <td>3.69</td>
+      <td>101</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102498" target="_blank" rel="noopener noreferrer"><img src="img/Brush_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Brush Off.html" target="_blank" rel="noopener noreferrer">Brush Off</a></td>
+      <td>6.79</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>69304</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.70</td>
+      <td>56.30</td>
+      <td>3.60</td>
+      <td>254</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102672" target="_blank" rel="noopener noreferrer"><img src="img/Proctor's_Gaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Proctor's Gaze.html" target="_blank" rel="noopener noreferrer">Proctor's Gaze</a></td>
+      <td>5.12</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>103534</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.75</td>
+      <td>55.22</td>
+      <td>3.47</td>
+      <td>134</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102808" target="_blank" rel="noopener noreferrer"><img src="img/Royal_Treatment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Royal Treatment.html" target="_blank" rel="noopener noreferrer">Royal Treatment</a></td>
+      <td>7.47</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>86256</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.05</td>
+      <td>55.31</td>
+      <td>3.26</td>
+      <td>226</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19100</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.95</td>
+      <td>56.12</td>
+      <td>3.17</td>
+      <td>196</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102518" target="_blank" rel="noopener noreferrer"><img src="img/Matterbending_Mage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Matterbending Mage.html" target="_blank" rel="noopener noreferrer">Matterbending Mage</a></td>
+      <td>4.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>45506</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>53.80</td>
+      <td>56.82</td>
+      <td>3.02</td>
+      <td>132</td>
+      <td>60.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102599" target="_blank" rel="noopener noreferrer"><img src="img/Ambitious_Augmenter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ambitious Augmenter.html" target="_blank" rel="noopener noreferrer">Ambitious Augmenter</a></td>
+      <td>2.15</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>61480</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.90</td>
+      <td>53.83</td>
+      <td>2.93</td>
+      <td>431</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102648" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Mascot.html" target="_blank" rel="noopener noreferrer">Fractal Mascot</a></td>
+      <td>9.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>67674</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>53.05</td>
+      <td>55.84</td>
+      <td>2.79</td>
+      <td>274</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102667" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Surveyor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Surveyor.html" target="_blank" rel="noopener noreferrer">Paradox Surveyor</a></td>
+      <td>5.40</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>22686</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>49.90</td>
+      <td>52.53</td>
+      <td>2.63</td>
+      <td>217</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102529" target="_blank" rel="noopener noreferrer"><img src="img/Textbook_Tabulator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Textbook Tabulator.html" target="_blank" rel="noopener noreferrer">Textbook Tabulator</a></td>
+      <td>10.59</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>51700</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.45</td>
+      <td>53.00</td>
+      <td>2.55</td>
+      <td>100</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102618" target="_blank" rel="noopener noreferrer"><img src="img/Shopkeeper's_Bane.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shopkeeper's Bane.html" target="_blank" rel="noopener noreferrer">Shopkeeper's Bane</a></td>
+      <td>9.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>56916</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.40</td>
+      <td>53.85</td>
+      <td>2.45</td>
+      <td>130</td>
+      <td>55.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102634" target="_blank" rel="noopener noreferrer"><img src="img/Berta,_Wise_Extrapolator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Berta, Wise Extrapolator.html" target="_blank" rel="noopener noreferrer">Berta, Wise Extrapolator</a></td>
+      <td>2.37</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>49418</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.90</td>
+      <td>53.15</td>
+      <td>2.25</td>
+      <td>111</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102611" target="_blank" rel="noopener noreferrer"><img src="img/Infirmary_Healer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Infirmary Healer.html" target="_blank" rel="noopener noreferrer">Infirmary Healer</a></td>
+      <td>6.79</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>69956</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.60</td>
+      <td>52.59</td>
+      <td>1.99</td>
+      <td>580</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102674" target="_blank" rel="noopener noreferrer"><img src="img/Pterafractyl.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pterafractyl.html" target="_blank" rel="noopener noreferrer">Pterafractyl</a></td>
+      <td>8.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>62784</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>47.40</td>
+      <td>49.32</td>
+      <td>1.92</td>
+      <td>1776</td>
+      <td>47.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td>10.80</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>22360</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.95</td>
+      <td>52.67</td>
+      <td>1.72</td>
+      <td>243</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102528" target="_blank" rel="noopener noreferrer"><img src="img/Tester_of_the_Tangential.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tester of the Tangential.html" target="_blank" rel="noopener noreferrer">Tester of the Tangential</a></td>
+      <td>6.37</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>61806</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.45</td>
+      <td>51.98</td>
+      <td>1.53</td>
+      <td>329</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102649" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Tender.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Tender.html" target="_blank" rel="noopener noreferrer">Fractal Tender</a></td>
+      <td>6.31</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>17144</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.75</td>
+      <td>53.04</td>
+      <td>1.29</td>
+      <td>115</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102512" target="_blank" rel="noopener noreferrer"><img src="img/Homesickness.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Homesickness.html" target="_blank" rel="noopener noreferrer">Homesickness</a></td>
+      <td>6.62</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>102882</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.15</td>
+      <td>53.37</td>
+      <td>1.22</td>
+      <td>208</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102806" target="_blank" rel="noopener noreferrer"><img src="img/Knockout_Maneuver.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Knockout Maneuver.html" target="_blank" rel="noopener noreferrer">Knockout Maneuver</a></td>
+      <td>5.34</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>20404</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>53.15</td>
+      <td>54.35</td>
+      <td>1.20</td>
+      <td>138</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102522" target="_blank" rel="noopener noreferrer"><img src="img/Pensive_Professor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pensive Professor.html" target="_blank" rel="noopener noreferrer">Pensive Professor</a></td>
+      <td>2.11</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>18122</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.40</td>
+      <td>51.45</td>
+      <td>1.05</td>
+      <td>241</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102515" target="_blank" rel="noopener noreferrer"><img src="img/Landscape_Painter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Landscape Painter.html" target="_blank" rel="noopener noreferrer">Landscape Painter</a></td>
+      <td>8.96</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>20078</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.35</td>
+      <td>51.25</td>
+      <td>0.90</td>
+      <td>160</td>
+      <td>53.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td>7.25</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>14862</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>49.00</td>
+      <td>49.70</td>
+      <td>0.70</td>
+      <td>165</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102505" target="_blank" rel="noopener noreferrer"><img src="img/Encouraging_Aviator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Encouraging Aviator.html" target="_blank" rel="noopener noreferrer">Encouraging Aviator</a></td>
+      <td>7.51</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>59524</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.85</td>
+      <td>52.14</td>
+      <td>0.29</td>
+      <td>397</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102642" target="_blank" rel="noopener noreferrer"><img src="img/Cuboid_Colony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cuboid Colony.html" target="_blank" rel="noopener noreferrer">Cuboid Colony</a></td>
+      <td>5.79</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>70608</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.50</td>
+      <td>52.73</td>
+      <td>0.23</td>
+      <td>256</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102676" target="_blank" rel="noopener noreferrer"><img src="img/Quandrix_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quandrix Charm.html" target="_blank" rel="noopener noreferrer">Quandrix Charm</a></td>
+      <td>6.73</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>49092</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>49.30</td>
+      <td>49.46</td>
+      <td>0.16</td>
+      <td>186</td>
+      <td>51.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102610" target="_blank" rel="noopener noreferrer"><img src="img/Hungry_Graffalon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hungry Graffalon.html" target="_blank" rel="noopener noreferrer">Hungry Graffalon</a></td>
+      <td>11.46</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>60502</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.90</td>
+      <td>51.95</td>
+      <td>0.05</td>
+      <td>385</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>104186</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.45</td>
+      <td>51.18</td>
+      <td>-0.27</td>
+      <td>127</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102810" target="_blank" rel="noopener noreferrer"><img src="img/Shared_Roots.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shared Roots.html" target="_blank" rel="noopener noreferrer">Shared Roots</a></td>
+      <td>5.39</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>17470</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.20</td>
+      <td>50.88</td>
+      <td>-0.32</td>
+      <td>226</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>91798</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.35</td>
+      <td>52.00</td>
+      <td>-0.35</td>
+      <td>100</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102768" target="_blank" rel="noopener noreferrer"><img src="img/Deduce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deduce.html" target="_blank" rel="noopener noreferrer">Deduce</a></td>
+      <td>6.89</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>21056</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.85</td>
+      <td>51.28</td>
+      <td>-0.57</td>
+      <td>195</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>55938</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.95</td>
+      <td>52.38</td>
+      <td>-0.57</td>
+      <td>168</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102631" target="_blank" rel="noopener noreferrer"><img src="img/Applied_Geometry.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Applied Geometry.html" target="_blank" rel="noopener noreferrer">Applied Geometry</a></td>
+      <td>2.46</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>21382</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.50</td>
+      <td>51.89</td>
+      <td>-0.61</td>
+      <td>291</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>53004</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>49.90</td>
+      <td>49.23</td>
+      <td>-0.67</td>
+      <td>130</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102622" target="_blank" rel="noopener noreferrer"><img src="img/Tenured_Concocter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tenured Concocter.html" target="_blank" rel="noopener noreferrer">Tenured Concocter</a></td>
+      <td>10.55</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>45832</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.45</td>
+      <td>50.68</td>
+      <td>-0.77</td>
+      <td>365</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102600" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Barrage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Barrage.html" target="_blank" rel="noopener noreferrer">Burrog Barrage</a></td>
+      <td>7.66</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>54308</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>49.85</td>
+      <td>49.08</td>
+      <td>-0.77</td>
+      <td>381</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102626" target="_blank" rel="noopener noreferrer"><img src="img/Wild_Hypothesis.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wild Hypothesis.html" target="_blank" rel="noopener noreferrer">Wild Hypothesis</a></td>
+      <td>10.44</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>46158</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>48.95</td>
+      <td>47.90</td>
+      <td>-1.05</td>
+      <td>119</td>
+      <td>50.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102601" target="_blank" rel="noopener noreferrer"><img src="img/Chelonian_Tackle.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Chelonian Tackle.html" target="_blank" rel="noopener noreferrer">Chelonian Tackle</a></td>
+      <td>9.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>47462</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.45</td>
+      <td>49.27</td>
+      <td>-1.18</td>
+      <td>205</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102605" target="_blank" rel="noopener noreferrer"><img src="img/Emil,_Vastlands_Roamer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emil, Vastlands Roamer.html" target="_blank" rel="noopener noreferrer">Emil, Vastlands Roamer</a></td>
+      <td>5.97</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>12254</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.45</td>
+      <td>50.00</td>
+      <td>-1.45</td>
+      <td>266</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102497" target="_blank" rel="noopener noreferrer"><img src="img/Banishing_Betrayal.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Banishing Betrayal.html" target="_blank" rel="noopener noreferrer">Banishing Betrayal</a></td>
+      <td>8.95</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>22034</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>49.25</td>
+      <td>47.69</td>
+      <td>-1.56</td>
+      <td>195</td>
+      <td>51.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102527" target="_blank" rel="noopener noreferrer"><img src="img/Spellbook_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spellbook Seeker.html" target="_blank" rel="noopener noreferrer">Spellbook Seeker</a></td>
+      <td>10.09</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>45180</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.50</td>
+      <td>50.72</td>
+      <td>-1.78</td>
+      <td>209</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102598" target="_blank" rel="noopener noreferrer"><img src="img/Additive_Evolution.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Additive Evolution.html" target="_blank" rel="noopener noreferrer">Additive Evolution</a></td>
+      <td>4.44</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>50396</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.55</td>
+      <td>49.52</td>
+      <td>-2.03</td>
+      <td>418</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102614" target="_blank" rel="noopener noreferrer"><img src="img/Noxious_Newt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Noxious Newt.html" target="_blank" rel="noopener noreferrer">Noxious Newt</a></td>
+      <td>6.17</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>52678</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.25</td>
+      <td>50.15</td>
+      <td>-2.10</td>
+      <td>339</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>51048</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>53.25</td>
+      <td>50.78</td>
+      <td>-2.47</td>
+      <td>128</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102616" target="_blank" rel="noopener noreferrer"><img src="img/Pestbrood_Sloth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pestbrood Sloth.html" target="_blank" rel="noopener noreferrer">Pestbrood Sloth</a></td>
+      <td>4.49</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>77128</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>49.90</td>
+      <td>47.12</td>
+      <td>-2.78</td>
+      <td>278</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102696" target="_blank" rel="noopener noreferrer"><img src="img/Tam,_Observant_Sequencer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tam, Observant Sequencer.html" target="_blank" rel="noopener noreferrer">Tam, Observant Sequencer</a></td>
+      <td>5.37</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>83974</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.85</td>
+      <td>48.93</td>
+      <td>-2.92</td>
+      <td>560</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15188</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.30</td>
+      <td>49.37</td>
+      <td>-2.93</td>
+      <td>318</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>62132</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.70</td>
+      <td>47.62</td>
+      <td>-3.08</td>
+      <td>126</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td>6.15</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>53656</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.10</td>
+      <td>47.96</td>
+      <td>-3.14</td>
+      <td>221</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102624" target="_blank" rel="noopener noreferrer"><img src="img/Topiary_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Topiary Lecturer.html" target="_blank" rel="noopener noreferrer">Topiary Lecturer</a></td>
+      <td>5.81</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>85278</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.05</td>
+      <td>48.82</td>
+      <td>-3.23</td>
+      <td>170</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17796</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>53.50</td>
+      <td>49.53</td>
+      <td>-3.97</td>
+      <td>107</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102514" target="_blank" rel="noopener noreferrer"><img src="img/Jadzi,_Steward_of_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Jadzi, Steward of Fate.html" target="_blank" rel="noopener noreferrer">Jadzi, Steward of Fate</a></td>
+      <td>1.96</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>44854</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>49.25</td>
+      <td>45.21</td>
+      <td>-4.04</td>
+      <td>146</td>
+      <td>51.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102597" target="_blank" rel="noopener noreferrer"><img src="img/Aberrant_Manawurm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Aberrant Manawurm.html" target="_blank" rel="noopener noreferrer">Aberrant Manawurm</a></td>
+      <td>8.91</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>13558</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>49.80</td>
+      <td>45.56</td>
+      <td>-4.24</td>
+      <td>169</td>
+      <td>52.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102501" target="_blank" rel="noopener noreferrer"><img src="img/Deluge_Virtuoso.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deluge Virtuoso.html" target="_blank" rel="noopener noreferrer">Deluge Virtuoso</a></td>
+      <td>9.53</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>12906</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.80</td>
+      <td>46.53</td>
+      <td>-4.27</td>
+      <td>101</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102499" target="_blank" rel="noopener noreferrer"><img src="img/Campus_Composer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Campus Composer.html" target="_blank" rel="noopener noreferrer">Campus Composer</a></td>
+      <td>6.28</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>86582</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>51.45</td>
+      <td>47.06</td>
+      <td>-4.39</td>
+      <td>153</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102725" target="_blank" rel="noopener noreferrer"><img src="img/Titan's_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Titan's Grave.html" target="_blank" rel="noopener noreferrer">Titan's Grave</a></td>
+      <td>7.67</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>54960</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.15</td>
+      <td>45.67</td>
+      <td>-4.48</td>
+      <td>127</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102628" target="_blank" rel="noopener noreferrer"><img src="img/Zimone's_Experiment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zimone's Experiment.html" target="_blank" rel="noopener noreferrer">Zimone's Experiment</a></td>
+      <td>8.55</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>94406</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>53.70</td>
+      <td>48.70</td>
+      <td>-5.00</td>
+      <td>154</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>15840</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>52.20</td>
+      <td>46.72</td>
+      <td>-5.48</td>
+      <td>137</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102508" target="_blank" rel="noopener noreferrer"><img src="img/Flow_State.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flow State.html" target="_blank" rel="noopener noreferrer">Flow State</a></td>
+      <td>4.58</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>20730</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>49.90</td>
+      <td>44.13</td>
+      <td>-5.77</td>
+      <td>213</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102523" target="_blank" rel="noopener noreferrer"><img src="img/Procrastinate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Procrastinate.html" target="_blank" rel="noopener noreferrer">Procrastinate</a></td>
+      <td>10.07</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>50070</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.40</td>
+      <td>44.44</td>
+      <td>-5.96</td>
+      <td>135</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102613" target="_blank" rel="noopener noreferrer"><img src="img/Mindful_Biomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mindful Biomancer.html" target="_blank" rel="noopener noreferrer">Mindful Biomancer</a></td>
+      <td>9.33</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19426</th>
+      <td>uncommon</td>
+      <td>UG</td>
+      <td>10.8</td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>47.4</td>
+      <td>50.15</td>
+      <td>41.51</td>
+      <td>-8.64</td>
+      <td>106</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102519" target="_blank" rel="noopener noreferrer"><img src="img/Muse_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse Seeker.html" target="_blank" rel="noopener noreferrer">Muse Seeker</a></td>
+      <td>6.29</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+  </tbody>
+</table>

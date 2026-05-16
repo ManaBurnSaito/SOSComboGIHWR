@@ -1,0 +1,796 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>84092</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.20</td>
+      <td>72.96</td>
+      <td>14.76</td>
+      <td>196</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>75616</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>57.15</td>
+      <td>69.30</td>
+      <td>12.15</td>
+      <td>114</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102691" target="_blank" rel="noopener noreferrer"><img src="img/Stadium_Tidalmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stadium Tidalmage.html" target="_blank" rel="noopener noreferrer">Stadium Tidalmage</a></td>
+      <td>10.02</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21174</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.20</td>
+      <td>69.78</td>
+      <td>11.58</td>
+      <td>139</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>60620</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.25</td>
+      <td>67.92</td>
+      <td>9.67</td>
+      <td>106</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17588</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>57.55</td>
+      <td>66.88</td>
+      <td>9.33</td>
+      <td>154</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>78224</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>59.50</td>
+      <td>68.00</td>
+      <td>8.50</td>
+      <td>100</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102699" target="_blank" rel="noopener noreferrer"><img src="img/Vibrant_Outburst.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vibrant Outburst.html" target="_blank" rel="noopener noreferrer">Vibrant Outburst</a></td>
+      <td>4.13</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>14002</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>59.15</td>
+      <td>67.33</td>
+      <td>8.18</td>
+      <td>101</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102502" target="_blank" rel="noopener noreferrer"><img src="img/Divergent_Equation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Divergent Equation.html" target="_blank" rel="noopener noreferrer">Divergent Equation</a></td>
+      <td>6.14</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>68770</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.55</td>
+      <td>66.15</td>
+      <td>7.60</td>
+      <td>130</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102670" target="_blank" rel="noopener noreferrer"><img src="img/Prismari_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Prismari Charm.html" target="_blank" rel="noopener noreferrer">Prismari Charm</a></td>
+      <td>5.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81810</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.80</td>
+      <td>66.38</td>
+      <td>7.58</td>
+      <td>232</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44320</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>59.00</td>
+      <td>66.41</td>
+      <td>7.41</td>
+      <td>259</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>76594</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>60.20</td>
+      <td>67.46</td>
+      <td>7.26</td>
+      <td>169</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102694" target="_blank" rel="noopener noreferrer"><img src="img/Stress_Dream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stress Dream.html" target="_blank" rel="noopener noreferrer">Stress Dream</a></td>
+      <td>3.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>94524</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>60.05</td>
+      <td>65.60</td>
+      <td>5.55</td>
+      <td>125</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>85396</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.40</td>
+      <td>63.73</td>
+      <td>5.33</td>
+      <td>306</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86374</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.40</td>
+      <td>62.96</td>
+      <td>4.56</td>
+      <td>216</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15306</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.65</td>
+      <td>62.63</td>
+      <td>3.98</td>
+      <td>198</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21500</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.85</td>
+      <td>62.01</td>
+      <td>3.16</td>
+      <td>179</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44646</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>57.55</td>
+      <td>60.42</td>
+      <td>2.87</td>
+      <td>144</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102596" target="_blank" rel="noopener noreferrer"><img src="img/Zealous_Lorecaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zealous Lorecaster.html" target="_blank" rel="noopener noreferrer">Zealous Lorecaster</a></td>
+      <td>9.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>60294</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>57.50</td>
+      <td>60.29</td>
+      <td>2.79</td>
+      <td>136</td>
+      <td>54.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102644" target="_blank" rel="noopener noreferrer"><img src="img/Elemental_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elemental Mascot.html" target="_blank" rel="noopener noreferrer">Elemental Mascot</a></td>
+      <td>8.81</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>78876</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.30</td>
+      <td>59.91</td>
+      <td>1.61</td>
+      <td>212</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>79202</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.80</td>
+      <td>60.34</td>
+      <td>1.54</td>
+      <td>174</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102702" target="_blank" rel="noopener noreferrer"><img src="img/Wilt_in_the_Heat.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wilt in the Heat.html" target="_blank" rel="noopener noreferrer">Wilt in the Heat</a></td>
+      <td>6.96</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38452</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.00</td>
+      <td>59.50</td>
+      <td>1.50</td>
+      <td>200</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>72682</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>59.45</td>
+      <td>60.40</td>
+      <td>0.95</td>
+      <td>101</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102682" target="_blank" rel="noopener noreferrer"><img src="img/Sanar,_Unfinished_Genius.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sanar, Unfinished Genius.html" target="_blank" rel="noopener noreferrer">Sanar, Unfinished Genius</a></td>
+      <td>4.32</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>35192</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.75</td>
+      <td>59.13</td>
+      <td>0.38</td>
+      <td>115</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102567" target="_blank" rel="noopener noreferrer"><img src="img/Artistic_Process.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Artistic Process.html" target="_blank" rel="noopener noreferrer">Artistic Process</a></td>
+      <td>4.72</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43994</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.90</td>
+      <td>59.15</td>
+      <td>0.25</td>
+      <td>284</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>43016</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.60</td>
+      <td>58.65</td>
+      <td>0.05</td>
+      <td>104</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102591" target="_blank" rel="noopener noreferrer"><img src="img/Tablet_of_Discovery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tablet of Discovery.html" target="_blank" rel="noopener noreferrer">Tablet of Discovery</a></td>
+      <td>5.53</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>83114</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.75</td>
+      <td>58.45</td>
+      <td>-0.30</td>
+      <td>207</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>37148</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>57.85</td>
+      <td>56.83</td>
+      <td>-1.02</td>
+      <td>139</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102573" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Firedancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Expressive Firedancer.html" target="_blank" rel="noopener noreferrer">Expressive Firedancer</a></td>
+      <td>8.59</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>42038</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>57.65</td>
+      <td>56.39</td>
+      <td>-1.26</td>
+      <td>133</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102588" target="_blank" rel="noopener noreferrer"><img src="img/Seize_the_Spoils.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Seize the Spoils.html" target="_blank" rel="noopener noreferrer">Seize the Spoils</a></td>
+      <td>9.13</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>41712</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>59.20</td>
+      <td>57.32</td>
+      <td>-1.88</td>
+      <td>239</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>101370</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>60.10</td>
+      <td>57.71</td>
+      <td>-2.39</td>
+      <td>1168</td>
+      <td>60.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td>2.14</td>
+      <td>R</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>70400</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>59.85</td>
+      <td>56.60</td>
+      <td>-3.25</td>
+      <td>159</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102675" target="_blank" rel="noopener noreferrer"><img src="img/Pursue_the_Past.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pursue the Past.html" target="_blank" rel="noopener noreferrer">Pursue the Past</a></td>
+      <td>7.57</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38778</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>59.50</td>
+      <td>53.97</td>
+      <td>-5.53</td>
+      <td>126</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102578" target="_blank" rel="noopener noreferrer"><img src="img/Impractical_Joke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Impractical Joke.html" target="_blank" rel="noopener noreferrer">Impractical Joke</a></td>
+      <td>3.36</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>97784</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>59.30</td>
+      <td>53.10</td>
+      <td>-6.20</td>
+      <td>113</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102789" target="_blank" rel="noopener noreferrer"><img src="img/Abrade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abrade.html" target="_blank" rel="noopener noreferrer">Abrade</a></td>
+      <td>3.40</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38126</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>57.15</td>
+      <td>50.89</td>
+      <td>-6.26</td>
+      <td>169</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102576" target="_blank" rel="noopener noreferrer"><img src="img/Goblin_Glasswright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Goblin Glasswright.html" target="_blank" rel="noopener noreferrer">Goblin Glasswright</a></td>
+      <td>7.47</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>74964</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>58.05</td>
+      <td>51.43</td>
+      <td>-6.62</td>
+      <td>105</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102689" target="_blank" rel="noopener noreferrer"><img src="img/Spirit_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spirit Mascot.html" target="_blank" rel="noopener noreferrer">Spirit Mascot</a></td>
+      <td>7.80</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>99088</th>
+      <td>mythic</td>
+      <td>R</td>
+      <td>2.14</td>
+      <td><a href=".//Subterranean Tremors.html" target="_blank" rel="noopener noreferrer">Subterranean Tremors</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102800" target="_blank" rel="noopener noreferrer"><img src="img/Subterranean_Tremors.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>60.1</td>
+      <td>59.55</td>
+      <td>51.33</td>
+      <td>-8.22</td>
+      <td>113</td>
+      <td>59.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102793" target="_blank" rel="noopener noreferrer"><img src="img/Burst_Lightning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burst Lightning.html" target="_blank" rel="noopener noreferrer">Burst Lightning</a></td>
+      <td>3.28</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+  </tbody>
+</table>

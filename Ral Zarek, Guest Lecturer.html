@@ -1,0 +1,1651 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>102786</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.55</td>
+      <td>64.00</td>
+      <td>8.45</td>
+      <td>125</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102806" target="_blank" rel="noopener noreferrer"><img src="img/Knockout_Maneuver.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Knockout Maneuver.html" target="_blank" rel="noopener noreferrer">Knockout Maneuver</a></td>
+      <td>5.34</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>8898</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.25</td>
+      <td>62.41</td>
+      <td>8.16</td>
+      <td>133</td>
+      <td>54.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102487" target="_blank" rel="noopener noreferrer"><img src="img/Rapier_Wit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rapier Wit.html" target="_blank" rel="noopener noreferrer">Rapier Wit</a></td>
+      <td>10.15</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>30088</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>57.25</td>
+      <td>64.46</td>
+      <td>7.21</td>
+      <td>121</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102552" target="_blank" rel="noopener noreferrer"><img src="img/Postmortem_Professor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Postmortem Professor.html" target="_blank" rel="noopener noreferrer">Postmortem Professor</a></td>
+      <td>2.46</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>29436</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>57.35</td>
+      <td>63.93</td>
+      <td>6.58</td>
+      <td>122</td>
+      <td>60.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102550" target="_blank" rel="noopener noreferrer"><img src="img/Moseo,_Vein's_New_Dean.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Moseo, Vein's New Dean.html" target="_blank" rel="noopener noreferrer">Moseo, Vein's New Dean</a></td>
+      <td>1.95</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>48018</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>53.10</td>
+      <td>59.46</td>
+      <td>6.36</td>
+      <td>111</td>
+      <td>52.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102607" target="_blank" rel="noopener noreferrer"><img src="img/Follow_the_Lumarets.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Follow the Lumarets.html" target="_blank" rel="noopener noreferrer">Follow the Lumarets</a></td>
+      <td>10.67</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>73120</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.95</td>
+      <td>62.82</td>
+      <td>5.87</td>
+      <td>277</td>
+      <td>59.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102684" target="_blank" rel="noopener noreferrer"><img src="img/Silverquill_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Silverquill Charm.html" target="_blank" rel="noopener noreferrer">Silverquill Charm</a></td>
+      <td>5.15</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>31718</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>53.30</td>
+      <td>59.12</td>
+      <td>5.82</td>
+      <td>137</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102557" target="_blank" rel="noopener noreferrer"><img src="img/Scathing_Shadelock.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scathing Shadelock.html" target="_blank" rel="noopener noreferrer">Scathing Shadelock</a></td>
+      <td>7.08</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>10854</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.80</td>
+      <td>61.43</td>
+      <td>5.63</td>
+      <td>140</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102493" target="_blank" rel="noopener noreferrer"><img src="img/Stand_Up_for_Yourself.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stand Up for Yourself.html" target="_blank" rel="noopener noreferrer">Stand Up for Yourself</a></td>
+      <td>4.85</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>7594</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.90</td>
+      <td>59.09</td>
+      <td>4.19</td>
+      <td>110</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102483" target="_blank" rel="noopener noreferrer"><img src="img/Owlin_Historian.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Owlin Historian.html" target="_blank" rel="noopener noreferrer">Owlin Historian</a></td>
+      <td>8.70</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>27154</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>52.85</td>
+      <td>56.77</td>
+      <td>3.92</td>
+      <td>155</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102543" target="_blank" rel="noopener noreferrer"><img src="img/Forum_Necroscribe.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum Necroscribe.html" target="_blank" rel="noopener noreferrer">Forum Necroscribe</a></td>
+      <td>5.54</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>71490</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.95</td>
+      <td>59.86</td>
+      <td>3.91</td>
+      <td>284</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102679" target="_blank" rel="noopener noreferrer"><img src="img/Render_Speechless.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Render Speechless.html" target="_blank" rel="noopener noreferrer">Render Speechless</a></td>
+      <td>9.13</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3030</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.95</td>
+      <td>58.85</td>
+      <td>3.90</td>
+      <td>192</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102469" target="_blank" rel="noopener noreferrer"><img src="img/Dig_Site_Inventory.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dig Site Inventory.html" target="_blank" rel="noopener noreferrer">Dig Site Inventory</a></td>
+      <td>7.85</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>26828</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.50</td>
+      <td>60.22</td>
+      <td>3.72</td>
+      <td>269</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102542" target="_blank" rel="noopener noreferrer"><img src="img/Foolish_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Foolish Fate.html" target="_blank" rel="noopener noreferrer">Foolish Fate</a></td>
+      <td>3.19</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>86160</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.45</td>
+      <td>59.06</td>
+      <td>3.61</td>
+      <td>298</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>32370</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.75</td>
+      <td>58.33</td>
+      <td>3.58</td>
+      <td>384</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102559" target="_blank" rel="noopener noreferrer"><img src="img/Send_in_the_Pest.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Send in the Pest.html" target="_blank" rel="noopener noreferrer">Send in the Pest</a></td>
+      <td>7.92</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>23894</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>52.45</td>
+      <td>55.88</td>
+      <td>3.43</td>
+      <td>136</td>
+      <td>50.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102533" target="_blank" rel="noopener noreferrer"><img src="img/Arnyn,_Deathbloom_Botanist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arnyn, Deathbloom Botanist.html" target="_blank" rel="noopener noreferrer">Arnyn, Deathbloom Botanist</a></td>
+      <td>6.91</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81922</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.80</td>
+      <td>60.00</td>
+      <td>3.20</td>
+      <td>140</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>32044</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.65</td>
+      <td>59.66</td>
+      <td>3.01</td>
+      <td>119</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102558" target="_blank" rel="noopener noreferrer"><img src="img/Scheming_Silvertongue.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scheming Silvertongue.html" target="_blank" rel="noopener noreferrer">Scheming Silvertongue</a></td>
+      <td>1.92</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>9876</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.10</td>
+      <td>58.10</td>
+      <td>3.00</td>
+      <td>284</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102490" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Acolyte.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shattered Acolyte.html" target="_blank" rel="noopener noreferrer">Shattered Acolyte</a></td>
+      <td>8.17</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>8572</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.55</td>
+      <td>58.43</td>
+      <td>2.88</td>
+      <td>166</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102486" target="_blank" rel="noopener noreferrer"><img src="img/Quill-Blade_Laureate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quill-Blade Laureate.html" target="_blank" rel="noopener noreferrer">Quill-Blade Laureate</a></td>
+      <td>4.42</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>3682</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.90</td>
+      <td>59.64</td>
+      <td>2.74</td>
+      <td>384</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102471" target="_blank" rel="noopener noreferrer"><img src="img/Elite_Interceptor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elite Interceptor.html" target="_blank" rel="noopener noreferrer">Elite Interceptor</a></td>
+      <td>5.06</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>33674</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.05</td>
+      <td>57.76</td>
+      <td>2.71</td>
+      <td>535</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102563" target="_blank" rel="noopener noreferrer"><img src="img/Wander_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wander Off.html" target="_blank" rel="noopener noreferrer">Wander Off</a></td>
+      <td>5.21</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3356</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.25</td>
+      <td>57.75</td>
+      <td>2.50</td>
+      <td>213</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102470" target="_blank" rel="noopener noreferrer"><img src="img/Eager_Glyphmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Eager Glyphmage.html" target="_blank" rel="noopener noreferrer">Eager Glyphmage</a></td>
+      <td>8.57</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>45736</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.85</td>
+      <td>57.26</td>
+      <td>2.41</td>
+      <td>241</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102600" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Barrage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Barrage.html" target="_blank" rel="noopener noreferrer">Burrog Barrage</a></td>
+      <td>7.66</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>67252</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.20</td>
+      <td>56.46</td>
+      <td>2.26</td>
+      <td>147</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102666" target="_blank" rel="noopener noreferrer"><img src="img/Old-Growth_Educator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Old-Growth Educator.html" target="_blank" rel="noopener noreferrer">Old-Growth Educator</a></td>
+      <td>6.41</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>64644</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.20</td>
+      <td>57.41</td>
+      <td>2.21</td>
+      <td>162</td>
+      <td>56.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102658" target="_blank" rel="noopener noreferrer"><img src="img/Lluwen,_Exchange_Student.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lluwen, Exchange Student.html" target="_blank" rel="noopener noreferrer">Lluwen, Exchange Student</a></td>
+      <td>4.83</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>65948</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>53.90</td>
+      <td>56.08</td>
+      <td>2.18</td>
+      <td>148</td>
+      <td>53.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102662" target="_blank" rel="noopener noreferrer"><img src="img/Mind_Roots.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mind Roots.html" target="_blank" rel="noopener noreferrer">Mind Roots</a></td>
+      <td>6.93</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>9224</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.50</td>
+      <td>56.60</td>
+      <td>2.10</td>
+      <td>212</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102488" target="_blank" rel="noopener noreferrer"><img src="img/Rehearsed_Debater.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rehearsed Debater.html" target="_blank" rel="noopener noreferrer">Rehearsed Debater</a></td>
+      <td>9.39</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>11506</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.50</td>
+      <td>57.47</td>
+      <td>1.97</td>
+      <td>221</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102495" target="_blank" rel="noopener noreferrer"><img src="img/Stone_Docent.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stone Docent.html" target="_blank" rel="noopener noreferrer">Stone Docent</a></td>
+      <td>7.36</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>73772</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.25</td>
+      <td>56.93</td>
+      <td>1.68</td>
+      <td>202</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102686" target="_blank" rel="noopener noreferrer"><img src="img/Snooping_Page.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snooping Page.html" target="_blank" rel="noopener noreferrer">Snooping Page</a></td>
+      <td>5.16</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>55190</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.45</td>
+      <td>56.07</td>
+      <td>1.62</td>
+      <td>173</td>
+      <td>54.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102629" target="_blank" rel="noopener noreferrer"><img src="img/Abigale,_Poet_Laureate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abigale, Poet Laureate.html" target="_blank" rel="noopener noreferrer">Abigale, Poet Laureate</a></td>
+      <td>4.93</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>6616</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.55</td>
+      <td>57.02</td>
+      <td>1.47</td>
+      <td>121</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102480" target="_blank" rel="noopener noreferrer"><img src="img/Inkshape_Demonstrator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Inkshape Demonstrator.html" target="_blank" rel="noopener noreferrer">Inkshape Demonstrator</a></td>
+      <td>5.69</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>30740</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>53.45</td>
+      <td>54.88</td>
+      <td>1.43</td>
+      <td>164</td>
+      <td>52.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102554" target="_blank" rel="noopener noreferrer"><img src="img/Pull_from_the_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pull from the Grave.html" target="_blank" rel="noopener noreferrer">Pull from the Grave</a></td>
+      <td>10.19</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>24220</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.35</td>
+      <td>55.62</td>
+      <td>1.27</td>
+      <td>365</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102534" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Banemaker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Banemaker.html" target="_blank" rel="noopener noreferrer">Burrog Banemaker</a></td>
+      <td>8.53</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>63340</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.75</td>
+      <td>57.02</td>
+      <td>1.27</td>
+      <td>356</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td>9.05</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>24872</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.85</td>
+      <td>57.07</td>
+      <td>1.22</td>
+      <td>382</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102536" target="_blank" rel="noopener noreferrer"><img src="img/Cost_of_Brilliance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cost of Brilliance.html" target="_blank" rel="noopener noreferrer">Cost of Brilliance</a></td>
+      <td>8.46</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>25524</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.20</td>
+      <td>57.35</td>
+      <td>1.15</td>
+      <td>211</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102538" target="_blank" rel="noopener noreferrer"><img src="img/Dissection_Practice.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dissection Practice.html" target="_blank" rel="noopener noreferrer">Dissection Practice</a></td>
+      <td>5.60</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>47692</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>57.80</td>
+      <td>58.94</td>
+      <td>1.14</td>
+      <td>151</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102606" target="_blank" rel="noopener noreferrer"><img src="img/Environmental_Scientist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Environmental Scientist.html" target="_blank" rel="noopener noreferrer">Environmental Scientist</a></td>
+      <td>3.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>26176</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.40</td>
+      <td>57.48</td>
+      <td>1.08</td>
+      <td>294</td>
+      <td>58.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102540" target="_blank" rel="noopener noreferrer"><img src="img/End_of_the_Hunt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//End of the Hunt.html" target="_blank" rel="noopener noreferrer">End of the Hunt</a></td>
+      <td>4.08</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>29110</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.15</td>
+      <td>55.99</td>
+      <td>0.84</td>
+      <td>434</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102549" target="_blank" rel="noopener noreferrer"><img src="img/Melancholic_Poet.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Melancholic Poet.html" target="_blank" rel="noopener noreferrer">Melancholic Poet</a></td>
+      <td>7.34</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>1726</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.10</td>
+      <td>56.90</td>
+      <td>0.80</td>
+      <td>239</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102465" target="_blank" rel="noopener noreferrer"><img src="img/Ajani's_Response.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ajani's Response.html" target="_blank" rel="noopener noreferrer">Ajani's Response</a></td>
+      <td>6.23</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83226</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.15</td>
+      <td>55.93</td>
+      <td>0.78</td>
+      <td>531</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102715" target="_blank" rel="noopener noreferrer"><img src="img/Forum_of_Amity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum of Amity.html" target="_blank" rel="noopener noreferrer">Forum of Amity</a></td>
+      <td>7.95</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>63992</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.45</td>
+      <td>56.22</td>
+      <td>0.77</td>
+      <td>185</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102656" target="_blank" rel="noopener noreferrer"><img src="img/Killian's_Confidence.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Killian's Confidence.html" target="_blank" rel="noopener noreferrer">Killian's Confidence</a></td>
+      <td>5.47</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>63666</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.30</td>
+      <td>55.93</td>
+      <td>0.63</td>
+      <td>413</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102655" target="_blank" rel="noopener noreferrer"><img src="img/Inkling_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Inkling Mascot.html" target="_blank" rel="noopener noreferrer">Inkling Mascot</a></td>
+      <td>8.25</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>66600</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>58.95</td>
+      <td>59.46</td>
+      <td>0.51</td>
+      <td>111</td>
+      <td>63.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102664" target="_blank" rel="noopener noreferrer"><img src="img/Moment_of_Reckoning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Moment of Reckoning.html" target="_blank" rel="noopener noreferrer">Moment of Reckoning</a></td>
+      <td>2.50</td>
+      <td>WB</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>89094</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.80</td>
+      <td>57.23</td>
+      <td>0.43</td>
+      <td>159</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102760" target="_blank" rel="noopener noreferrer"><img src="img/Repel_Calamity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Repel Calamity.html" target="_blank" rel="noopener noreferrer">Repel Calamity</a></td>
+      <td>4.07</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>32696</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>53.60</td>
+      <td>54.02</td>
+      <td>0.42</td>
+      <td>261</td>
+      <td>53.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102560" target="_blank" rel="noopener noreferrer"><img src="img/Sneering_Shadewriter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sneering Shadewriter.html" target="_blank" rel="noopener noreferrer">Sneering Shadewriter</a></td>
+      <td>9.78</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>33022</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.60</td>
+      <td>55.00</td>
+      <td>0.40</td>
+      <td>120</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102561" target="_blank" rel="noopener noreferrer"><img src="img/Tragedy_Feaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tragedy Feaster.html" target="_blank" rel="noopener noreferrer">Tragedy Feaster</a></td>
+      <td>2.99</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>57472</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.85</td>
+      <td>55.18</td>
+      <td>0.33</td>
+      <td>357</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102636" target="_blank" rel="noopener noreferrer"><img src="img/Bogwater_Lumaret.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Bogwater Lumaret.html" target="_blank" rel="noopener noreferrer">Bogwater Lumaret</a></td>
+      <td>6.39</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>26502</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.35</td>
+      <td>54.64</td>
+      <td>0.29</td>
+      <td>183</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102541" target="_blank" rel="noopener noreferrer"><img src="img/Eternal_Student.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Eternal Student.html" target="_blank" rel="noopener noreferrer">Eternal Student</a></td>
+      <td>6.36</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>31392</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.20</td>
+      <td>54.32</td>
+      <td>0.12</td>
+      <td>2511</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td>1.65</td>
+      <td>B</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>94636</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.05</td>
+      <td>56.12</td>
+      <td>0.07</td>
+      <td>237</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102778" target="_blank" rel="noopener noreferrer"><img src="img/Bitter_Triumph.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Bitter Triumph.html" target="_blank" rel="noopener noreferrer">Bitter Triumph</a></td>
+      <td>3.36</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>27806</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.95</td>
+      <td>55.99</td>
+      <td>0.04</td>
+      <td>568</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102545" target="_blank" rel="noopener noreferrer"><img src="img/Last_Gasp.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Last Gasp.html" target="_blank" rel="noopener noreferrer">Last Gasp</a></td>
+      <td>4.81</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>50952</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.65</td>
+      <td>56.67</td>
+      <td>0.02</td>
+      <td>150</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102616" target="_blank" rel="noopener noreferrer"><img src="img/Pestbrood_Sloth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pestbrood Sloth.html" target="_blank" rel="noopener noreferrer">Pestbrood Sloth</a></td>
+      <td>4.49</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>23242</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.20</td>
+      <td>53.85</td>
+      <td>-0.35</td>
+      <td>351</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102531" target="_blank" rel="noopener noreferrer"><img src="img/Adventurous_Eater.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Adventurous Eater.html" target="_blank" rel="noopener noreferrer">Adventurous Eater</a></td>
+      <td>8.17</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>5312</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.60</td>
+      <td>55.14</td>
+      <td>-0.46</td>
+      <td>107</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102476" target="_blank" rel="noopener noreferrer"><img src="img/Group_Project.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Group Project.html" target="_blank" rel="noopener noreferrer">Group Project</a></td>
+      <td>5.34</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>49974</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>53.80</td>
+      <td>53.18</td>
+      <td>-0.62</td>
+      <td>220</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102613" target="_blank" rel="noopener noreferrer"><img src="img/Mindful_Biomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mindful Biomancer.html" target="_blank" rel="noopener noreferrer">Mindful Biomancer</a></td>
+      <td>9.33</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83878</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.25</td>
+      <td>54.10</td>
+      <td>-1.15</td>
+      <td>183</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>50300</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.95</td>
+      <td>53.68</td>
+      <td>-1.27</td>
+      <td>231</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102614" target="_blank" rel="noopener noreferrer"><img src="img/Noxious_Newt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Noxious Newt.html" target="_blank" rel="noopener noreferrer">Noxious Newt</a></td>
+      <td>6.17</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>72794</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>57.40</td>
+      <td>55.98</td>
+      <td>-1.42</td>
+      <td>259</td>
+      <td>60.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102683" target="_blank" rel="noopener noreferrer"><img src="img/Scolding_Administrator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scolding Administrator.html" target="_blank" rel="noopener noreferrer">Scolding Administrator</a></td>
+      <td>4.28</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>28132</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.35</td>
+      <td>54.92</td>
+      <td>-1.43</td>
+      <td>193</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102546" target="_blank" rel="noopener noreferrer"><img src="img/Lecturing_Scornmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lecturing Scornmage.html" target="_blank" rel="noopener noreferrer">Lecturing Scornmage</a></td>
+      <td>4.86</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>76054</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.25</td>
+      <td>54.51</td>
+      <td>-1.74</td>
+      <td>255</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102693" target="_blank" rel="noopener noreferrer"><img src="img/Stirring_Honormancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stirring Honormancer.html" target="_blank" rel="noopener noreferrer">Stirring Honormancer</a></td>
+      <td>5.64</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>95614</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.75</td>
+      <td>52.97</td>
+      <td>-1.78</td>
+      <td>236</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102781" target="_blank" rel="noopener noreferrer"><img src="img/Feed_the_Swarm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Feed the Swarm.html" target="_blank" rel="noopener noreferrer">Feed the Swarm</a></td>
+      <td>4.59</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>79314</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.05</td>
+      <td>52.23</td>
+      <td>-1.82</td>
+      <td>157</td>
+      <td>53.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td>6.66</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81596</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.85</td>
+      <td>54.00</td>
+      <td>-1.85</td>
+      <td>150</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>28784</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.05</td>
+      <td>52.87</td>
+      <td>-2.18</td>
+      <td>157</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102548" target="_blank" rel="noopener noreferrer"><img src="img/Masterful_Flourish.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Masterful Flourish.html" target="_blank" rel="noopener noreferrer">Masterful Flourish</a></td>
+      <td>10.49</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>77358</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.50</td>
+      <td>52.30</td>
+      <td>-2.20</td>
+      <td>174</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102697" target="_blank" rel="noopener noreferrer"><img src="img/Teacher's_Pest.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Teacher's Pest.html" target="_blank" rel="noopener noreferrer">Teacher's Pest</a></td>
+      <td>5.24</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>24546</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>52.85</td>
+      <td>50.56</td>
+      <td>-2.29</td>
+      <td>269</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102535" target="_blank" rel="noopener noreferrer"><img src="img/Cheerful_Osteomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cheerful Osteomancer.html" target="_blank" rel="noopener noreferrer">Cheerful Osteomancer</a></td>
+      <td>9.18</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>5964</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>53.70</td>
+      <td>51.02</td>
+      <td>-2.68</td>
+      <td>147</td>
+      <td>53.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102478" target="_blank" rel="noopener noreferrer"><img src="img/Honorbound_Page.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Honorbound Page.html" target="_blank" rel="noopener noreferrer">Honorbound Page</a></td>
+      <td>9.39</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>28458</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>53.10</td>
+      <td>50.39</td>
+      <td>-2.71</td>
+      <td>129</td>
+      <td>52.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102547" target="_blank" rel="noopener noreferrer"><img src="img/Leech_Collector.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Leech Collector.html" target="_blank" rel="noopener noreferrer">Leech Collector</a></td>
+      <td>6.65</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82900</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.80</td>
+      <td>53.00</td>
+      <td>-2.80</td>
+      <td>100</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>67904</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>53.85</td>
+      <td>50.99</td>
+      <td>-2.86</td>
+      <td>355</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102668" target="_blank" rel="noopener noreferrer"><img src="img/Pest_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pest Mascot.html" target="_blank" rel="noopener noreferrer">Pest Mascot</a></td>
+      <td>7.34</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>62362</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.50</td>
+      <td>52.55</td>
+      <td>-2.95</td>
+      <td>373</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102651" target="_blank" rel="noopener noreferrer"><img src="img/Grapple_with_Death.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Grapple with Death.html" target="_blank" rel="noopener noreferrer">Grapple with Death</a></td>
+      <td>5.38</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>60732</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>56.40</td>
+      <td>52.94</td>
+      <td>-3.46</td>
+      <td>170</td>
+      <td>58.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102646" target="_blank" rel="noopener noreferrer"><img src="img/Essenceknit_Scholar.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essenceknit Scholar.html" target="_blank" rel="noopener noreferrer">Essenceknit Scholar</a></td>
+      <td>4.33</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52582</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.65</td>
+      <td>51.43</td>
+      <td>-4.22</td>
+      <td>245</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>51604</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>53.85</td>
+      <td>49.18</td>
+      <td>-4.67</td>
+      <td>183</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102618" target="_blank" rel="noopener noreferrer"><img src="img/Shopkeeper's_Bane.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shopkeeper's Bane.html" target="_blank" rel="noopener noreferrer">Shopkeeper's Bane</a></td>
+      <td>9.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86486</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.85</td>
+      <td>49.87</td>
+      <td>-4.98</td>
+      <td>387</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102725" target="_blank" rel="noopener noreferrer"><img src="img/Titan's_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Titan's Grave.html" target="_blank" rel="noopener noreferrer">Titan's Grave</a></td>
+      <td>7.67</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>53234</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>55.35</td>
+      <td>50.34</td>
+      <td>-5.01</td>
+      <td>145</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102623" target="_blank" rel="noopener noreferrer"><img src="img/Thornfist_Striker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Thornfist Striker.html" target="_blank" rel="noopener noreferrer">Thornfist Striker</a></td>
+      <td>6.69</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>29762</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.85</td>
+      <td>49.73</td>
+      <td>-5.12</td>
+      <td>183</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102551" target="_blank" rel="noopener noreferrer"><img src="img/Poisoner's_Apprentice.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Poisoner's Apprentice.html" target="_blank" rel="noopener noreferrer">Poisoner's Apprentice</a></td>
+      <td>5.44</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52908</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>53.30</td>
+      <td>47.31</td>
+      <td>-5.99</td>
+      <td>167</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102622" target="_blank" rel="noopener noreferrer"><img src="img/Tenured_Concocter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tenured Concocter.html" target="_blank" rel="noopener noreferrer">Tenured Concocter</a></td>
+      <td>10.55</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>49322</th>
+      <td>mythic</td>
+      <td>B</td>
+      <td>1.65</td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.2</td>
+      <td>54.30</td>
+      <td>47.18</td>
+      <td>-7.12</td>
+      <td>142</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102611" target="_blank" rel="noopener noreferrer"><img src="img/Infirmary_Healer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Infirmary Healer.html" target="_blank" rel="noopener noreferrer">Infirmary Healer</a></td>
+      <td>6.79</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,2145 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>39039</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>57.80</td>
+      <td>74.29</td>
+      <td>16.49</td>
+      <td>105</td>
+      <td>63.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102579" target="_blank" rel="noopener noreferrer"><img src="img/Improvisation_Capstone.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Improvisation Capstone.html" target="_blank" rel="noopener noreferrer">Improvisation Capstone</a></td>
+      <td>1.78</td>
+      <td>R</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>1549</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.80</td>
+      <td>70.49</td>
+      <td>15.69</td>
+      <td>122</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102464" target="_blank" rel="noopener noreferrer"><img src="img/Transcendent_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Transcendent Archaic.html" target="_blank" rel="noopener noreferrer">Transcendent Archaic</a></td>
+      <td>7.13</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>104239</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.90</td>
+      <td>64.86</td>
+      <td>10.96</td>
+      <td>148</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102810" target="_blank" rel="noopener noreferrer"><img src="img/Shared_Roots.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shared Roots.html" target="_blank" rel="noopener noreferrer">Shared Roots</a></td>
+      <td>5.39</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>77833</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>56.45</td>
+      <td>66.27</td>
+      <td>9.82</td>
+      <td>249</td>
+      <td>60.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102698" target="_blank" rel="noopener noreferrer"><img src="img/Traumatic_Critique.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Traumatic Critique.html" target="_blank" rel="noopener noreferrer">Traumatic Critique</a></td>
+      <td>2.09</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>897</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.70</td>
+      <td>65.28</td>
+      <td>9.58</td>
+      <td>193</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102462" target="_blank" rel="noopener noreferrer"><img src="img/Sundering_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundering Archaic.html" target="_blank" rel="noopener noreferrer">Sundering Archaic</a></td>
+      <td>5.64</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82723</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.50</td>
+      <td>63.93</td>
+      <td>9.43</td>
+      <td>122</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102713" target="_blank" rel="noopener noreferrer"><img src="img/Dreamroot_Cascade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dreamroot Cascade.html" target="_blank" rel="noopener noreferrer">Dreamroot Cascade</a></td>
+      <td>4.80</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>47841</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>56.85</td>
+      <td>66.13</td>
+      <td>9.28</td>
+      <td>124</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102606" target="_blank" rel="noopener noreferrer"><img src="img/Environmental_Scientist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Environmental Scientist.html" target="_blank" rel="noopener noreferrer">Environmental Scientist</a></td>
+      <td>3.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60555</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.35</td>
+      <td>62.89</td>
+      <td>8.54</td>
+      <td>380</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>67727</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.50</td>
+      <td>63.81</td>
+      <td>8.31</td>
+      <td>105</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102667" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Surveyor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Surveyor.html" target="_blank" rel="noopener noreferrer">Paradox Surveyor</a></td>
+      <td>5.40</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>86635</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.90</td>
+      <td>62.07</td>
+      <td>8.17</td>
+      <td>174</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102725" target="_blank" rel="noopener noreferrer"><img src="img/Titan's_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Titan's Grave.html" target="_blank" rel="noopener noreferrer">Titan's Grave</a></td>
+      <td>7.67</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17849</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.95</td>
+      <td>64.05</td>
+      <td>8.10</td>
+      <td>153</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102514" target="_blank" rel="noopener noreferrer"><img src="img/Jadzi,_Steward_of_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Jadzi, Steward of Fate.html" target="_blank" rel="noopener noreferrer">Jadzi, Steward of Fate</a></td>
+      <td>1.96</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>83375</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.20</td>
+      <td>62.18</td>
+      <td>7.98</td>
+      <td>119</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102715" target="_blank" rel="noopener noreferrer"><img src="img/Forum_of_Amity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum of Amity.html" target="_blank" rel="noopener noreferrer">Forum of Amity</a></td>
+      <td>7.95</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83049</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.85</td>
+      <td>62.41</td>
+      <td>7.56</td>
+      <td>399</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>97719</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.40</td>
+      <td>62.80</td>
+      <td>7.40</td>
+      <td>336</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102789" target="_blank" rel="noopener noreferrer"><img src="img/Abrade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abrade.html" target="_blank" rel="noopener noreferrer">Abrade</a></td>
+      <td>3.40</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>1223</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>59.00</td>
+      <td>66.21</td>
+      <td>7.21</td>
+      <td>145</td>
+      <td>65.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102463" target="_blank" rel="noopener noreferrer"><img src="img/Together_as_One.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Together as One.html" target="_blank" rel="noopener noreferrer">Together as One</a></td>
+      <td>2.04</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>94459</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>56.15</td>
+      <td>63.00</td>
+      <td>6.85</td>
+      <td>400</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>571</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.20</td>
+      <td>60.00</td>
+      <td>6.80</td>
+      <td>110</td>
+      <td>54.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102461" target="_blank" rel="noopener noreferrer"><img src="img/Rancorous_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rancorous Archaic.html" target="_blank" rel="noopener noreferrer">Rancorous Archaic</a></td>
+      <td>10.56</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>76529</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>56.30</td>
+      <td>62.77</td>
+      <td>6.47</td>
+      <td>607</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102694" target="_blank" rel="noopener noreferrer"><img src="img/Stress_Dream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stress Dream.html" target="_blank" rel="noopener noreferrer">Stress Dream</a></td>
+      <td>3.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>50449</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.00</td>
+      <td>60.26</td>
+      <td>6.26</td>
+      <td>151</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102614" target="_blank" rel="noopener noreferrer"><img src="img/Noxious_Newt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Noxious Newt.html" target="_blank" rel="noopener noreferrer">Noxious Newt</a></td>
+      <td>6.17</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>20457</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.60</td>
+      <td>61.83</td>
+      <td>6.23</td>
+      <td>186</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102522" target="_blank" rel="noopener noreferrer"><img src="img/Pensive_Professor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pensive Professor.html" target="_blank" rel="noopener noreferrer">Pensive Professor</a></td>
+      <td>2.11</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>66423</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>56.05</td>
+      <td>62.16</td>
+      <td>6.11</td>
+      <td>111</td>
+      <td>59.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102663" target="_blank" rel="noopener noreferrer"><img src="img/Molten_Note.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Molten Note.html" target="_blank" rel="noopener noreferrer">Molten Note</a></td>
+      <td>4.73</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>79137</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.90</td>
+      <td>60.92</td>
+      <td>6.02</td>
+      <td>174</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102702" target="_blank" rel="noopener noreferrer"><img src="img/Wilt_in_the_Heat.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wilt in the Heat.html" target="_blank" rel="noopener noreferrer">Wilt in the Heat</a></td>
+      <td>6.96</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>80767</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>51.95</td>
+      <td>57.79</td>
+      <td>5.84</td>
+      <td>244</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102707" target="_blank" rel="noopener noreferrer"><img src="img/Diary_of_Dreams.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Diary of Dreams.html" target="_blank" rel="noopener noreferrer">Diary of Dreams</a></td>
+      <td>7.82</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>69357</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.15</td>
+      <td>60.87</td>
+      <td>5.72</td>
+      <td>207</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102672" target="_blank" rel="noopener noreferrer"><img src="img/Proctor's_Gaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Proctor's Gaze.html" target="_blank" rel="noopener noreferrer">Proctor's Gaze</a></td>
+      <td>5.12</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>35127</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.85</td>
+      <td>60.45</td>
+      <td>5.60</td>
+      <td>402</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102567" target="_blank" rel="noopener noreferrer"><img src="img/Artistic_Process.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Artistic Process.html" target="_blank" rel="noopener noreferrer">Artistic Process</a></td>
+      <td>4.72</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>84027</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.30</td>
+      <td>59.69</td>
+      <td>5.39</td>
+      <td>573</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>40343</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.70</td>
+      <td>58.04</td>
+      <td>5.34</td>
+      <td>143</td>
+      <td>53.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102583" target="_blank" rel="noopener noreferrer"><img src="img/Mica,_Reader_of_Ruins.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mica, Reader of Ruins.html" target="_blank" rel="noopener noreferrer">Mica, Reader of Ruins</a></td>
+      <td>8.95</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>18501</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.10</td>
+      <td>60.23</td>
+      <td>5.13</td>
+      <td>171</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102516" target="_blank" rel="noopener noreferrer"><img src="img/Mana_Sculpt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mana Sculpt.html" target="_blank" rel="noopener noreferrer">Mana Sculpt</a></td>
+      <td>4.24</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>86309</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.50</td>
+      <td>59.58</td>
+      <td>5.08</td>
+      <td>522</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>34801</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.65</td>
+      <td>59.68</td>
+      <td>5.03</td>
+      <td>124</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102566" target="_blank" rel="noopener noreferrer"><img src="img/Archaic's_Agony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Archaic's Agony.html" target="_blank" rel="noopener noreferrer">Archaic's Agony</a></td>
+      <td>8.19</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>55991</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.40</td>
+      <td>60.19</td>
+      <td>4.79</td>
+      <td>103</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102631" target="_blank" rel="noopener noreferrer"><img src="img/Applied_Geometry.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Applied Geometry.html" target="_blank" rel="noopener noreferrer">Applied Geometry</a></td>
+      <td>2.46</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>91851</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.80</td>
+      <td>59.56</td>
+      <td>4.76</td>
+      <td>319</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102768" target="_blank" rel="noopener noreferrer"><img src="img/Deduce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deduce.html" target="_blank" rel="noopener noreferrer">Deduce</a></td>
+      <td>6.89</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52405</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>57.10</td>
+      <td>61.73</td>
+      <td>4.63</td>
+      <td>196</td>
+      <td>61.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102620" target="_blank" rel="noopener noreferrer"><img src="img/Snarl_Song.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snarl Song.html" target="_blank" rel="noopener noreferrer">Snarl Song</a></td>
+      <td>4.65</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81745</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.90</td>
+      <td>59.52</td>
+      <td>4.62</td>
+      <td>630</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>82071</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.85</td>
+      <td>60.42</td>
+      <td>4.57</td>
+      <td>192</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>13937</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.25</td>
+      <td>59.08</td>
+      <td>3.83</td>
+      <td>369</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102502" target="_blank" rel="noopener noreferrer"><img src="img/Divergent_Equation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Divergent Equation.html" target="_blank" rel="noopener noreferrer">Divergent Equation</a></td>
+      <td>6.14</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>92177</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.70</td>
+      <td>58.15</td>
+      <td>3.45</td>
+      <td>356</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102769" target="_blank" rel="noopener noreferrer"><img src="img/Disdainful_Stroke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Disdainful Stroke.html" target="_blank" rel="noopener noreferrer">Disdainful Stroke</a></td>
+      <td>6.56</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43277</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.65</td>
+      <td>56.05</td>
+      <td>3.40</td>
+      <td>314</td>
+      <td>53.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102592" target="_blank" rel="noopener noreferrer"><img src="img/Tackle_Artist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tackle Artist.html" target="_blank" rel="noopener noreferrer">Tackle Artist</a></td>
+      <td>9.60</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21109</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.30</td>
+      <td>57.62</td>
+      <td>3.32</td>
+      <td>538</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>72617</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.55</td>
+      <td>58.85</td>
+      <td>3.30</td>
+      <td>520</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102682" target="_blank" rel="noopener noreferrer"><img src="img/Sanar,_Unfinished_Genius.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sanar, Unfinished Genius.html" target="_blank" rel="noopener noreferrer">Sanar, Unfinished Genius</a></td>
+      <td>4.32</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38387</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.10</td>
+      <td>57.35</td>
+      <td>3.25</td>
+      <td>544</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>40669</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>56.10</td>
+      <td>59.24</td>
+      <td>3.14</td>
+      <td>157</td>
+      <td>59.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102584" target="_blank" rel="noopener noreferrer"><img src="img/Molten-Core_Maestro.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Molten-Core Maestro.html" target="_blank" rel="noopener noreferrer">Molten-Core Maestro</a></td>
+      <td>1.93</td>
+      <td>R</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>52731</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.70</td>
+      <td>57.69</td>
+      <td>2.99</td>
+      <td>182</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>23065</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.05</td>
+      <td>57.99</td>
+      <td>2.94</td>
+      <td>338</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102530" target="_blank" rel="noopener noreferrer"><img src="img/Wisdom_of_Ages.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wisdom of Ages.html" target="_blank" rel="noopener noreferrer">Wisdom of Ages</a></td>
+      <td>4.74</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>19805</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.55</td>
+      <td>55.42</td>
+      <td>2.87</td>
+      <td>406</td>
+      <td>52.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102520" target="_blank" rel="noopener noreferrer"><img src="img/Muse's_Encouragement.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse's Encouragement.html" target="_blank" rel="noopener noreferrer">Muse's Encouragement</a></td>
+      <td>10.29</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17197</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.20</td>
+      <td>56.90</td>
+      <td>2.70</td>
+      <td>355</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102512" target="_blank" rel="noopener noreferrer"><img src="img/Homesickness.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Homesickness.html" target="_blank" rel="noopener noreferrer">Homesickness</a></td>
+      <td>6.62</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>41973</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.75</td>
+      <td>56.29</td>
+      <td>2.54</td>
+      <td>572</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102588" target="_blank" rel="noopener noreferrer"><img src="img/Seize_the_Spoils.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Seize the Spoils.html" target="_blank" rel="noopener noreferrer">Seize the Spoils</a></td>
+      <td>9.13</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>65771</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.20</td>
+      <td>57.64</td>
+      <td>2.44</td>
+      <td>144</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102661" target="_blank" rel="noopener noreferrer"><img src="img/Mind_into_Matter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mind into Matter.html" target="_blank" rel="noopener noreferrer">Mind into Matter</a></td>
+      <td>2.66</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>61533</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.35</td>
+      <td>55.77</td>
+      <td>2.42</td>
+      <td>104</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102648" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Mascot.html" target="_blank" rel="noopener noreferrer">Fractal Mascot</a></td>
+      <td>9.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>75225</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>56.65</td>
+      <td>59.02</td>
+      <td>2.37</td>
+      <td>305</td>
+      <td>61.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102690" target="_blank" rel="noopener noreferrer"><img src="img/Splatter_Technique.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Splatter Technique.html" target="_blank" rel="noopener noreferrer">Splatter Technique</a></td>
+      <td>2.38</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>78811</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.40</td>
+      <td>56.62</td>
+      <td>2.22</td>
+      <td>1042</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>70335</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.95</td>
+      <td>58.12</td>
+      <td>2.17</td>
+      <td>117</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102675" target="_blank" rel="noopener noreferrer"><img src="img/Pursue_the_Past.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pursue the Past.html" target="_blank" rel="noopener noreferrer">Pursue the Past</a></td>
+      <td>7.57</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85331</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.50</td>
+      <td>56.66</td>
+      <td>2.16</td>
+      <td>1163</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>20131</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.80</td>
+      <td>54.86</td>
+      <td>2.06</td>
+      <td>144</td>
+      <td>53.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td>7.25</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>23717</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>56.30</td>
+      <td>58.33</td>
+      <td>2.03</td>
+      <td>108</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102532" target="_blank" rel="noopener noreferrer"><img src="img/Arcane_Omens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arcane Omens.html" target="_blank" rel="noopener noreferrer">Arcane Omens</a></td>
+      <td>6.89</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>12959</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.25</td>
+      <td>55.19</td>
+      <td>1.94</td>
+      <td>241</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102499" target="_blank" rel="noopener noreferrer"><img src="img/Campus_Composer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Campus Composer.html" target="_blank" rel="noopener noreferrer">Campus Composer</a></td>
+      <td>6.28</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>14915</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>51.45</td>
+      <td>53.39</td>
+      <td>1.94</td>
+      <td>118</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102505" target="_blank" rel="noopener noreferrer"><img src="img/Encouraging_Aviator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Encouraging Aviator.html" target="_blank" rel="noopener noreferrer">Encouraging Aviator</a></td>
+      <td>7.51</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>41647</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.30</td>
+      <td>57.18</td>
+      <td>1.88</td>
+      <td>348</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>42299</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.15</td>
+      <td>55.00</td>
+      <td>1.85</td>
+      <td>140</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102589" target="_blank" rel="noopener noreferrer"><img src="img/Steal_the_Show.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Steal the Show.html" target="_blank" rel="noopener noreferrer">Steal the Show</a></td>
+      <td>6.02</td>
+      <td>R</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>94133</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.85</td>
+      <td>55.63</td>
+      <td>1.78</td>
+      <td>142</td>
+      <td>55.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102775" target="_blank" rel="noopener noreferrer"><img src="img/Spell_Pierce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spell Pierce.html" target="_blank" rel="noopener noreferrer">Spell Pierce</a></td>
+      <td>9.26</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38061</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.25</td>
+      <td>54.64</td>
+      <td>1.39</td>
+      <td>485</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102576" target="_blank" rel="noopener noreferrer"><img src="img/Goblin_Glasswright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Goblin Glasswright.html" target="_blank" rel="noopener noreferrer">Goblin Glasswright</a></td>
+      <td>7.47</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>71313</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.00</td>
+      <td>54.25</td>
+      <td>1.25</td>
+      <td>424</td>
+      <td>53.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102678" target="_blank" rel="noopener noreferrer"><img src="img/Rapturous_Moment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rapturous Moment.html" target="_blank" rel="noopener noreferrer">Rapturous Moment</a></td>
+      <td>7.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43929</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.00</td>
+      <td>56.24</td>
+      <td>1.24</td>
+      <td>761</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>12633</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.20</td>
+      <td>56.11</td>
+      <td>0.91</td>
+      <td>319</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102498" target="_blank" rel="noopener noreferrer"><img src="img/Brush_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Brush Off.html" target="_blank" rel="noopener noreferrer">Brush Off</a></td>
+      <td>6.79</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>18175</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.85</td>
+      <td>53.61</td>
+      <td>0.76</td>
+      <td>457</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102515" target="_blank" rel="noopener noreferrer"><img src="img/Landscape_Painter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Landscape Painter.html" target="_blank" rel="noopener noreferrer">Landscape Painter</a></td>
+      <td>8.96</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>58599</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>57.45</td>
+      <td>58.17</td>
+      <td>0.72</td>
+      <td>208</td>
+      <td>62.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102639" target="_blank" rel="noopener noreferrer"><img src="img/Colorstorm_Stallion.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Colorstorm Stallion.html" target="_blank" rel="noopener noreferrer">Colorstorm Stallion</a></td>
+      <td>2.06</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>17523</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.65</td>
+      <td>54.18</td>
+      <td>0.53</td>
+      <td>718</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>12307</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.90</td>
+      <td>54.41</td>
+      <td>0.51</td>
+      <td>555</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102497" target="_blank" rel="noopener noreferrer"><img src="img/Banishing_Betrayal.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Banishing Betrayal.html" target="_blank" rel="noopener noreferrer">Banishing Betrayal</a></td>
+      <td>8.95</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15567</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>56.65</td>
+      <td>57.14</td>
+      <td>0.49</td>
+      <td>203</td>
+      <td>61.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102507" target="_blank" rel="noopener noreferrer"><img src="img/Exhibition_Tidecaller.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Exhibition Tidecaller.html" target="_blank" rel="noopener noreferrer">Exhibition Tidecaller</a></td>
+      <td>2.48</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>80115</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.30</td>
+      <td>52.68</td>
+      <td>0.38</td>
+      <td>3394</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td>6.02</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>13285</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.40</td>
+      <td>53.70</td>
+      <td>0.30</td>
+      <td>162</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102500" target="_blank" rel="noopener noreferrer"><img src="img/Chase_Inspiration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Chase Inspiration.html" target="_blank" rel="noopener noreferrer">Chase Inspiration</a></td>
+      <td>11.41</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44255</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.10</td>
+      <td>55.34</td>
+      <td>0.24</td>
+      <td>759</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85657</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.80</td>
+      <td>55.00</td>
+      <td>0.20</td>
+      <td>220</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102722" target="_blank" rel="noopener noreferrer"><img src="img/Stormcarved_Coast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stormcarved Coast.html" target="_blank" rel="noopener noreferrer">Stormcarved Coast</a></td>
+      <td>4.76</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>19479</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.60</td>
+      <td>52.65</td>
+      <td>0.05</td>
+      <td>359</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102519" target="_blank" rel="noopener noreferrer"><img src="img/Muse_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse Seeker.html" target="_blank" rel="noopener noreferrer">Muse Seeker</a></td>
+      <td>6.29</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>15893</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.65</td>
+      <td>54.57</td>
+      <td>-0.08</td>
+      <td>449</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102508" target="_blank" rel="noopener noreferrer"><img src="img/Flow_State.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flow State.html" target="_blank" rel="noopener noreferrer">Flow State</a></td>
+      <td>4.58</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>55665</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>51.45</td>
+      <td>51.35</td>
+      <td>-0.10</td>
+      <td>333</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102630" target="_blank" rel="noopener noreferrer"><img src="img/Abstract_Paintmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abstract Paintmage.html" target="_blank" rel="noopener noreferrer">Abstract Paintmage</a></td>
+      <td>7.34</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>37409</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.35</td>
+      <td>53.23</td>
+      <td>-0.12</td>
+      <td>124</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102574" target="_blank" rel="noopener noreferrer"><img src="img/Flashback.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flashback.html" target="_blank" rel="noopener noreferrer">Flashback</a></td>
+      <td>5.45</td>
+      <td>R</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>75551</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.25</td>
+      <td>53.12</td>
+      <td>-0.13</td>
+      <td>480</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102691" target="_blank" rel="noopener noreferrer"><img src="img/Stadium_Tidalmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stadium Tidalmage.html" target="_blank" rel="noopener noreferrer">Stadium Tidalmage</a></td>
+      <td>10.02</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>78159</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.60</td>
+      <td>55.11</td>
+      <td>-0.49</td>
+      <td>528</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102699" target="_blank" rel="noopener noreferrer"><img src="img/Vibrant_Outburst.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vibrant Outburst.html" target="_blank" rel="noopener noreferrer">Vibrant Outburst</a></td>
+      <td>4.13</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>68705</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.65</td>
+      <td>54.16</td>
+      <td>-0.49</td>
+      <td>445</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102670" target="_blank" rel="noopener noreferrer"><img src="img/Prismari_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Prismari Charm.html" target="_blank" rel="noopener noreferrer">Prismari Charm</a></td>
+      <td>5.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>21435</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.95</td>
+      <td>54.39</td>
+      <td>-0.56</td>
+      <td>741</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44581</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.65</td>
+      <td>53.08</td>
+      <td>-0.57</td>
+      <td>341</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102596" target="_blank" rel="noopener noreferrer"><img src="img/Zealous_Lorecaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zealous Lorecaster.html" target="_blank" rel="noopener noreferrer">Zealous Lorecaster</a></td>
+      <td>9.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>22087</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>51.70</td>
+      <td>51.09</td>
+      <td>-0.61</td>
+      <td>276</td>
+      <td>51.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102527" target="_blank" rel="noopener noreferrer"><img src="img/Spellbook_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spellbook Seeker.html" target="_blank" rel="noopener noreferrer">Spellbook Seeker</a></td>
+      <td>10.09</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>93807</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.15</td>
+      <td>53.40</td>
+      <td>-0.75</td>
+      <td>309</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102774" target="_blank" rel="noopener noreferrer"><img src="img/Sleight_of_Hand.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sleight of Hand.html" target="_blank" rel="noopener noreferrer">Sleight of Hand</a></td>
+      <td>7.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>15241</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.75</td>
+      <td>54.00</td>
+      <td>-0.75</td>
+      <td>813</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19153</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.40</td>
+      <td>54.64</td>
+      <td>-0.76</td>
+      <td>366</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102518" target="_blank" rel="noopener noreferrer"><img src="img/Matterbending_Mage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Matterbending Mage.html" target="_blank" rel="noopener noreferrer">Matterbending Mage</a></td>
+      <td>4.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60229</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.60</td>
+      <td>52.61</td>
+      <td>-0.99</td>
+      <td>593</td>
+      <td>54.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102644" target="_blank" rel="noopener noreferrer"><img src="img/Elemental_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elemental Mascot.html" target="_blank" rel="noopener noreferrer">Elemental Mascot</a></td>
+      <td>8.81</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>22413</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.40</td>
+      <td>51.91</td>
+      <td>-1.49</td>
+      <td>183</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102528" target="_blank" rel="noopener noreferrer"><img src="img/Tester_of_the_Tangential.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tester of the Tangential.html" target="_blank" rel="noopener noreferrer">Tester of the Tangential</a></td>
+      <td>6.37</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>22739</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.35</td>
+      <td>50.83</td>
+      <td>-1.52</td>
+      <td>181</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102529" target="_blank" rel="noopener noreferrer"><img src="img/Textbook_Tabulator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Textbook Tabulator.html" target="_blank" rel="noopener noreferrer">Textbook Tabulator</a></td>
+      <td>10.59</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>71965</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.00</td>
+      <td>51.79</td>
+      <td>-2.21</td>
+      <td>224</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102680" target="_blank" rel="noopener noreferrer"><img src="img/Resonating_Lute.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Resonating Lute.html" target="_blank" rel="noopener noreferrer">Resonating Lute</a></td>
+      <td>2.90</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>99023</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.65</td>
+      <td>53.14</td>
+      <td>-2.51</td>
+      <td>318</td>
+      <td>59.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102793" target="_blank" rel="noopener noreferrer"><img src="img/Burst_Lightning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burst Lightning.html" target="_blank" rel="noopener noreferrer">Burst Lightning</a></td>
+      <td>3.28</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>37083</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.95</td>
+      <td>51.34</td>
+      <td>-2.61</td>
+      <td>335</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102573" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Firedancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Expressive Firedancer.html" target="_blank" rel="noopener noreferrer">Expressive Firedancer</a></td>
+      <td>8.59</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>81419</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.70</td>
+      <td>50.00</td>
+      <td>-2.70</td>
+      <td>112</td>
+      <td>53.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102709" target="_blank" rel="noopener noreferrer"><img src="img/Page,_Loose_Leaf.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Page, Loose Leaf.html" target="_blank" rel="noopener noreferrer">Page, Loose Leaf</a></td>
+      <td>11.31</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38713</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.60</td>
+      <td>52.56</td>
+      <td>-3.04</td>
+      <td>371</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102578" target="_blank" rel="noopener noreferrer"><img src="img/Impractical_Joke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Impractical Joke.html" target="_blank" rel="noopener noreferrer">Impractical Joke</a></td>
+      <td>3.36</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>70009</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>53.05</td>
+      <td>50.00</td>
+      <td>-3.05</td>
+      <td>120</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102674" target="_blank" rel="noopener noreferrer"><img src="img/Pterafractyl.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pterafractyl.html" target="_blank" rel="noopener noreferrer">Pterafractyl</a></td>
+      <td>8.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>13611</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.25</td>
+      <td>49.06</td>
+      <td>-3.19</td>
+      <td>373</td>
+      <td>52.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102501" target="_blank" rel="noopener noreferrer"><img src="img/Deluge_Virtuoso.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deluge Virtuoso.html" target="_blank" rel="noopener noreferrer">Deluge Virtuoso</a></td>
+      <td>9.53</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>20783</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.35</td>
+      <td>49.15</td>
+      <td>-3.20</td>
+      <td>293</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102523" target="_blank" rel="noopener noreferrer"><img src="img/Procrastinate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Procrastinate.html" target="_blank" rel="noopener noreferrer">Procrastinate</a></td>
+      <td>10.07</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21761</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.80</td>
+      <td>51.40</td>
+      <td>-3.40</td>
+      <td>107</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102526" target="_blank" rel="noopener noreferrer"><img src="img/Skycoach_Conductor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Skycoach Conductor.html" target="_blank" rel="noopener noreferrer">Skycoach Conductor</a></td>
+      <td>2.58</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>74573</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.30</td>
+      <td>48.75</td>
+      <td>-3.55</td>
+      <td>320</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102688" target="_blank" rel="noopener noreferrer"><img src="img/Spectacular_Skywhale.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacular Skywhale.html" target="_blank" rel="noopener noreferrer">Spectacular Skywhale</a></td>
+      <td>5.86</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>35453</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>51.20</td>
+      <td>47.45</td>
+      <td>-3.75</td>
+      <td>196</td>
+      <td>50.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102568" target="_blank" rel="noopener noreferrer"><img src="img/Blazing_Firesinger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Blazing Firesinger.html" target="_blank" rel="noopener noreferrer">Blazing Firesinger</a></td>
+      <td>8.13</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>35779</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.85</td>
+      <td>50.90</td>
+      <td>-3.95</td>
+      <td>167</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102569" target="_blank" rel="noopener noreferrer"><img src="img/Charging_Strifeknight.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Charging Strifeknight.html" target="_blank" rel="noopener noreferrer">Charging Strifeknight</a></td>
+      <td>5.77</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>40995</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>51.95</td>
+      <td>47.33</td>
+      <td>-4.62</td>
+      <td>243</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102585" target="_blank" rel="noopener noreferrer"><img src="img/Pigment_Wrangler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pigment Wrangler.html" target="_blank" rel="noopener noreferrer">Pigment Wrangler</a></td>
+      <td>5.87</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>42951</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.70</td>
+      <td>49.55</td>
+      <td>-5.15</td>
+      <td>335</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102591" target="_blank" rel="noopener noreferrer"><img src="img/Tablet_of_Discovery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tablet of Discovery.html" target="_blank" rel="noopener noreferrer">Tablet of Discovery</a></td>
+      <td>5.53</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43603</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>54.00</td>
+      <td>48.34</td>
+      <td>-5.66</td>
+      <td>271</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102593" target="_blank" rel="noopener noreferrer"><img src="img/Thunderdrum_Soloist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Thunderdrum Soloist.html" target="_blank" rel="noopener noreferrer">Thunderdrum Soloist</a></td>
+      <td>6.04</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>16871</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>52.90</td>
+      <td>45.13</td>
+      <td>-7.77</td>
+      <td>113</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102511" target="_blank" rel="noopener noreferrer"><img src="img/Harmonized_Trio.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Harmonized Trio.html" target="_blank" rel="noopener noreferrer">Harmonized Trio</a></td>
+      <td>4.08</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>83701</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>55.50</td>
+      <td>47.58</td>
+      <td>-7.92</td>
+      <td>124</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102716" target="_blank" rel="noopener noreferrer"><img src="img/Great_Hall_of_the_Biblioplex.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Great Hall of the Biblioplex.html" target="_blank" rel="noopener noreferrer">Great Hall of the Biblioplex</a></td>
+      <td>4.61</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>42625</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>6.02</td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>52.3</td>
+      <td>51.75</td>
+      <td>41.91</td>
+      <td>-9.84</td>
+      <td>136</td>
+      <td>51.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102590" target="_blank" rel="noopener noreferrer"><img src="img/Strife_Scholar.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strife Scholar.html" target="_blank" rel="noopener noreferrer">Strife Scholar</a></td>
+      <td>10.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+  </tbody>
+</table>

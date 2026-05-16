@@ -1,0 +1,2677 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>25345</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.20</td>
+      <td>64.81</td>
+      <td>9.61</td>
+      <td>216</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102537" target="_blank" rel="noopener noreferrer"><img src="img/Decorum_Dissertation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Decorum Dissertation.html" target="_blank" rel="noopener noreferrer">Decorum Dissertation</a></td>
+      <td>2.05</td>
+      <td>B</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>65769</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.00</td>
+      <td>64.71</td>
+      <td>8.71</td>
+      <td>221</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102661" target="_blank" rel="noopener noreferrer"><img src="img/Mind_into_Matter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mind into Matter.html" target="_blank" rel="noopener noreferrer">Mind into Matter</a></td>
+      <td>2.66</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>29583</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>57.20</td>
+      <td>65.14</td>
+      <td>7.94</td>
+      <td>545</td>
+      <td>60.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102550" target="_blank" rel="noopener noreferrer"><img src="img/Moseo,_Vein's_New_Dean.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Moseo, Vein's New Dean.html" target="_blank" rel="noopener noreferrer">Moseo, Vein's New Dean</a></td>
+      <td>1.95</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>76201</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.10</td>
+      <td>63.97</td>
+      <td>7.87</td>
+      <td>136</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102693" target="_blank" rel="noopener noreferrer"><img src="img/Stirring_Honormancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stirring Honormancer.html" target="_blank" rel="noopener noreferrer">Stirring Honormancer</a></td>
+      <td>5.64</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>25997</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.65</td>
+      <td>63.59</td>
+      <td>6.94</td>
+      <td>217</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102539" target="_blank" rel="noopener noreferrer"><img src="img/Emeritus_of_Woe.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emeritus of Woe.html" target="_blank" rel="noopener noreferrer">Emeritus of Woe</a></td>
+      <td>1.44</td>
+      <td>B</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>34147</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.75</td>
+      <td>60.56</td>
+      <td>6.81</td>
+      <td>180</td>
+      <td>53.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102564" target="_blank" rel="noopener noreferrer"><img src="img/Withering_Curse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Withering Curse.html" target="_blank" rel="noopener noreferrer">Withering Curse</a></td>
+      <td>2.75</td>
+      <td>B</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>84677</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.85</td>
+      <td>62.60</td>
+      <td>6.75</td>
+      <td>123</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td>5.16</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>17521</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.45</td>
+      <td>61.11</td>
+      <td>6.66</td>
+      <td>144</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>82069</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.65</td>
+      <td>62.94</td>
+      <td>6.29</td>
+      <td>394</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>70659</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.75</td>
+      <td>61.64</td>
+      <td>5.89</td>
+      <td>146</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102676" target="_blank" rel="noopener noreferrer"><img src="img/Quandrix_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quandrix Charm.html" target="_blank" rel="noopener noreferrer">Quandrix Charm</a></td>
+      <td>6.73</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52403</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>57.90</td>
+      <td>63.77</td>
+      <td>5.87</td>
+      <td>472</td>
+      <td>61.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102620" target="_blank" rel="noopener noreferrer"><img src="img/Snarl_Song.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snarl Song.html" target="_blank" rel="noopener noreferrer">Snarl Song</a></td>
+      <td>4.65</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>17847</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.75</td>
+      <td>62.60</td>
+      <td>5.85</td>
+      <td>131</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102514" target="_blank" rel="noopener noreferrer"><img src="img/Jadzi,_Steward_of_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Jadzi, Steward of Fate.html" target="_blank" rel="noopener noreferrer">Jadzi, Steward of Fate</a></td>
+      <td>1.96</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>1221</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>59.80</td>
+      <td>65.62</td>
+      <td>5.82</td>
+      <td>320</td>
+      <td>65.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102463" target="_blank" rel="noopener noreferrer"><img src="img/Together_as_One.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Together as One.html" target="_blank" rel="noopener noreferrer">Together as One</a></td>
+      <td>2.04</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>94457</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.95</td>
+      <td>62.50</td>
+      <td>5.55</td>
+      <td>152</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>69355</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.95</td>
+      <td>61.26</td>
+      <td>5.31</td>
+      <td>302</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102672" target="_blank" rel="noopener noreferrer"><img src="img/Proctor's_Gaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Proctor's Gaze.html" target="_blank" rel="noopener noreferrer">Proctor's Gaze</a></td>
+      <td>5.12</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>55989</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.20</td>
+      <td>61.41</td>
+      <td>5.21</td>
+      <td>184</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102631" target="_blank" rel="noopener noreferrer"><img src="img/Applied_Geometry.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Applied Geometry.html" target="_blank" rel="noopener noreferrer">Applied Geometry</a></td>
+      <td>2.46</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>69681</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>58.20</td>
+      <td>63.36</td>
+      <td>5.16</td>
+      <td>333</td>
+      <td>62.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102673" target="_blank" rel="noopener noreferrer"><img src="img/Professor_Dellian_Fel.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Professor Dellian Fel.html" target="_blank" rel="noopener noreferrer">Professor Dellian Fel</a></td>
+      <td>1.32</td>
+      <td>BG</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>54033</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.45</td>
+      <td>60.61</td>
+      <td>5.16</td>
+      <td>391</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102625" target="_blank" rel="noopener noreferrer"><img src="img/Vastlands_Scavenger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vastlands Scavenger.html" target="_blank" rel="noopener noreferrer">Vastlands Scavenger</a></td>
+      <td>2.20</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>23715</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>57.10</td>
+      <td>62.09</td>
+      <td>4.99</td>
+      <td>364</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102532" target="_blank" rel="noopener noreferrer"><img src="img/Arcane_Omens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arcane Omens.html" target="_blank" rel="noopener noreferrer">Arcane Omens</a></td>
+      <td>6.89</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>1547</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.60</td>
+      <td>60.56</td>
+      <td>4.96</td>
+      <td>360</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102464" target="_blank" rel="noopener noreferrer"><img src="img/Transcendent_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Transcendent Archaic.html" target="_blank" rel="noopener noreferrer">Transcendent Archaic</a></td>
+      <td>7.13</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>83373</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.00</td>
+      <td>59.55</td>
+      <td>4.55</td>
+      <td>754</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102715" target="_blank" rel="noopener noreferrer"><img src="img/Forum_of_Amity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum of Amity.html" target="_blank" rel="noopener noreferrer">Forum of Amity</a></td>
+      <td>7.95</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>70985</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>57.50</td>
+      <td>62.00</td>
+      <td>4.50</td>
+      <td>100</td>
+      <td>61.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102677" target="_blank" rel="noopener noreferrer"><img src="img/Quandrix,_the_Proof.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quandrix, the Proof.html" target="_blank" rel="noopener noreferrer">Quandrix, the Proof</a></td>
+      <td>1.45</td>
+      <td>UG</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>32191</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.50</td>
+      <td>60.71</td>
+      <td>4.21</td>
+      <td>509</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102558" target="_blank" rel="noopener noreferrer"><img src="img/Scheming_Silvertongue.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scheming Silvertongue.html" target="_blank" rel="noopener noreferrer">Scheming Silvertongue</a></td>
+      <td>1.92</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>83699</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.30</td>
+      <td>60.51</td>
+      <td>4.21</td>
+      <td>157</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102716" target="_blank" rel="noopener noreferrer"><img src="img/Great_Hall_of_the_Biblioplex.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Great Hall of the Biblioplex.html" target="_blank" rel="noopener noreferrer">Great Hall of the Biblioplex</a></td>
+      <td>4.61</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>56967</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.65</td>
+      <td>58.76</td>
+      <td>4.11</td>
+      <td>177</td>
+      <td>55.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102634" target="_blank" rel="noopener noreferrer"><img src="img/Berta,_Wise_Extrapolator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Berta, Wise Extrapolator.html" target="_blank" rel="noopener noreferrer">Berta, Wise Extrapolator</a></td>
+      <td>2.37</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>47187</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.65</td>
+      <td>60.67</td>
+      <td>4.02</td>
+      <td>178</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102604" target="_blank" rel="noopener noreferrer"><img src="img/Emeritus_of_Abundance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emeritus of Abundance.html" target="_blank" rel="noopener noreferrer">Emeritus of Abundance</a></td>
+      <td>1.56</td>
+      <td>G</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>60879</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.25</td>
+      <td>60.19</td>
+      <td>3.94</td>
+      <td>1492</td>
+      <td>58.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102646" target="_blank" rel="noopener noreferrer"><img src="img/Essenceknit_Scholar.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essenceknit Scholar.html" target="_blank" rel="noopener noreferrer">Essenceknit Scholar</a></td>
+      <td>4.33</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>77179</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.15</td>
+      <td>57.00</td>
+      <td>3.85</td>
+      <td>307</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102696" target="_blank" rel="noopener noreferrer"><img src="img/Tam,_Observant_Sequencer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tam, Observant Sequencer.html" target="_blank" rel="noopener noreferrer">Tam, Observant Sequencer</a></td>
+      <td>5.37</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60553</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.15</td>
+      <td>58.98</td>
+      <td>3.83</td>
+      <td>529</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>30235</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>57.10</td>
+      <td>60.90</td>
+      <td>3.80</td>
+      <td>445</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102552" target="_blank" rel="noopener noreferrer"><img src="img/Postmortem_Professor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Postmortem Professor.html" target="_blank" rel="noopener noreferrer">Postmortem Professor</a></td>
+      <td>2.46</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>13935</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.05</td>
+      <td>59.84</td>
+      <td>3.79</td>
+      <td>122</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102502" target="_blank" rel="noopener noreferrer"><img src="img/Divergent_Equation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Divergent Equation.html" target="_blank" rel="noopener noreferrer">Divergent Equation</a></td>
+      <td>6.14</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>44905</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.50</td>
+      <td>56.25</td>
+      <td>3.75</td>
+      <td>256</td>
+      <td>51.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102597" target="_blank" rel="noopener noreferrer"><img src="img/Aberrant_Manawurm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Aberrant Manawurm.html" target="_blank" rel="noopener noreferrer">Aberrant Manawurm</a></td>
+      <td>8.91</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>33169</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.45</td>
+      <td>58.09</td>
+      <td>3.64</td>
+      <td>470</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102561" target="_blank" rel="noopener noreferrer"><img src="img/Tragedy_Feaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tragedy Feaster.html" target="_blank" rel="noopener noreferrer">Tragedy Feaster</a></td>
+      <td>2.99</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>20129</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.60</td>
+      <td>57.14</td>
+      <td>3.54</td>
+      <td>105</td>
+      <td>53.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td>7.25</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>569</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.00</td>
+      <td>57.32</td>
+      <td>3.32</td>
+      <td>328</td>
+      <td>54.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102461" target="_blank" rel="noopener noreferrer"><img src="img/Rancorous_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rancorous Archaic.html" target="_blank" rel="noopener noreferrer">Rancorous Archaic</a></td>
+      <td>10.56</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>47839</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>57.65</td>
+      <td>60.77</td>
+      <td>3.12</td>
+      <td>905</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102606" target="_blank" rel="noopener noreferrer"><img src="img/Environmental_Scientist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Environmental Scientist.html" target="_blank" rel="noopener noreferrer">Environmental Scientist</a></td>
+      <td>3.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>78809</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.20</td>
+      <td>58.14</td>
+      <td>2.94</td>
+      <td>129</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>51099</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.50</td>
+      <td>59.11</td>
+      <td>2.61</td>
+      <td>1164</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102616" target="_blank" rel="noopener noreferrer"><img src="img/Pestbrood_Sloth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pestbrood Sloth.html" target="_blank" rel="noopener noreferrer">Pestbrood Sloth</a></td>
+      <td>4.49</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>55011</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.40</td>
+      <td>55.93</td>
+      <td>2.53</td>
+      <td>236</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102628" target="_blank" rel="noopener noreferrer"><img src="img/Zimone's_Experiment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zimone's Experiment.html" target="_blank" rel="noopener noreferrer">Zimone's Experiment</a></td>
+      <td>8.55</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>31865</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.15</td>
+      <td>55.65</td>
+      <td>2.50</td>
+      <td>372</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102557" target="_blank" rel="noopener noreferrer"><img src="img/Scathing_Shadelock.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scathing Shadelock.html" target="_blank" rel="noopener noreferrer">Scathing Shadelock</a></td>
+      <td>7.08</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>85329</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.30</td>
+      <td>57.78</td>
+      <td>2.48</td>
+      <td>360</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>81091</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.95</td>
+      <td>56.35</td>
+      <td>2.40</td>
+      <td>252</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102708" target="_blank" rel="noopener noreferrer"><img src="img/Mage_Tower_Referee.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mage Tower Referee.html" target="_blank" rel="noopener noreferrer">Mage Tower Referee</a></td>
+      <td>10.65</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>62509</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.35</td>
+      <td>57.64</td>
+      <td>2.29</td>
+      <td>2748</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102651" target="_blank" rel="noopener noreferrer"><img src="img/Grapple_with_Death.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Grapple with Death.html" target="_blank" rel="noopener noreferrer">Grapple with Death</a></td>
+      <td>5.38</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15891</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.45</td>
+      <td>57.69</td>
+      <td>2.24</td>
+      <td>104</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102508" target="_blank" rel="noopener noreferrer"><img src="img/Flow_State.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flow State.html" target="_blank" rel="noopener noreferrer">Flow State</a></td>
+      <td>4.58</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>80765</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.75</td>
+      <td>54.95</td>
+      <td>2.20</td>
+      <td>111</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102707" target="_blank" rel="noopener noreferrer"><img src="img/Diary_of_Dreams.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Diary of Dreams.html" target="_blank" rel="noopener noreferrer">Diary of Dreams</a></td>
+      <td>7.82</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>67399</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.05</td>
+      <td>56.23</td>
+      <td>2.18</td>
+      <td>1124</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102666" target="_blank" rel="noopener noreferrer"><img src="img/Old-Growth_Educator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Old-Growth Educator.html" target="_blank" rel="noopener noreferrer">Old-Growth Educator</a></td>
+      <td>6.41</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52077</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.65</td>
+      <td>58.68</td>
+      <td>2.03</td>
+      <td>409</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102619" target="_blank" rel="noopener noreferrer"><img src="img/Slumbering_Trudge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Slumbering Trudge.html" target="_blank" rel="noopener noreferrer">Slumbering Trudge</a></td>
+      <td>2.25</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>84025</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.10</td>
+      <td>57.03</td>
+      <td>1.93</td>
+      <td>1096</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>78483</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.50</td>
+      <td>58.37</td>
+      <td>1.87</td>
+      <td>627</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102700" target="_blank" rel="noopener noreferrer"><img src="img/Vicious_Rivalry.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vicious Rivalry.html" target="_blank" rel="noopener noreferrer">Vicious Rivalry</a></td>
+      <td>2.81</td>
+      <td>BG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>26323</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.25</td>
+      <td>58.11</td>
+      <td>1.86</td>
+      <td>845</td>
+      <td>58.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102540" target="_blank" rel="noopener noreferrer"><img src="img/End_of_the_Hunt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//End of the Hunt.html" target="_blank" rel="noopener noreferrer">End of the Hunt</a></td>
+      <td>4.08</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>64791</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.05</td>
+      <td>56.90</td>
+      <td>1.85</td>
+      <td>1195</td>
+      <td>56.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102658" target="_blank" rel="noopener noreferrer"><img src="img/Lluwen,_Exchange_Student.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lluwen, Exchange Student.html" target="_blank" rel="noopener noreferrer">Lluwen, Exchange Student</a></td>
+      <td>4.83</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>895</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.50</td>
+      <td>58.33</td>
+      <td>1.83</td>
+      <td>408</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102462" target="_blank" rel="noopener noreferrer"><img src="img/Sundering_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundering Archaic.html" target="_blank" rel="noopener noreferrer">Sundering Archaic</a></td>
+      <td>5.64</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>27301</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.70</td>
+      <td>53.96</td>
+      <td>1.26</td>
+      <td>480</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102543" target="_blank" rel="noopener noreferrer"><img src="img/Forum_Necroscribe.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum Necroscribe.html" target="_blank" rel="noopener noreferrer">Forum Necroscribe</a></td>
+      <td>5.54</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>57619</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.70</td>
+      <td>55.89</td>
+      <td>1.19</td>
+      <td>2659</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102636" target="_blank" rel="noopener noreferrer"><img src="img/Bogwater_Lumaret.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Bogwater Lumaret.html" target="_blank" rel="noopener noreferrer">Bogwater Lumaret</a></td>
+      <td>6.39</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>50121</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.65</td>
+      <td>54.78</td>
+      <td>1.13</td>
+      <td>1663</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102613" target="_blank" rel="noopener noreferrer"><img src="img/Mindful_Biomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mindful Biomancer.html" target="_blank" rel="noopener noreferrer">Mindful Biomancer</a></td>
+      <td>9.33</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86633</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.70</td>
+      <td>55.74</td>
+      <td>1.04</td>
+      <td>2702</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102725" target="_blank" rel="noopener noreferrer"><img src="img/Titan's_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Titan's Grave.html" target="_blank" rel="noopener noreferrer">Titan's Grave</a></td>
+      <td>7.67</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>97065</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.60</td>
+      <td>55.48</td>
+      <td>0.88</td>
+      <td>301</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102786" target="_blank" rel="noopener noreferrer"><img src="img/Stargaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stargaze.html" target="_blank" rel="noopener noreferrer">Stargaze</a></td>
+      <td>9.85</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>59575</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.10</td>
+      <td>55.94</td>
+      <td>0.84</td>
+      <td>143</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102642" target="_blank" rel="noopener noreferrer"><img src="img/Cuboid_Colony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cuboid Colony.html" target="_blank" rel="noopener noreferrer">Cuboid Colony</a></td>
+      <td>5.79</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>45231</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.75</td>
+      <td>56.59</td>
+      <td>0.84</td>
+      <td>698</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102598" target="_blank" rel="noopener noreferrer"><img src="img/Additive_Evolution.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Additive Evolution.html" target="_blank" rel="noopener noreferrer">Additive Evolution</a></td>
+      <td>4.44</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>30887</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.30</td>
+      <td>54.13</td>
+      <td>0.83</td>
+      <td>909</td>
+      <td>52.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102554" target="_blank" rel="noopener noreferrer"><img src="img/Pull_from_the_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pull from the Grave.html" target="_blank" rel="noopener noreferrer">Pull from the Grave</a></td>
+      <td>10.19</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>68051</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.70</td>
+      <td>54.49</td>
+      <td>0.79</td>
+      <td>2470</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102668" target="_blank" rel="noopener noreferrer"><img src="img/Pest_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pest Mascot.html" target="_blank" rel="noopener noreferrer">Pest Mascot</a></td>
+      <td>7.34</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>29909</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.70</td>
+      <td>55.44</td>
+      <td>0.74</td>
+      <td>1102</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102551" target="_blank" rel="noopener noreferrer"><img src="img/Poisoner's_Apprentice.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Poisoner's Apprentice.html" target="_blank" rel="noopener noreferrer">Poisoner's Apprentice</a></td>
+      <td>5.44</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>103585</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.00</td>
+      <td>55.72</td>
+      <td>0.72</td>
+      <td>621</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102808" target="_blank" rel="noopener noreferrer"><img src="img/Royal_Treatment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Royal Treatment.html" target="_blank" rel="noopener noreferrer">Royal Treatment</a></td>
+      <td>7.47</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>72289</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.30</td>
+      <td>53.94</td>
+      <td>0.64</td>
+      <td>571</td>
+      <td>52.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102681" target="_blank" rel="noopener noreferrer"><img src="img/Root_Manipulation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Root Manipulation.html" target="_blank" rel="noopener noreferrer">Root Manipulation</a></td>
+      <td>8.85</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>51751</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.70</td>
+      <td>54.27</td>
+      <td>0.57</td>
+      <td>1369</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102618" target="_blank" rel="noopener noreferrer"><img src="img/Shopkeeper's_Bane.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shopkeeper's Bane.html" target="_blank" rel="noopener noreferrer">Shopkeeper's Bane</a></td>
+      <td>9.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>24367</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.20</td>
+      <td>54.75</td>
+      <td>0.55</td>
+      <td>1253</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102534" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Banemaker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Banemaker.html" target="_blank" rel="noopener noreferrer">Burrog Banemaker</a></td>
+      <td>8.53</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>97391</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>50.30</td>
+      <td>50.83</td>
+      <td>0.53</td>
+      <td>120</td>
+      <td>46.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102788" target="_blank" rel="noopener noreferrer"><img src="img/Zombify.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zombify.html" target="_blank" rel="noopener noreferrer">Zombify</a></td>
+      <td>9.91</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>57293</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.75</td>
+      <td>57.21</td>
+      <td>0.46</td>
+      <td>645</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102635" target="_blank" rel="noopener noreferrer"><img src="img/Blech,_Loafing_Pest.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Blech, Loafing Pest.html" target="_blank" rel="noopener noreferrer">Blech, Loafing Pest</a></td>
+      <td>2.49</td>
+      <td>BG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>49143</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.55</td>
+      <td>52.96</td>
+      <td>0.41</td>
+      <td>270</td>
+      <td>51.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102610" target="_blank" rel="noopener noreferrer"><img src="img/Hungry_Graffalon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hungry Graffalon.html" target="_blank" rel="noopener noreferrer">Hungry Graffalon</a></td>
+      <td>11.46</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>79461</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.90</td>
+      <td>54.19</td>
+      <td>0.29</td>
+      <td>8610</td>
+      <td>53.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td>6.66</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>61531</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.15</td>
+      <td>54.43</td>
+      <td>0.28</td>
+      <td>327</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102648" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Mascot.html" target="_blank" rel="noopener noreferrer">Fractal Mascot</a></td>
+      <td>9.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>82395</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.05</td>
+      <td>55.28</td>
+      <td>0.23</td>
+      <td>407</td>
+      <td>56.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102712" target="_blank" rel="noopener noreferrer"><img src="img/Deathcap_Glade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deathcap Glade.html" target="_blank" rel="noopener noreferrer">Deathcap Glade</a></td>
+      <td>5.07</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>32517</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.60</td>
+      <td>54.81</td>
+      <td>0.21</td>
+      <td>1852</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102559" target="_blank" rel="noopener noreferrer"><img src="img/Send_in_the_Pest.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Send in the Pest.html" target="_blank" rel="noopener noreferrer">Send in the Pest</a></td>
+      <td>7.92</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>25019</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.70</td>
+      <td>55.90</td>
+      <td>0.20</td>
+      <td>907</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102536" target="_blank" rel="noopener noreferrer"><img src="img/Cost_of_Brilliance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cost of Brilliance.html" target="_blank" rel="noopener noreferrer">Cost of Brilliance</a></td>
+      <td>8.46</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>102933</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.40</td>
+      <td>55.60</td>
+      <td>0.20</td>
+      <td>714</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102806" target="_blank" rel="noopener noreferrer"><img src="img/Knockout_Maneuver.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Knockout Maneuver.html" target="_blank" rel="noopener noreferrer">Knockout Maneuver</a></td>
+      <td>5.34</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>94783</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.90</td>
+      <td>56.07</td>
+      <td>0.17</td>
+      <td>840</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102778" target="_blank" rel="noopener noreferrer"><img src="img/Bitter_Triumph.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Bitter Triumph.html" target="_blank" rel="noopener noreferrer">Bitter Triumph</a></td>
+      <td>3.36</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>58271</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.85</td>
+      <td>55.02</td>
+      <td>0.17</td>
+      <td>538</td>
+      <td>55.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102638" target="_blank" rel="noopener noreferrer"><img src="img/Cauldron_of_Essence.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cauldron of Essence.html" target="_blank" rel="noopener noreferrer">Cauldron of Essence</a></td>
+      <td>2.68</td>
+      <td>BG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>77505</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.35</td>
+      <td>54.52</td>
+      <td>0.17</td>
+      <td>1339</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102697" target="_blank" rel="noopener noreferrer"><img src="img/Teacher's_Pest.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Teacher's Pest.html" target="_blank" rel="noopener noreferrer">Teacher's Pest</a></td>
+      <td>5.24</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>53381</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.20</td>
+      <td>55.33</td>
+      <td>0.13</td>
+      <td>1097</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102623" target="_blank" rel="noopener noreferrer"><img src="img/Thornfist_Striker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Thornfist Striker.html" target="_blank" rel="noopener noreferrer">Thornfist Striker</a></td>
+      <td>6.69</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>27953</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.80</td>
+      <td>55.89</td>
+      <td>0.09</td>
+      <td>1809</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102545" target="_blank" rel="noopener noreferrer"><img src="img/Last_Gasp.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Last Gasp.html" target="_blank" rel="noopener noreferrer">Last Gasp</a></td>
+      <td>4.81</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>70007</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.85</td>
+      <td>53.90</td>
+      <td>0.05</td>
+      <td>397</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102674" target="_blank" rel="noopener noreferrer"><img src="img/Pterafractyl.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pterafractyl.html" target="_blank" rel="noopener noreferrer">Pterafractyl</a></td>
+      <td>8.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>95761</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.60</td>
+      <td>54.64</td>
+      <td>0.04</td>
+      <td>765</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102781" target="_blank" rel="noopener noreferrer"><img src="img/Feed_the_Swarm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Feed the Swarm.html" target="_blank" rel="noopener noreferrer">Feed the Swarm</a></td>
+      <td>4.59</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>26975</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.35</td>
+      <td>56.37</td>
+      <td>0.02</td>
+      <td>903</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102542" target="_blank" rel="noopener noreferrer"><img src="img/Foolish_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Foolish Fate.html" target="_blank" rel="noopener noreferrer">Foolish Fate</a></td>
+      <td>3.19</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>27627</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.65</td>
+      <td>54.66</td>
+      <td>0.01</td>
+      <td>408</td>
+      <td>55.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102544" target="_blank" rel="noopener noreferrer"><img src="img/Grave_Researcher.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Grave Researcher.html" target="_blank" rel="noopener noreferrer">Grave Researcher</a></td>
+      <td>2.11</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>50447</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.80</td>
+      <td>54.78</td>
+      <td>-0.02</td>
+      <td>1559</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102614" target="_blank" rel="noopener noreferrer"><img src="img/Noxious_Newt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Noxious Newt.html" target="_blank" rel="noopener noreferrer">Noxious Newt</a></td>
+      <td>6.17</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>33821</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.90</td>
+      <td>54.87</td>
+      <td>-0.03</td>
+      <td>1622</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102563" target="_blank" rel="noopener noreferrer"><img src="img/Wander_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wander Off.html" target="_blank" rel="noopener noreferrer">Wander Off</a></td>
+      <td>5.21</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>66747</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>58.80</td>
+      <td>58.54</td>
+      <td>-0.26</td>
+      <td>123</td>
+      <td>63.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102664" target="_blank" rel="noopener noreferrer"><img src="img/Moment_of_Reckoning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Moment of Reckoning.html" target="_blank" rel="noopener noreferrer">Moment of Reckoning</a></td>
+      <td>2.50</td>
+      <td>WB</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>49795</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.15</td>
+      <td>52.85</td>
+      <td>-0.30</td>
+      <td>263</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102612" target="_blank" rel="noopener noreferrer"><img src="img/Lumaret's_Favor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lumaret's Favor.html" target="_blank" rel="noopener noreferrer">Lumaret's Favor</a></td>
+      <td>10.55</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>21433</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.75</td>
+      <td>55.41</td>
+      <td>-0.34</td>
+      <td>157</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>24041</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.30</td>
+      <td>51.91</td>
+      <td>-0.39</td>
+      <td>601</td>
+      <td>50.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102533" target="_blank" rel="noopener noreferrer"><img src="img/Arnyn,_Deathbloom_Botanist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arnyn, Deathbloom Botanist.html" target="_blank" rel="noopener noreferrer">Arnyn, Deathbloom Botanist</a></td>
+      <td>6.91</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>83047</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.65</td>
+      <td>55.07</td>
+      <td>-0.58</td>
+      <td>227</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>32843</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.45</td>
+      <td>52.87</td>
+      <td>-0.58</td>
+      <td>1010</td>
+      <td>53.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102560" target="_blank" rel="noopener noreferrer"><img src="img/Sneering_Shadewriter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sneering Shadewriter.html" target="_blank" rel="noopener noreferrer">Sneering Shadewriter</a></td>
+      <td>9.78</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>49469</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.15</td>
+      <td>53.57</td>
+      <td>-0.58</td>
+      <td>868</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102611" target="_blank" rel="noopener noreferrer"><img src="img/Infirmary_Healer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Infirmary Healer.html" target="_blank" rel="noopener noreferrer">Infirmary Healer</a></td>
+      <td>6.79</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>53055</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.15</td>
+      <td>52.54</td>
+      <td>-0.61</td>
+      <td>1161</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102622" target="_blank" rel="noopener noreferrer"><img src="img/Tenured_Concocter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tenured Concocter.html" target="_blank" rel="noopener noreferrer">Tenured Concocter</a></td>
+      <td>10.55</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>45883</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.70</td>
+      <td>54.09</td>
+      <td>-0.61</td>
+      <td>1466</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102600" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Barrage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Barrage.html" target="_blank" rel="noopener noreferrer">Burrog Barrage</a></td>
+      <td>7.66</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>81743</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.70</td>
+      <td>55.03</td>
+      <td>-0.67</td>
+      <td>756</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>26649</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.20</td>
+      <td>53.51</td>
+      <td>-0.69</td>
+      <td>684</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102541" target="_blank" rel="noopener noreferrer"><img src="img/Eternal_Student.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Eternal Student.html" target="_blank" rel="noopener noreferrer">Eternal Student</a></td>
+      <td>6.36</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52729</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.50</td>
+      <td>54.80</td>
+      <td>-0.70</td>
+      <td>1626</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>18173</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.65</td>
+      <td>52.83</td>
+      <td>-0.82</td>
+      <td>106</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102515" target="_blank" rel="noopener noreferrer"><img src="img/Landscape_Painter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Landscape Painter.html" target="_blank" rel="noopener noreferrer">Landscape Painter</a></td>
+      <td>8.96</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>48491</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.15</td>
+      <td>55.10</td>
+      <td>-1.05</td>
+      <td>196</td>
+      <td>58.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102608" target="_blank" rel="noopener noreferrer"><img src="img/Germination_Practicum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Germination Practicum.html" target="_blank" rel="noopener noreferrer">Germination Practicum</a></td>
+      <td>1.58</td>
+      <td>G</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>67725</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.30</td>
+      <td>55.22</td>
+      <td>-1.08</td>
+      <td>230</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102667" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Surveyor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Surveyor.html" target="_blank" rel="noopener noreferrer">Paradox Surveyor</a></td>
+      <td>5.40</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>46861</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>51.10</td>
+      <td>50.00</td>
+      <td>-1.10</td>
+      <td>162</td>
+      <td>48.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102603" target="_blank" rel="noopener noreferrer"><img src="img/Efflorescence.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Efflorescence.html" target="_blank" rel="noopener noreferrer">Efflorescence</a></td>
+      <td>12.00</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>104237</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.70</td>
+      <td>53.60</td>
+      <td>-1.10</td>
+      <td>444</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102810" target="_blank" rel="noopener noreferrer"><img src="img/Shared_Roots.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shared Roots.html" target="_blank" rel="noopener noreferrer">Shared Roots</a></td>
+      <td>5.39</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>47513</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.70</td>
+      <td>52.57</td>
+      <td>-1.13</td>
+      <td>487</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102605" target="_blank" rel="noopener noreferrer"><img src="img/Emil,_Vastlands_Roamer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emil, Vastlands Roamer.html" target="_blank" rel="noopener noreferrer">Emil, Vastlands Roamer</a></td>
+      <td>5.97</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>19151</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.20</td>
+      <td>54.92</td>
+      <td>-1.28</td>
+      <td>122</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102518" target="_blank" rel="noopener noreferrer"><img src="img/Matterbending_Mage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Matterbending Mage.html" target="_blank" rel="noopener noreferrer">Matterbending Mage</a></td>
+      <td>4.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>24693</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.70</td>
+      <td>51.41</td>
+      <td>-1.29</td>
+      <td>1138</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102535" target="_blank" rel="noopener noreferrer"><img src="img/Cheerful_Osteomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cheerful Osteomancer.html" target="_blank" rel="noopener noreferrer">Cheerful Osteomancer</a></td>
+      <td>9.18</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21107</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.10</td>
+      <td>53.78</td>
+      <td>-1.32</td>
+      <td>119</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>81417</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.50</td>
+      <td>52.03</td>
+      <td>-1.47</td>
+      <td>123</td>
+      <td>53.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102709" target="_blank" rel="noopener noreferrer"><img src="img/Page,_Loose_Leaf.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Page, Loose Leaf.html" target="_blank" rel="noopener noreferrer">Page, Loose Leaf</a></td>
+      <td>11.31</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>33495</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>51.60</td>
+      <td>50.11</td>
+      <td>-1.49</td>
+      <td>469</td>
+      <td>49.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102562" target="_blank" rel="noopener noreferrer"><img src="img/Ulna_Alley_Shopkeep.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ulna Alley Shopkeep.html" target="_blank" rel="noopener noreferrer">Ulna Alley Shopkeep</a></td>
+      <td>11.49</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>82721</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.30</td>
+      <td>53.80</td>
+      <td>-1.50</td>
+      <td>158</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102713" target="_blank" rel="noopener noreferrer"><img src="img/Dreamroot_Cascade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dreamroot Cascade.html" target="_blank" rel="noopener noreferrer">Dreamroot Cascade</a></td>
+      <td>4.80</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>53707</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.35</td>
+      <td>52.67</td>
+      <td>-1.68</td>
+      <td>393</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102624" target="_blank" rel="noopener noreferrer"><img src="img/Topiary_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Topiary Lecturer.html" target="_blank" rel="noopener noreferrer">Topiary Lecturer</a></td>
+      <td>5.81</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>86307</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.30</td>
+      <td>53.62</td>
+      <td>-1.68</td>
+      <td>1134</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>54359</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.10</td>
+      <td>51.39</td>
+      <td>-1.71</td>
+      <td>360</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102626" target="_blank" rel="noopener noreferrer"><img src="img/Wild_Hypothesis.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wild Hypothesis.html" target="_blank" rel="noopener noreferrer">Wild Hypothesis</a></td>
+      <td>10.44</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>31539</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.05</td>
+      <td>52.23</td>
+      <td>-1.82</td>
+      <td>157</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td>1.65</td>
+      <td>B</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>29257</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.00</td>
+      <td>53.17</td>
+      <td>-1.83</td>
+      <td>993</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102549" target="_blank" rel="noopener noreferrer"><img src="img/Melancholic_Poet.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Melancholic Poet.html" target="_blank" rel="noopener noreferrer">Melancholic Poet</a></td>
+      <td>7.34</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>46209</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.20</td>
+      <td>50.31</td>
+      <td>-1.89</td>
+      <td>318</td>
+      <td>50.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102601" target="_blank" rel="noopener noreferrer"><img src="img/Chelonian_Tackle.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Chelonian Tackle.html" target="_blank" rel="noopener noreferrer">Chelonian Tackle</a></td>
+      <td>9.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>50773</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>51.75</td>
+      <td>49.71</td>
+      <td>-2.04</td>
+      <td>511</td>
+      <td>49.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102615" target="_blank" rel="noopener noreferrer"><img src="img/Oracle's_Restoration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Oracle's Restoration.html" target="_blank" rel="noopener noreferrer">Oracle's Restoration</a></td>
+      <td>11.62</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>28605</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.95</td>
+      <td>50.90</td>
+      <td>-2.05</td>
+      <td>782</td>
+      <td>52.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102547" target="_blank" rel="noopener noreferrer"><img src="img/Leech_Collector.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Leech Collector.html" target="_blank" rel="noopener noreferrer">Leech Collector</a></td>
+      <td>6.65</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>25671</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.05</td>
+      <td>53.91</td>
+      <td>-2.14</td>
+      <td>601</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102538" target="_blank" rel="noopener noreferrer"><img src="img/Dissection_Practice.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dissection Practice.html" target="_blank" rel="noopener noreferrer">Dissection Practice</a></td>
+      <td>5.60</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>28279</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>56.20</td>
+      <td>54.03</td>
+      <td>-2.17</td>
+      <td>248</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102546" target="_blank" rel="noopener noreferrer"><img src="img/Lecturing_Scornmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lecturing Scornmage.html" target="_blank" rel="noopener noreferrer">Lecturing Scornmage</a></td>
+      <td>4.86</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>66095</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.75</td>
+      <td>51.10</td>
+      <td>-2.65</td>
+      <td>910</td>
+      <td>53.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102662" target="_blank" rel="noopener noreferrer"><img src="img/Mind_Roots.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mind Roots.html" target="_blank" rel="noopener noreferrer">Mind Roots</a></td>
+      <td>6.93</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>45557</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>57.05</td>
+      <td>54.27</td>
+      <td>-2.78</td>
+      <td>398</td>
+      <td>60.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102599" target="_blank" rel="noopener noreferrer"><img src="img/Ambitious_Augmenter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ambitious Augmenter.html" target="_blank" rel="noopener noreferrer">Ambitious Augmenter</a></td>
+      <td>2.15</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>79787</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.60</td>
+      <td>49.80</td>
+      <td>-2.80</td>
+      <td>247</td>
+      <td>51.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102704" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom,_the_Balancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Witherbloom, the Balancer.html" target="_blank" rel="noopener noreferrer">Witherbloom, the Balancer</a></td>
+      <td>1.99</td>
+      <td>BG</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>51425</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.90</td>
+      <td>52.07</td>
+      <td>-2.83</td>
+      <td>121</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102617" target="_blank" rel="noopener noreferrer"><img src="img/Planar_Engineering.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Planar Engineering.html" target="_blank" rel="noopener noreferrer">Planar Engineering</a></td>
+      <td>5.64</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>48165</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.95</td>
+      <td>50.00</td>
+      <td>-2.95</td>
+      <td>960</td>
+      <td>52.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102607" target="_blank" rel="noopener noreferrer"><img src="img/Follow_the_Lumarets.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Follow the Lumarets.html" target="_blank" rel="noopener noreferrer">Follow the Lumarets</a></td>
+      <td>10.67</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15239</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.55</td>
+      <td>52.11</td>
+      <td>-3.44</td>
+      <td>213</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>102281</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.55</td>
+      <td>48.74</td>
+      <td>-3.81</td>
+      <td>238</td>
+      <td>51.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102804" target="_blank" rel="noopener noreferrer"><img src="img/Giant_Growth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Giant Growth.html" target="_blank" rel="noopener noreferrer">Giant Growth</a></td>
+      <td>10.34</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>54685</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>55.30</td>
+      <td>51.20</td>
+      <td>-4.10</td>
+      <td>375</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102627" target="_blank" rel="noopener noreferrer"><img src="img/Wildgrowth_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wildgrowth Archaic.html" target="_blank" rel="noopener noreferrer">Wildgrowth Archaic</a></td>
+      <td>1.91</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>31213</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.30</td>
+      <td>48.03</td>
+      <td>-4.27</td>
+      <td>152</td>
+      <td>50.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102555" target="_blank" rel="noopener noreferrer"><img src="img/Rabid_Attack.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rabid Attack.html" target="_blank" rel="noopener noreferrer">Rabid Attack</a></td>
+      <td>9.75</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>96087</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.10</td>
+      <td>48.74</td>
+      <td>-4.36</td>
+      <td>199</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102783" target="_blank" rel="noopener noreferrer"><img src="img/Locust_Spray.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Locust Spray.html" target="_blank" rel="noopener noreferrer">Locust Spray</a></td>
+      <td>9.58</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>48817</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>52.70</td>
+      <td>48.12</td>
+      <td>-4.58</td>
+      <td>133</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102609" target="_blank" rel="noopener noreferrer"><img src="img/Glorious_Decay.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Glorious Decay.html" target="_blank" rel="noopener noreferrer">Glorious Decay</a></td>
+      <td>12.07</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>61857</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>53.70</td>
+      <td>46.84</td>
+      <td>-6.86</td>
+      <td>158</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102649" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Tender.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Tender.html" target="_blank" rel="noopener noreferrer">Fractal Tender</a></td>
+      <td>6.31</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>23389</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.05</td>
+      <td>47.14</td>
+      <td>-6.91</td>
+      <td>997</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102531" target="_blank" rel="noopener noreferrer"><img src="img/Adventurous_Eater.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Adventurous Eater.html" target="_blank" rel="noopener noreferrer">Adventurous Eater</a></td>
+      <td>8.17</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>28931</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>54.90</td>
+      <td>46.07</td>
+      <td>-8.83</td>
+      <td>191</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102548" target="_blank" rel="noopener noreferrer"><img src="img/Masterful_Flourish.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Masterful Flourish.html" target="_blank" rel="noopener noreferrer">Masterful Flourish</a></td>
+      <td>10.49</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>46535</th>
+      <td>uncommon</td>
+      <td>BG</td>
+      <td>6.66</td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.9</td>
+      <td>49.75</td>
+      <td>38.35</td>
+      <td>-11.40</td>
+      <td>206</td>
+      <td>45.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102602" target="_blank" rel="noopener noreferrer"><img src="img/Comforting_Counsel.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Comforting Counsel.html" target="_blank" rel="noopener noreferrer">Comforting Counsel</a></td>
+      <td>6.44</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+  </tbody>
+</table>

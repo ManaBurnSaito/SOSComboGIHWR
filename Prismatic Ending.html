@@ -1,0 +1,967 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13964</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.00</td>
+      <td>75.73</td>
+      <td>17.73</td>
+      <td>103</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102502" target="_blank" rel="noopener noreferrer"><img src="img/Divergent_Equation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Divergent Equation.html" target="_blank" rel="noopener noreferrer">Divergent Equation</a></td>
+      <td>6.14</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>42000</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.50</td>
+      <td>71.43</td>
+      <td>14.93</td>
+      <td>126</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102588" target="_blank" rel="noopener noreferrer"><img src="img/Seize_the_Spoils.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Seize the Spoils.html" target="_blank" rel="noopener noreferrer">Seize the Spoils</a></td>
+      <td>9.13</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>94486</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.90</td>
+      <td>73.33</td>
+      <td>14.43</td>
+      <td>105</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>1250</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>61.75</td>
+      <td>76.15</td>
+      <td>14.40</td>
+      <td>130</td>
+      <td>65.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102463" target="_blank" rel="noopener noreferrer"><img src="img/Together_as_One.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Together as One.html" target="_blank" rel="noopener noreferrer">Together as One</a></td>
+      <td>2.04</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>23744</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>59.05</td>
+      <td>73.08</td>
+      <td>14.03</td>
+      <td>130</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102532" target="_blank" rel="noopener noreferrer"><img src="img/Arcane_Omens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arcane Omens.html" target="_blank" rel="noopener noreferrer">Arcane Omens</a></td>
+      <td>6.89</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>78838</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.15</td>
+      <td>69.59</td>
+      <td>12.44</td>
+      <td>171</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>81772</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.65</td>
+      <td>69.68</td>
+      <td>12.03</td>
+      <td>310</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>34828</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.40</td>
+      <td>68.60</td>
+      <td>11.20</td>
+      <td>121</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102566" target="_blank" rel="noopener noreferrer"><img src="img/Archaic's_Agony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Archaic's Agony.html" target="_blank" rel="noopener noreferrer">Archaic's Agony</a></td>
+      <td>8.19</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52758</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.45</td>
+      <td>67.98</td>
+      <td>10.53</td>
+      <td>178</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>84054</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.05</td>
+      <td>67.43</td>
+      <td>10.38</td>
+      <td>261</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85358</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.25</td>
+      <td>67.46</td>
+      <td>10.21</td>
+      <td>295</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>47868</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>59.60</td>
+      <td>69.49</td>
+      <td>9.89</td>
+      <td>118</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102606" target="_blank" rel="noopener noreferrer"><img src="img/Environmental_Scientist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Environmental Scientist.html" target="_blank" rel="noopener noreferrer">Environmental Scientist</a></td>
+      <td>3.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43956</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.75</td>
+      <td>67.28</td>
+      <td>9.53</td>
+      <td>162</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>58952</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.35</td>
+      <td>67.74</td>
+      <td>9.39</td>
+      <td>124</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102640" target="_blank" rel="noopener noreferrer"><img src="img/Colossus_of_the_Blood_Age.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Colossus of the Blood Age.html" target="_blank" rel="noopener noreferrer">Colossus of the Blood Age</a></td>
+      <td>4.64</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>83076</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.60</td>
+      <td>66.76</td>
+      <td>9.16</td>
+      <td>370</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>79164</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.65</td>
+      <td>66.67</td>
+      <td>9.02</td>
+      <td>177</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102702" target="_blank" rel="noopener noreferrer"><img src="img/Wilt_in_the_Heat.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wilt in the Heat.html" target="_blank" rel="noopener noreferrer">Wilt in the Heat</a></td>
+      <td>6.96</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>924</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.45</td>
+      <td>66.67</td>
+      <td>8.22</td>
+      <td>186</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102462" target="_blank" rel="noopener noreferrer"><img src="img/Sundering_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundering Archaic.html" target="_blank" rel="noopener noreferrer">Sundering Archaic</a></td>
+      <td>5.64</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38740</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.35</td>
+      <td>66.34</td>
+      <td>7.99</td>
+      <td>101</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102578" target="_blank" rel="noopener noreferrer"><img src="img/Impractical_Joke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Impractical Joke.html" target="_blank" rel="noopener noreferrer">Impractical Joke</a></td>
+      <td>3.36</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>21462</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.70</td>
+      <td>65.65</td>
+      <td>7.95</td>
+      <td>131</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>70362</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.70</td>
+      <td>66.47</td>
+      <td>7.77</td>
+      <td>173</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102675" target="_blank" rel="noopener noreferrer"><img src="img/Pursue_the_Past.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pursue the Past.html" target="_blank" rel="noopener noreferrer">Pursue the Past</a></td>
+      <td>7.57</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86336</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.25</td>
+      <td>64.98</td>
+      <td>7.73</td>
+      <td>277</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>1902</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.90</td>
+      <td>65.29</td>
+      <td>7.39</td>
+      <td>170</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102465" target="_blank" rel="noopener noreferrer"><img src="img/Ajani's_Response.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ajani's Response.html" target="_blank" rel="noopener noreferrer">Ajani's Response</a></td>
+      <td>6.23</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>50476</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.75</td>
+      <td>63.64</td>
+      <td>6.89</td>
+      <td>110</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102614" target="_blank" rel="noopener noreferrer"><img src="img/Noxious_Newt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Noxious Newt.html" target="_blank" rel="noopener noreferrer">Noxious Newt</a></td>
+      <td>6.17</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86662</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.65</td>
+      <td>63.45</td>
+      <td>6.80</td>
+      <td>249</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102725" target="_blank" rel="noopener noreferrer"><img src="img/Titan's_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Titan's Grave.html" target="_blank" rel="noopener noreferrer">Titan's Grave</a></td>
+      <td>7.67</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15268</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.50</td>
+      <td>64.08</td>
+      <td>6.58</td>
+      <td>142</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>1576</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.55</td>
+      <td>64.12</td>
+      <td>6.57</td>
+      <td>131</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102464" target="_blank" rel="noopener noreferrer"><img src="img/Transcendent_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Transcendent Archaic.html" target="_blank" rel="noopener noreferrer">Transcendent Archaic</a></td>
+      <td>7.13</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60582</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.10</td>
+      <td>63.40</td>
+      <td>6.30</td>
+      <td>153</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>89270</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.60</td>
+      <td>64.29</td>
+      <td>5.69</td>
+      <td>140</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102760" target="_blank" rel="noopener noreferrer"><img src="img/Repel_Calamity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Repel Calamity.html" target="_blank" rel="noopener noreferrer">Repel Calamity</a></td>
+      <td>4.07</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>21136</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.05</td>
+      <td>62.26</td>
+      <td>5.21</td>
+      <td>106</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38414</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.85</td>
+      <td>61.95</td>
+      <td>5.10</td>
+      <td>113</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17550</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.40</td>
+      <td>61.19</td>
+      <td>4.79</td>
+      <td>134</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>52432</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>59.85</td>
+      <td>64.50</td>
+      <td>4.65</td>
+      <td>200</td>
+      <td>61.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102620" target="_blank" rel="noopener noreferrer"><img src="img/Snarl_Song.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snarl Song.html" target="_blank" rel="noopener noreferrer">Snarl Song</a></td>
+      <td>4.65</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>27982</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.75</td>
+      <td>62.16</td>
+      <td>4.41</td>
+      <td>148</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102545" target="_blank" rel="noopener noreferrer"><img src="img/Last_Gasp.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Last Gasp.html" target="_blank" rel="noopener noreferrer">Last Gasp</a></td>
+      <td>4.81</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>598</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.95</td>
+      <td>60.16</td>
+      <td>4.21</td>
+      <td>128</td>
+      <td>54.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102461" target="_blank" rel="noopener noreferrer"><img src="img/Rancorous_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rancorous Archaic.html" target="_blank" rel="noopener noreferrer">Rancorous Archaic</a></td>
+      <td>10.56</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>82098</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.60</td>
+      <td>62.75</td>
+      <td>4.15</td>
+      <td>102</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>41674</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.05</td>
+      <td>62.07</td>
+      <td>4.02</td>
+      <td>145</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44608</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.40</td>
+      <td>60.16</td>
+      <td>3.76</td>
+      <td>123</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102596" target="_blank" rel="noopener noreferrer"><img src="img/Zealous_Lorecaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zealous Lorecaster.html" target="_blank" rel="noopener noreferrer">Zealous Lorecaster</a></td>
+      <td>9.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>62538</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.30</td>
+      <td>60.66</td>
+      <td>3.36</td>
+      <td>122</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102651" target="_blank" rel="noopener noreferrer"><img src="img/Grapple_with_Death.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Grapple with Death.html" target="_blank" rel="noopener noreferrer">Grapple with Death</a></td>
+      <td>5.38</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83402</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.95</td>
+      <td>59.32</td>
+      <td>2.37</td>
+      <td>295</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102715" target="_blank" rel="noopener noreferrer"><img src="img/Forum_of_Amity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum of Amity.html" target="_blank" rel="noopener noreferrer">Forum of Amity</a></td>
+      <td>7.95</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44282</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.85</td>
+      <td>60.13</td>
+      <td>2.28</td>
+      <td>153</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>88944</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.80</td>
+      <td>59.01</td>
+      <td>1.21</td>
+      <td>1432</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td>5.35</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>38088</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.00</td>
+      <td>56.19</td>
+      <td>0.19</td>
+      <td>105</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102576" target="_blank" rel="noopener noreferrer"><img src="img/Goblin_Glasswright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Goblin Glasswright.html" target="_blank" rel="noopener noreferrer">Goblin Glasswright</a></td>
+      <td>7.47</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>33850</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.85</td>
+      <td>55.73</td>
+      <td>-1.12</td>
+      <td>131</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102563" target="_blank" rel="noopener noreferrer"><img src="img/Wander_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wander Off.html" target="_blank" rel="noopener noreferrer">Wander Off</a></td>
+      <td>5.21</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3858</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.70</td>
+      <td>57.32</td>
+      <td>-1.38</td>
+      <td>157</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102471" target="_blank" rel="noopener noreferrer"><img src="img/Elite_Interceptor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elite Interceptor.html" target="_blank" rel="noopener noreferrer">Elite Interceptor</a></td>
+      <td>5.06</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>11682</th>
+      <td>rare</td>
+      <td>W</td>
+      <td>5.35</td>
+      <td><a href=".//Prismatic Ending.html" target="_blank" rel="noopener noreferrer">Prismatic Ending</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102759" target="_blank" rel="noopener noreferrer"><img src="img/Prismatic_Ending.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.30</td>
+      <td>52.99</td>
+      <td>-4.31</td>
+      <td>117</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102495" target="_blank" rel="noopener noreferrer"><img src="img/Stone_Docent.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stone Docent.html" target="_blank" rel="noopener noreferrer">Stone Docent</a></td>
+      <td>7.36</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+  </tbody>
+</table>

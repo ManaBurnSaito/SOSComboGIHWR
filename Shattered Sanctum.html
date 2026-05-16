@@ -1,0 +1,3437 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1237</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>61.75</td>
+      <td>74.86</td>
+      <td>13.11</td>
+      <td>362</td>
+      <td>65.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102463" target="_blank" rel="noopener noreferrer"><img src="img/Together_as_One.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Together as One.html" target="_blank" rel="noopener noreferrer">Together as One</a></td>
+      <td>2.04</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>21449</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.70</td>
+      <td>69.77</td>
+      <td>12.07</td>
+      <td>258</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>92191</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.45</td>
+      <td>68.97</td>
+      <td>11.52</td>
+      <td>116</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102769" target="_blank" rel="noopener noreferrer"><img src="img/Disdainful_Stroke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Disdainful Stroke.html" target="_blank" rel="noopener noreferrer">Disdainful Stroke</a></td>
+      <td>6.56</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>32207</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.45</td>
+      <td>69.89</td>
+      <td>11.44</td>
+      <td>279</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102558" target="_blank" rel="noopener noreferrer"><img src="img/Scheming_Silvertongue.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scheming Silvertongue.html" target="_blank" rel="noopener noreferrer">Scheming Silvertongue</a></td>
+      <td>1.92</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>13951</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.00</td>
+      <td>69.11</td>
+      <td>11.11</td>
+      <td>191</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102502" target="_blank" rel="noopener noreferrer"><img src="img/Divergent_Equation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Divergent Equation.html" target="_blank" rel="noopener noreferrer">Divergent Equation</a></td>
+      <td>6.14</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>66763</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>60.75</td>
+      <td>71.54</td>
+      <td>10.79</td>
+      <td>492</td>
+      <td>63.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102664" target="_blank" rel="noopener noreferrer"><img src="img/Moment_of_Reckoning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Moment of Reckoning.html" target="_blank" rel="noopener noreferrer">Moment of Reckoning</a></td>
+      <td>2.50</td>
+      <td>WB</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>97081</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.55</td>
+      <td>66.92</td>
+      <td>10.37</td>
+      <td>133</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102786" target="_blank" rel="noopener noreferrer"><img src="img/Stargaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stargaze.html" target="_blank" rel="noopener noreferrer">Stargaze</a></td>
+      <td>9.85</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>15907</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.40</td>
+      <td>67.74</td>
+      <td>10.34</td>
+      <td>124</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102508" target="_blank" rel="noopener noreferrer"><img src="img/Flow_State.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flow State.html" target="_blank" rel="noopener noreferrer">Flow State</a></td>
+      <td>4.58</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>29599</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>59.15</td>
+      <td>69.43</td>
+      <td>10.28</td>
+      <td>193</td>
+      <td>60.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102550" target="_blank" rel="noopener noreferrer"><img src="img/Moseo,_Vein's_New_Dean.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Moseo, Vein's New Dean.html" target="_blank" rel="noopener noreferrer">Moseo, Vein's New Dean</a></td>
+      <td>1.95</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>78173</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.35</td>
+      <td>68.32</td>
+      <td>9.97</td>
+      <td>101</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102699" target="_blank" rel="noopener noreferrer"><img src="img/Vibrant_Outburst.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vibrant Outburst.html" target="_blank" rel="noopener noreferrer">Vibrant Outburst</a></td>
+      <td>4.13</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>12321</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.65</td>
+      <td>66.30</td>
+      <td>9.65</td>
+      <td>181</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102497" target="_blank" rel="noopener noreferrer"><img src="img/Banishing_Betrayal.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Banishing Betrayal.html" target="_blank" rel="noopener noreferrer">Banishing Betrayal</a></td>
+      <td>8.95</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>52419</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>59.85</td>
+      <td>69.42</td>
+      <td>9.57</td>
+      <td>448</td>
+      <td>61.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102620" target="_blank" rel="noopener noreferrer"><img src="img/Snarl_Song.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snarl Song.html" target="_blank" rel="noopener noreferrer">Snarl Song</a></td>
+      <td>4.65</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>69371</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.90</td>
+      <td>67.43</td>
+      <td>9.53</td>
+      <td>175</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102672" target="_blank" rel="noopener noreferrer"><img src="img/Proctor's_Gaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Proctor's Gaze.html" target="_blank" rel="noopener noreferrer">Proctor's Gaze</a></td>
+      <td>5.12</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>78825</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.15</td>
+      <td>66.53</td>
+      <td>9.38</td>
+      <td>251</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>23731</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>59.05</td>
+      <td>68.25</td>
+      <td>9.20</td>
+      <td>422</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102532" target="_blank" rel="noopener noreferrer"><img src="img/Arcane_Omens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arcane Omens.html" target="_blank" rel="noopener noreferrer">Arcane Omens</a></td>
+      <td>6.89</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>56331</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>60.85</td>
+      <td>69.74</td>
+      <td>8.89</td>
+      <td>152</td>
+      <td>63.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102632" target="_blank" rel="noopener noreferrer"><img src="img/Ark_of_Hunger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ark of Hunger.html" target="_blank" rel="noopener noreferrer">Ark of Hunger</a></td>
+      <td>2.02</td>
+      <td>WR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>72631</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.30</td>
+      <td>66.96</td>
+      <td>8.66</td>
+      <td>112</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102682" target="_blank" rel="noopener noreferrer"><img src="img/Sanar,_Unfinished_Genius.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sanar, Unfinished Genius.html" target="_blank" rel="noopener noreferrer">Sanar, Unfinished Genius</a></td>
+      <td>4.32</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>35141</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.60</td>
+      <td>66.12</td>
+      <td>8.52</td>
+      <td>121</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102567" target="_blank" rel="noopener noreferrer"><img src="img/Artistic_Process.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Artistic Process.html" target="_blank" rel="noopener noreferrer">Artistic Process</a></td>
+      <td>4.72</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60569</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.10</td>
+      <td>64.72</td>
+      <td>7.62</td>
+      <td>309</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>76869</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.10</td>
+      <td>65.71</td>
+      <td>7.61</td>
+      <td>105</td>
+      <td>58.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102695" target="_blank" rel="noopener noreferrer"><img src="img/Suspend_Aggression.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Suspend Aggression.html" target="_blank" rel="noopener noreferrer">Suspend Aggression</a></td>
+      <td>4.43</td>
+      <td>WR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>86649</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.65</td>
+      <td>64.25</td>
+      <td>7.60</td>
+      <td>702</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102725" target="_blank" rel="noopener noreferrer"><img src="img/Titan's_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Titan's Grave.html" target="_blank" rel="noopener noreferrer">Titan's Grave</a></td>
+      <td>7.67</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>26339</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.20</td>
+      <td>65.18</td>
+      <td>6.98</td>
+      <td>514</td>
+      <td>58.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102540" target="_blank" rel="noopener noreferrer"><img src="img/End_of_the_Hunt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//End of the Hunt.html" target="_blank" rel="noopener noreferrer">End of the Hunt</a></td>
+      <td>4.08</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>64807</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.00</td>
+      <td>63.97</td>
+      <td>6.97</td>
+      <td>136</td>
+      <td>56.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102658" target="_blank" rel="noopener noreferrer"><img src="img/Lluwen,_Exchange_Student.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lluwen, Exchange Student.html" target="_blank" rel="noopener noreferrer">Lluwen, Exchange Student</a></td>
+      <td>4.83</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>11343</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>60.55</td>
+      <td>67.47</td>
+      <td>6.92</td>
+      <td>289</td>
+      <td>63.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102494" target="_blank" rel="noopener noreferrer"><img src="img/Stirring_Hopesinger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stirring Hopesinger.html" target="_blank" rel="noopener noreferrer">Stirring Hopesinger</a></td>
+      <td>1.58</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>80781</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>54.70</td>
+      <td>61.54</td>
+      <td>6.84</td>
+      <td>156</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102707" target="_blank" rel="noopener noreferrer"><img src="img/Diary_of_Dreams.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Diary of Dreams.html" target="_blank" rel="noopener noreferrer">Diary of Dreams</a></td>
+      <td>7.82</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>5475</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.40</td>
+      <td>64.23</td>
+      <td>6.83</td>
+      <td>383</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102476" target="_blank" rel="noopener noreferrer"><img src="img/Group_Project.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Group Project.html" target="_blank" rel="noopener noreferrer">Group Project</a></td>
+      <td>5.34</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>79477</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.85</td>
+      <td>62.60</td>
+      <td>6.75</td>
+      <td>123</td>
+      <td>53.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td>6.66</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>34815</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.40</td>
+      <td>63.64</td>
+      <td>6.24</td>
+      <td>264</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102566" target="_blank" rel="noopener noreferrer"><img src="img/Archaic's_Agony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Archaic's Agony.html" target="_blank" rel="noopener noreferrer">Archaic's Agony</a></td>
+      <td>8.19</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>94473</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.90</td>
+      <td>65.09</td>
+      <td>6.19</td>
+      <td>169</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>30251</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>59.05</td>
+      <td>65.24</td>
+      <td>6.19</td>
+      <td>187</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102552" target="_blank" rel="noopener noreferrer"><img src="img/Postmortem_Professor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Postmortem Professor.html" target="_blank" rel="noopener noreferrer">Postmortem Professor</a></td>
+      <td>2.46</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>1563</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.55</td>
+      <td>63.44</td>
+      <td>5.89</td>
+      <td>331</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102464" target="_blank" rel="noopener noreferrer"><img src="img/Transcendent_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Transcendent Archaic.html" target="_blank" rel="noopener noreferrer">Transcendent Archaic</a></td>
+      <td>7.13</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38727</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.35</td>
+      <td>63.93</td>
+      <td>5.58</td>
+      <td>183</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102578" target="_blank" rel="noopener noreferrer"><img src="img/Impractical_Joke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Impractical Joke.html" target="_blank" rel="noopener noreferrer">Impractical Joke</a></td>
+      <td>3.36</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>85345</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.25</td>
+      <td>62.79</td>
+      <td>5.54</td>
+      <td>516</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>61547</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.10</td>
+      <td>61.54</td>
+      <td>5.44</td>
+      <td>130</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102648" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Mascot.html" target="_blank" rel="noopener noreferrer">Fractal Mascot</a></td>
+      <td>9.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>66437</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.80</td>
+      <td>64.18</td>
+      <td>5.38</td>
+      <td>268</td>
+      <td>59.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102663" target="_blank" rel="noopener noreferrer"><img src="img/Molten_Note.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Molten Note.html" target="_blank" rel="noopener noreferrer">Molten Note</a></td>
+      <td>4.73</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>27969</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.75</td>
+      <td>63.10</td>
+      <td>5.35</td>
+      <td>1195</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102545" target="_blank" rel="noopener noreferrer"><img src="img/Last_Gasp.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Last Gasp.html" target="_blank" rel="noopener noreferrer">Last Gasp</a></td>
+      <td>4.81</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85671</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.55</td>
+      <td>62.88</td>
+      <td>5.33</td>
+      <td>132</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102722" target="_blank" rel="noopener noreferrer"><img src="img/Stormcarved_Coast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stormcarved Coast.html" target="_blank" rel="noopener noreferrer">Stormcarved Coast</a></td>
+      <td>4.76</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>78499</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.45</td>
+      <td>63.71</td>
+      <td>5.26</td>
+      <td>124</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102700" target="_blank" rel="noopener noreferrer"><img src="img/Vicious_Rivalry.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vicious Rivalry.html" target="_blank" rel="noopener noreferrer">Vicious Rivalry</a></td>
+      <td>2.81</td>
+      <td>BG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>59265</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.85</td>
+      <td>64.10</td>
+      <td>5.25</td>
+      <td>351</td>
+      <td>59.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102641" target="_blank" rel="noopener noreferrer"><img src="img/Conciliator's_Duelist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Conciliator's Duelist.html" target="_blank" rel="noopener noreferrer">Conciliator's Duelist</a></td>
+      <td>2.88</td>
+      <td>WB</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>51115</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.45</td>
+      <td>63.64</td>
+      <td>5.19</td>
+      <td>176</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102616" target="_blank" rel="noopener noreferrer"><img src="img/Pestbrood_Sloth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pestbrood Sloth.html" target="_blank" rel="noopener noreferrer">Pestbrood Sloth</a></td>
+      <td>4.49</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>11995</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.05</td>
+      <td>61.23</td>
+      <td>5.18</td>
+      <td>227</td>
+      <td>54.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102496" target="_blank" rel="noopener noreferrer"><img src="img/Summoned_Dromedary.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Summoned Dromedary.html" target="_blank" rel="noopener noreferrer">Summoned Dromedary</a></td>
+      <td>6.44</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>89257</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.60</td>
+      <td>63.77</td>
+      <td>5.17</td>
+      <td>530</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102760" target="_blank" rel="noopener noreferrer"><img src="img/Repel_Calamity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Repel Calamity.html" target="_blank" rel="noopener noreferrer">Repel Calamity</a></td>
+      <td>4.07</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>54701</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.25</td>
+      <td>62.42</td>
+      <td>5.17</td>
+      <td>149</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102627" target="_blank" rel="noopener noreferrer"><img src="img/Wildgrowth_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wildgrowth Archaic.html" target="_blank" rel="noopener noreferrer">Wildgrowth Archaic</a></td>
+      <td>1.91</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>7431</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.55</td>
+      <td>61.66</td>
+      <td>5.11</td>
+      <td>193</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102482" target="_blank" rel="noopener noreferrer"><img src="img/Joined_Researchers.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Joined Researchers.html" target="_blank" rel="noopener noreferrer">Joined Researchers</a></td>
+      <td>5.16</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>81759</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.65</td>
+      <td>62.73</td>
+      <td>5.08</td>
+      <td>754</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>40031</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.35</td>
+      <td>62.40</td>
+      <td>5.05</td>
+      <td>125</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102582" target="_blank" rel="noopener noreferrer"><img src="img/Magmablood_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Magmablood Archaic.html" target="_blank" rel="noopener noreferrer">Magmablood Archaic</a></td>
+      <td>2.47</td>
+      <td>R</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>3519</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.05</td>
+      <td>62.09</td>
+      <td>5.04</td>
+      <td>736</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102470" target="_blank" rel="noopener noreferrer"><img src="img/Eager_Glyphmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Eager Glyphmage.html" target="_blank" rel="noopener noreferrer">Eager Glyphmage</a></td>
+      <td>8.57</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17537</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.40</td>
+      <td>61.43</td>
+      <td>5.03</td>
+      <td>223</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>76543</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>59.05</td>
+      <td>64.00</td>
+      <td>4.95</td>
+      <td>175</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102694" target="_blank" rel="noopener noreferrer"><img src="img/Stress_Dream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stress Dream.html" target="_blank" rel="noopener noreferrer">Stress Dream</a></td>
+      <td>3.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>84041</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.05</td>
+      <td>61.96</td>
+      <td>4.91</td>
+      <td>581</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>6453</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>60.00</td>
+      <td>64.91</td>
+      <td>4.91</td>
+      <td>265</td>
+      <td>62.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102479" target="_blank" rel="noopener noreferrer"><img src="img/Informed_Inkwright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Informed Inkwright.html" target="_blank" rel="noopener noreferrer">Informed Inkwright</a></td>
+      <td>1.82</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>57635</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.65</td>
+      <td>61.36</td>
+      <td>4.71</td>
+      <td>220</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102636" target="_blank" rel="noopener noreferrer"><img src="img/Bogwater_Lumaret.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Bogwater Lumaret.html" target="_blank" rel="noopener noreferrer">Bogwater Lumaret</a></td>
+      <td>6.39</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>10365</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.80</td>
+      <td>60.46</td>
+      <td>4.66</td>
+      <td>263</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102491" target="_blank" rel="noopener noreferrer"><img src="img/Soaring_Stoneglider.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Soaring Stoneglider.html" target="_blank" rel="noopener noreferrer">Soaring Stoneglider</a></td>
+      <td>5.99</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>76217</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.05</td>
+      <td>62.52</td>
+      <td>4.47</td>
+      <td>635</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102693" target="_blank" rel="noopener noreferrer"><img src="img/Stirring_Honormancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stirring Honormancer.html" target="_blank" rel="noopener noreferrer">Stirring Honormancer</a></td>
+      <td>5.64</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>104253</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.65</td>
+      <td>61.09</td>
+      <td>4.44</td>
+      <td>221</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102810" target="_blank" rel="noopener noreferrer"><img src="img/Shared_Roots.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shared Roots.html" target="_blank" rel="noopener noreferrer">Shared Roots</a></td>
+      <td>5.39</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>71653</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.75</td>
+      <td>62.11</td>
+      <td>4.36</td>
+      <td>908</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102679" target="_blank" rel="noopener noreferrer"><img src="img/Render_Speechless.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Render Speechless.html" target="_blank" rel="noopener noreferrer">Render Speechless</a></td>
+      <td>9.13</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>47529</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.65</td>
+      <td>59.89</td>
+      <td>4.24</td>
+      <td>182</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102605" target="_blank" rel="noopener noreferrer"><img src="img/Emil,_Vastlands_Roamer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emil, Vastlands Roamer.html" target="_blank" rel="noopener noreferrer">Emil, Vastlands Roamer</a></td>
+      <td>5.97</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>25687</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.00</td>
+      <td>62.20</td>
+      <td>4.20</td>
+      <td>336</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102538" target="_blank" rel="noopener noreferrer"><img src="img/Dissection_Practice.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dissection Practice.html" target="_blank" rel="noopener noreferrer">Dissection Practice</a></td>
+      <td>5.60</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>35793</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.60</td>
+      <td>61.74</td>
+      <td>4.14</td>
+      <td>115</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102569" target="_blank" rel="noopener noreferrer"><img src="img/Charging_Strifeknight.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Charging Strifeknight.html" target="_blank" rel="noopener noreferrer">Charging Strifeknight</a></td>
+      <td>5.77</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>70349</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.70</td>
+      <td>62.68</td>
+      <td>3.98</td>
+      <td>410</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102675" target="_blank" rel="noopener noreferrer"><img src="img/Pursue_the_Past.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pursue the Past.html" target="_blank" rel="noopener noreferrer">Pursue the Past</a></td>
+      <td>7.57</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>72957</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>59.20</td>
+      <td>63.11</td>
+      <td>3.91</td>
+      <td>656</td>
+      <td>60.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102683" target="_blank" rel="noopener noreferrer"><img src="img/Scolding_Administrator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scolding Administrator.html" target="_blank" rel="noopener noreferrer">Scolding Administrator</a></td>
+      <td>4.28</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>8083</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>61.40</td>
+      <td>65.22</td>
+      <td>3.82</td>
+      <td>230</td>
+      <td>65.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102484" target="_blank" rel="noopener noreferrer"><img src="img/Practiced_Offense.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Practiced Offense.html" target="_blank" rel="noopener noreferrer">Practiced Offense</a></td>
+      <td>1.76</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>15255</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.50</td>
+      <td>61.18</td>
+      <td>3.68</td>
+      <td>237</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>81433</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.45</td>
+      <td>59.09</td>
+      <td>3.64</td>
+      <td>110</td>
+      <td>53.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102709" target="_blank" rel="noopener noreferrer"><img src="img/Page,_Loose_Leaf.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Page, Loose Leaf.html" target="_blank" rel="noopener noreferrer">Page, Loose Leaf</a></td>
+      <td>11.31</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>1889</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.90</td>
+      <td>61.45</td>
+      <td>3.55</td>
+      <td>939</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102465" target="_blank" rel="noopener noreferrer"><img src="img/Ajani's_Response.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ajani's Response.html" target="_blank" rel="noopener noreferrer">Ajani's Response</a></td>
+      <td>6.23</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>52745</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.45</td>
+      <td>60.93</td>
+      <td>3.48</td>
+      <td>471</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>41987</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.50</td>
+      <td>59.91</td>
+      <td>3.41</td>
+      <td>222</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102588" target="_blank" rel="noopener noreferrer"><img src="img/Seize_the_Spoils.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Seize the Spoils.html" target="_blank" rel="noopener noreferrer">Seize the Spoils</a></td>
+      <td>9.13</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19167</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.15</td>
+      <td>61.43</td>
+      <td>3.28</td>
+      <td>140</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102518" target="_blank" rel="noopener noreferrer"><img src="img/Matterbending_Mage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Matterbending Mage.html" target="_blank" rel="noopener noreferrer">Matterbending Mage</a></td>
+      <td>4.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>4171</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.70</td>
+      <td>61.94</td>
+      <td>3.24</td>
+      <td>134</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102472" target="_blank" rel="noopener noreferrer"><img src="img/Emeritus_of_Truce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emeritus of Truce.html" target="_blank" rel="noopener noreferrer">Emeritus of Truce</a></td>
+      <td>1.80</td>
+      <td>W</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>2215</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>61.25</td>
+      <td>64.47</td>
+      <td>3.22</td>
+      <td>228</td>
+      <td>64.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102466" target="_blank" rel="noopener noreferrer"><img src="img/Antiquities_on_the_Loose.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Antiquities on the Loose.html" target="_blank" rel="noopener noreferrer">Antiquities on the Loose</a></td>
+      <td>1.95</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>44269</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.85</td>
+      <td>61.03</td>
+      <td>3.18</td>
+      <td>331</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3845</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.70</td>
+      <td>61.83</td>
+      <td>3.13</td>
+      <td>1247</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102471" target="_blank" rel="noopener noreferrer"><img src="img/Elite_Interceptor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elite Interceptor.html" target="_blank" rel="noopener noreferrer">Elite Interceptor</a></td>
+      <td>5.06</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>99037</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.40</td>
+      <td>61.46</td>
+      <td>3.06</td>
+      <td>192</td>
+      <td>59.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102793" target="_blank" rel="noopener noreferrer"><img src="img/Burst_Lightning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burst Lightning.html" target="_blank" rel="noopener noreferrer">Burst Lightning</a></td>
+      <td>3.28</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>26991</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.30</td>
+      <td>61.33</td>
+      <td>3.03</td>
+      <td>543</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102542" target="_blank" rel="noopener noreferrer"><img src="img/Foolish_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Foolish Fate.html" target="_blank" rel="noopener noreferrer">Foolish Fate</a></td>
+      <td>3.19</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>44595</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.40</td>
+      <td>59.39</td>
+      <td>2.99</td>
+      <td>197</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102596" target="_blank" rel="noopener noreferrer"><img src="img/Zealous_Lorecaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zealous Lorecaster.html" target="_blank" rel="noopener noreferrer">Zealous Lorecaster</a></td>
+      <td>9.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>9713</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.65</td>
+      <td>60.63</td>
+      <td>2.98</td>
+      <td>127</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102489" target="_blank" rel="noopener noreferrer"><img src="img/Restoration_Seminar.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Restoration Seminar.html" target="_blank" rel="noopener noreferrer">Restoration Seminar</a></td>
+      <td>2.03</td>
+      <td>W</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>70675</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.70</td>
+      <td>60.66</td>
+      <td>2.96</td>
+      <td>122</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102676" target="_blank" rel="noopener noreferrer"><img src="img/Quandrix_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quandrix Charm.html" target="_blank" rel="noopener noreferrer">Quandrix Charm</a></td>
+      <td>6.73</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>911</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.45</td>
+      <td>61.36</td>
+      <td>2.91</td>
+      <td>427</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102462" target="_blank" rel="noopener noreferrer"><img src="img/Sundering_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundering Archaic.html" target="_blank" rel="noopener noreferrer">Sundering Archaic</a></td>
+      <td>5.64</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38401</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.85</td>
+      <td>59.69</td>
+      <td>2.84</td>
+      <td>196</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>2867</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>53.65</td>
+      <td>56.48</td>
+      <td>2.83</td>
+      <td>108</td>
+      <td>49.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td>9.26</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>11017</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.60</td>
+      <td>60.36</td>
+      <td>2.76</td>
+      <td>444</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102493" target="_blank" rel="noopener noreferrer"><img src="img/Stand_Up_for_Yourself.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stand Up for Yourself.html" target="_blank" rel="noopener noreferrer">Stand Up for Yourself</a></td>
+      <td>4.85</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>7757</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.70</td>
+      <td>59.42</td>
+      <td>2.72</td>
+      <td>483</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102483" target="_blank" rel="noopener noreferrer"><img src="img/Owlin_Historian.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Owlin Historian.html" target="_blank" rel="noopener noreferrer">Owlin Historian</a></td>
+      <td>8.70</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>67741</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.25</td>
+      <td>60.94</td>
+      <td>2.69</td>
+      <td>128</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102667" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Surveyor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Surveyor.html" target="_blank" rel="noopener noreferrer">Paradox Surveyor</a></td>
+      <td>5.40</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>23405</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.00</td>
+      <td>58.63</td>
+      <td>2.63</td>
+      <td>643</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102531" target="_blank" rel="noopener noreferrer"><img src="img/Adventurous_Eater.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Adventurous Eater.html" target="_blank" rel="noopener noreferrer">Adventurous Eater</a></td>
+      <td>8.17</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>26013</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.60</td>
+      <td>61.11</td>
+      <td>2.51</td>
+      <td>126</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102539" target="_blank" rel="noopener noreferrer"><img src="img/Emeritus_of_Woe.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emeritus of Woe.html" target="_blank" rel="noopener noreferrer">Emeritus of Woe</a></td>
+      <td>1.44</td>
+      <td>B</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>103601</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.95</td>
+      <td>59.41</td>
+      <td>2.46</td>
+      <td>101</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102808" target="_blank" rel="noopener noreferrer"><img src="img/Royal_Treatment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Royal Treatment.html" target="_blank" rel="noopener noreferrer">Royal Treatment</a></td>
+      <td>7.47</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>11669</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.30</td>
+      <td>59.71</td>
+      <td>2.41</td>
+      <td>762</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102495" target="_blank" rel="noopener noreferrer"><img src="img/Stone_Docent.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stone Docent.html" target="_blank" rel="noopener noreferrer">Stone Docent</a></td>
+      <td>7.36</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>68393</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.60</td>
+      <td>61.01</td>
+      <td>2.41</td>
+      <td>218</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102669" target="_blank" rel="noopener noreferrer"><img src="img/Practiced_Scrollsmith.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Practiced Scrollsmith.html" target="_blank" rel="noopener noreferrer">Practiced Scrollsmith</a></td>
+      <td>4.35</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>12647</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.95</td>
+      <td>60.34</td>
+      <td>2.39</td>
+      <td>116</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102498" target="_blank" rel="noopener noreferrer"><img src="img/Brush_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Brush Off.html" target="_blank" rel="noopener noreferrer">Brush Off</a></td>
+      <td>6.79</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>10039</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.90</td>
+      <td>59.24</td>
+      <td>2.34</td>
+      <td>736</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102490" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Acolyte.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shattered Acolyte.html" target="_blank" rel="noopener noreferrer">Shattered Acolyte</a></td>
+      <td>8.17</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38075</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.00</td>
+      <td>58.30</td>
+      <td>2.30</td>
+      <td>235</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102576" target="_blank" rel="noopener noreferrer"><img src="img/Goblin_Glasswright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Goblin Glasswright.html" target="_blank" rel="noopener noreferrer">Goblin Glasswright</a></td>
+      <td>7.47</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>25035</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.65</td>
+      <td>59.83</td>
+      <td>2.18</td>
+      <td>921</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102536" target="_blank" rel="noopener noreferrer"><img src="img/Cost_of_Brilliance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cost of Brilliance.html" target="_blank" rel="noopener noreferrer">Cost of Brilliance</a></td>
+      <td>8.46</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>95777</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.55</td>
+      <td>58.73</td>
+      <td>2.18</td>
+      <td>361</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102781" target="_blank" rel="noopener noreferrer"><img src="img/Feed_the_Swarm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Feed the Swarm.html" target="_blank" rel="noopener noreferrer">Feed the Swarm</a></td>
+      <td>4.59</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>50137</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.60</td>
+      <td>57.67</td>
+      <td>2.07</td>
+      <td>163</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102613" target="_blank" rel="noopener noreferrer"><img src="img/Mindful_Biomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mindful Biomancer.html" target="_blank" rel="noopener noreferrer">Mindful Biomancer</a></td>
+      <td>9.33</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83063</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.60</td>
+      <td>59.67</td>
+      <td>2.07</td>
+      <td>781</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>53723</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.30</td>
+      <td>58.33</td>
+      <td>2.03</td>
+      <td>108</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102624" target="_blank" rel="noopener noreferrer"><img src="img/Topiary_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Topiary Lecturer.html" target="_blank" rel="noopener noreferrer">Topiary Lecturer</a></td>
+      <td>5.81</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>83715</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.25</td>
+      <td>60.25</td>
+      <td>2.00</td>
+      <td>161</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102716" target="_blank" rel="noopener noreferrer"><img src="img/Great_Hall_of_the_Biblioplex.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Great Hall of the Biblioplex.html" target="_blank" rel="noopener noreferrer">Great Hall of the Biblioplex</a></td>
+      <td>4.61</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>86323</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.25</td>
+      <td>59.16</td>
+      <td>1.91</td>
+      <td>759</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>29925</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.65</td>
+      <td>58.54</td>
+      <td>1.89</td>
+      <td>164</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102551" target="_blank" rel="noopener noreferrer"><img src="img/Poisoner's_Apprentice.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Poisoner's Apprentice.html" target="_blank" rel="noopener noreferrer">Poisoner's Apprentice</a></td>
+      <td>5.44</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>79151</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.65</td>
+      <td>59.31</td>
+      <td>1.66</td>
+      <td>408</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102702" target="_blank" rel="noopener noreferrer"><img src="img/Wilt_in_the_Heat.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wilt in the Heat.html" target="_blank" rel="noopener noreferrer">Wilt in the Heat</a></td>
+      <td>6.96</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>27317</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>54.65</td>
+      <td>56.30</td>
+      <td>1.65</td>
+      <td>341</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102543" target="_blank" rel="noopener noreferrer"><img src="img/Forum_Necroscribe.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum Necroscribe.html" target="_blank" rel="noopener noreferrer">Forum Necroscribe</a></td>
+      <td>5.54</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>4823</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.20</td>
+      <td>58.77</td>
+      <td>1.57</td>
+      <td>211</td>
+      <td>56.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102474" target="_blank" rel="noopener noreferrer"><img src="img/Erode.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Erode.html" target="_blank" rel="noopener noreferrer">Erode</a></td>
+      <td>2.76</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>9387</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.30</td>
+      <td>57.82</td>
+      <td>1.52</td>
+      <td>531</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102488" target="_blank" rel="noopener noreferrer"><img src="img/Rehearsed_Debater.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rehearsed Debater.html" target="_blank" rel="noopener noreferrer">Rehearsed Debater</a></td>
+      <td>9.39</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>6127</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.50</td>
+      <td>57.00</td>
+      <td>1.50</td>
+      <td>500</td>
+      <td>53.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102478" target="_blank" rel="noopener noreferrer"><img src="img/Honorbound_Page.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Honorbound Page.html" target="_blank" rel="noopener noreferrer">Honorbound Page</a></td>
+      <td>9.39</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>70023</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.80</td>
+      <td>57.29</td>
+      <td>1.49</td>
+      <td>199</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102674" target="_blank" rel="noopener noreferrer"><img src="img/Pterafractyl.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pterafractyl.html" target="_blank" rel="noopener noreferrer">Pterafractyl</a></td>
+      <td>8.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>63829</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.10</td>
+      <td>58.53</td>
+      <td>1.43</td>
+      <td>1114</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102655" target="_blank" rel="noopener noreferrer"><img src="img/Inkling_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Inkling Mascot.html" target="_blank" rel="noopener noreferrer">Inkling Mascot</a></td>
+      <td>8.25</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>62525</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.30</td>
+      <td>58.71</td>
+      <td>1.41</td>
+      <td>465</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102651" target="_blank" rel="noopener noreferrer"><img src="img/Grapple_with_Death.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Grapple with Death.html" target="_blank" rel="noopener noreferrer">Grapple with Death</a></td>
+      <td>5.38</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>64155</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.25</td>
+      <td>58.64</td>
+      <td>1.39</td>
+      <td>590</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102656" target="_blank" rel="noopener noreferrer"><img src="img/Killian's_Confidence.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Killian's Confidence.html" target="_blank" rel="noopener noreferrer">Killian's Confidence</a></td>
+      <td>5.47</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>3193</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.75</td>
+      <td>58.14</td>
+      <td>1.39</td>
+      <td>688</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102469" target="_blank" rel="noopener noreferrer"><img src="img/Dig_Site_Inventory.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dig Site Inventory.html" target="_blank" rel="noopener noreferrer">Dig Site Inventory</a></td>
+      <td>7.85</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83389</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.95</td>
+      <td>58.32</td>
+      <td>1.37</td>
+      <td>1478</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102715" target="_blank" rel="noopener noreferrer"><img src="img/Forum_of_Amity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum of Amity.html" target="_blank" rel="noopener noreferrer">Forum of Amity</a></td>
+      <td>7.95</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>33837</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.85</td>
+      <td>58.21</td>
+      <td>1.36</td>
+      <td>981</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102563" target="_blank" rel="noopener noreferrer"><img src="img/Wander_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wander Off.html" target="_blank" rel="noopener noreferrer">Wander Off</a></td>
+      <td>5.21</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>31881</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.10</td>
+      <td>56.36</td>
+      <td>1.26</td>
+      <td>275</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102557" target="_blank" rel="noopener noreferrer"><img src="img/Scathing_Shadelock.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scathing Shadelock.html" target="_blank" rel="noopener noreferrer">Scathing Shadelock</a></td>
+      <td>7.08</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>585</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.95</td>
+      <td>57.14</td>
+      <td>1.19</td>
+      <td>287</td>
+      <td>54.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102461" target="_blank" rel="noopener noreferrer"><img src="img/Rancorous_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rancorous Archaic.html" target="_blank" rel="noopener noreferrer">Rancorous Archaic</a></td>
+      <td>10.56</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>63503</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.55</td>
+      <td>58.74</td>
+      <td>1.19</td>
+      <td>1047</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td>9.05</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>58939</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.35</td>
+      <td>59.52</td>
+      <td>1.17</td>
+      <td>294</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102640" target="_blank" rel="noopener noreferrer"><img src="img/Colossus_of_the_Blood_Age.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Colossus of the Blood Age.html" target="_blank" rel="noopener noreferrer">Colossus of the Blood Age</a></td>
+      <td>4.64</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>29273</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.95</td>
+      <td>58.09</td>
+      <td>1.14</td>
+      <td>933</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102549" target="_blank" rel="noopener noreferrer"><img src="img/Melancholic_Poet.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Melancholic Poet.html" target="_blank" rel="noopener noreferrer">Melancholic Poet</a></td>
+      <td>7.34</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>47855</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>59.60</td>
+      <td>60.67</td>
+      <td>1.07</td>
+      <td>239</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102606" target="_blank" rel="noopener noreferrer"><img src="img/Environmental_Scientist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Environmental Scientist.html" target="_blank" rel="noopener noreferrer">Environmental Scientist</a></td>
+      <td>3.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>48181</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>54.90</td>
+      <td>55.96</td>
+      <td>1.06</td>
+      <td>109</td>
+      <td>52.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102607" target="_blank" rel="noopener noreferrer"><img src="img/Follow_the_Lumarets.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Follow the Lumarets.html" target="_blank" rel="noopener noreferrer">Follow the Lumarets</a></td>
+      <td>10.67</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>73283</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.75</td>
+      <td>59.65</td>
+      <td>0.90</td>
+      <td>637</td>
+      <td>59.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102684" target="_blank" rel="noopener noreferrer"><img src="img/Silverquill_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Silverquill Charm.html" target="_blank" rel="noopener noreferrer">Silverquill Charm</a></td>
+      <td>5.15</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>88605</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.80</td>
+      <td>57.69</td>
+      <td>0.89</td>
+      <td>286</td>
+      <td>55.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102758" target="_blank" rel="noopener noreferrer"><img src="img/Hop_to_It.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hop to It.html" target="_blank" rel="noopener noreferrer">Hop to It</a></td>
+      <td>6.89</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>68067</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.65</td>
+      <td>56.52</td>
+      <td>0.87</td>
+      <td>184</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102668" target="_blank" rel="noopener noreferrer"><img src="img/Pest_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pest Mascot.html" target="_blank" rel="noopener noreferrer">Pest Mascot</a></td>
+      <td>7.34</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>28947</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.85</td>
+      <td>57.71</td>
+      <td>0.86</td>
+      <td>376</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102548" target="_blank" rel="noopener noreferrer"><img src="img/Masterful_Flourish.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Masterful Flourish.html" target="_blank" rel="noopener noreferrer">Masterful Flourish</a></td>
+      <td>10.49</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>96103</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.05</td>
+      <td>55.90</td>
+      <td>0.85</td>
+      <td>195</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102783" target="_blank" rel="noopener noreferrer"><img src="img/Locust_Spray.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Locust Spray.html" target="_blank" rel="noopener noreferrer">Locust Spray</a></td>
+      <td>9.58</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43943</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.75</td>
+      <td>58.57</td>
+      <td>0.82</td>
+      <td>321</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>6779</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.35</td>
+      <td>58.05</td>
+      <td>0.70</td>
+      <td>441</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102480" target="_blank" rel="noopener noreferrer"><img src="img/Inkshape_Demonstrator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Inkshape Demonstrator.html" target="_blank" rel="noopener noreferrer">Inkshape Demonstrator</a></td>
+      <td>5.69</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>28295</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.15</td>
+      <td>58.71</td>
+      <td>0.56</td>
+      <td>511</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102546" target="_blank" rel="noopener noreferrer"><img src="img/Lecturing_Scornmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lecturing Scornmage.html" target="_blank" rel="noopener noreferrer">Lecturing Scornmage</a></td>
+      <td>4.86</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>84693</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.80</td>
+      <td>58.26</td>
+      <td>0.46</td>
+      <td>5973</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td>5.16</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>21123</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.05</td>
+      <td>57.46</td>
+      <td>0.41</td>
+      <td>181</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>45247</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.70</td>
+      <td>58.06</td>
+      <td>0.36</td>
+      <td>124</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102598" target="_blank" rel="noopener noreferrer"><img src="img/Additive_Evolution.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Additive Evolution.html" target="_blank" rel="noopener noreferrer">Additive Evolution</a></td>
+      <td>4.44</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>55027</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.35</td>
+      <td>55.65</td>
+      <td>0.30</td>
+      <td>124</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102628" target="_blank" rel="noopener noreferrer"><img src="img/Zimone's_Experiment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zimone's Experiment.html" target="_blank" rel="noopener noreferrer">Zimone's Experiment</a></td>
+      <td>8.55</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>50463</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.75</td>
+      <td>57.01</td>
+      <td>0.26</td>
+      <td>321</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102614" target="_blank" rel="noopener noreferrer"><img src="img/Noxious_Newt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Noxious Newt.html" target="_blank" rel="noopener noreferrer">Noxious Newt</a></td>
+      <td>6.17</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>24057</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>54.25</td>
+      <td>54.35</td>
+      <td>0.10</td>
+      <td>138</td>
+      <td>50.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102533" target="_blank" rel="noopener noreferrer"><img src="img/Arnyn,_Deathbloom_Botanist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arnyn, Deathbloom Botanist.html" target="_blank" rel="noopener noreferrer">Arnyn, Deathbloom Botanist</a></td>
+      <td>6.91</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>8735</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.35</td>
+      <td>57.27</td>
+      <td>-0.08</td>
+      <td>433</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102486" target="_blank" rel="noopener noreferrer"><img src="img/Quill-Blade_Laureate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quill-Blade Laureate.html" target="_blank" rel="noopener noreferrer">Quill-Blade Laureate</a></td>
+      <td>4.42</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>73935</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.05</td>
+      <td>56.92</td>
+      <td>-0.13</td>
+      <td>636</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102686" target="_blank" rel="noopener noreferrer"><img src="img/Snooping_Page.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snooping Page.html" target="_blank" rel="noopener noreferrer">Snooping Page</a></td>
+      <td>5.16</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>32533</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.55</td>
+      <td>56.42</td>
+      <td>-0.13</td>
+      <td>475</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102559" target="_blank" rel="noopener noreferrer"><img src="img/Send_in_the_Pest.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Send in the Pest.html" target="_blank" rel="noopener noreferrer">Send in the Pest</a></td>
+      <td>7.92</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>9061</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.05</td>
+      <td>55.88</td>
+      <td>-0.17</td>
+      <td>374</td>
+      <td>54.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102487" target="_blank" rel="noopener noreferrer"><img src="img/Rapier_Wit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rapier Wit.html" target="_blank" rel="noopener noreferrer">Rapier Wit</a></td>
+      <td>10.15</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>24383</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.15</td>
+      <td>55.95</td>
+      <td>-0.20</td>
+      <td>529</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102534" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Banemaker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Banemaker.html" target="_blank" rel="noopener noreferrer">Burrog Banemaker</a></td>
+      <td>8.53</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>94799</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.85</td>
+      <td>57.47</td>
+      <td>-0.38</td>
+      <td>529</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102778" target="_blank" rel="noopener noreferrer"><img src="img/Bitter_Triumph.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Bitter Triumph.html" target="_blank" rel="noopener noreferrer">Bitter Triumph</a></td>
+      <td>3.36</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>42965</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.45</td>
+      <td>57.03</td>
+      <td>-0.42</td>
+      <td>128</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102591" target="_blank" rel="noopener noreferrer"><img src="img/Tablet_of_Discovery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tablet of Discovery.html" target="_blank" rel="noopener noreferrer">Tablet of Discovery</a></td>
+      <td>5.53</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>97733</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.15</td>
+      <td>57.58</td>
+      <td>-0.57</td>
+      <td>165</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102789" target="_blank" rel="noopener noreferrer"><img src="img/Abrade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abrade.html" target="_blank" rel="noopener noreferrer">Abrade</a></td>
+      <td>3.40</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82411</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.00</td>
+      <td>56.38</td>
+      <td>-0.62</td>
+      <td>188</td>
+      <td>56.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102712" target="_blank" rel="noopener noreferrer"><img src="img/Deathcap_Glade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deathcap Glade.html" target="_blank" rel="noopener noreferrer">Deathcap Glade</a></td>
+      <td>5.07</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>66111</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.70</td>
+      <td>55.07</td>
+      <td>-0.63</td>
+      <td>138</td>
+      <td>53.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102662" target="_blank" rel="noopener noreferrer"><img src="img/Mind_Roots.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mind Roots.html" target="_blank" rel="noopener noreferrer">Mind Roots</a></td>
+      <td>6.93</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>51767</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.65</td>
+      <td>54.96</td>
+      <td>-0.69</td>
+      <td>131</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102618" target="_blank" rel="noopener noreferrer"><img src="img/Shopkeeper's_Bane.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shopkeeper's Bane.html" target="_blank" rel="noopener noreferrer">Shopkeeper's Bane</a></td>
+      <td>9.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>8409</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.45</td>
+      <td>55.69</td>
+      <td>-0.76</td>
+      <td>246</td>
+      <td>55.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102485" target="_blank" rel="noopener noreferrer"><img src="img/Primary_Research.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Primary Research.html" target="_blank" rel="noopener noreferrer">Primary Research</a></td>
+      <td>5.88</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>10691</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.05</td>
+      <td>54.09</td>
+      <td>-0.96</td>
+      <td>159</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102492" target="_blank" rel="noopener noreferrer"><img src="img/Spiritcall_Enthusiast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spiritcall Enthusiast.html" target="_blank" rel="noopener noreferrer">Spiritcall Enthusiast</a></td>
+      <td>7.60</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>5149</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>54.60</td>
+      <td>53.51</td>
+      <td>-1.09</td>
+      <td>185</td>
+      <td>51.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102475" target="_blank" rel="noopener noreferrer"><img src="img/Graduation_Day.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Graduation Day.html" target="_blank" rel="noopener noreferrer">Graduation Day</a></td>
+      <td>7.66</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82085</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.60</td>
+      <td>57.50</td>
+      <td>-1.10</td>
+      <td>440</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>88279</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.55</td>
+      <td>54.36</td>
+      <td>-1.19</td>
+      <td>195</td>
+      <td>53.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102757" target="_blank" rel="noopener noreferrer"><img src="img/Helping_Hand.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Helping Hand.html" target="_blank" rel="noopener noreferrer">Helping Hand</a></td>
+      <td>8.02</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>45899</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.65</td>
+      <td>55.45</td>
+      <td>-1.20</td>
+      <td>220</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102600" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Barrage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Barrage.html" target="_blank" rel="noopener noreferrer">Burrog Barrage</a></td>
+      <td>7.66</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>77521</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.30</td>
+      <td>55.05</td>
+      <td>-1.25</td>
+      <td>109</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102697" target="_blank" rel="noopener noreferrer"><img src="img/Teacher's_Pest.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Teacher's Pest.html" target="_blank" rel="noopener noreferrer">Teacher's Pest</a></td>
+      <td>5.24</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>55353</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.25</td>
+      <td>54.92</td>
+      <td>-1.33</td>
+      <td>528</td>
+      <td>54.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102629" target="_blank" rel="noopener noreferrer"><img src="img/Abigale,_Poet_Laureate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abigale, Poet Laureate.html" target="_blank" rel="noopener noreferrer">Abigale, Poet Laureate</a></td>
+      <td>4.93</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>32859</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.40</td>
+      <td>53.94</td>
+      <td>-1.46</td>
+      <td>330</td>
+      <td>53.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102560" target="_blank" rel="noopener noreferrer"><img src="img/Sneering_Shadewriter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sneering Shadewriter.html" target="_blank" rel="noopener noreferrer">Sneering Shadewriter</a></td>
+      <td>9.78</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>73609</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.30</td>
+      <td>54.55</td>
+      <td>-1.75</td>
+      <td>132</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102685" target="_blank" rel="noopener noreferrer"><img src="img/Silverquill,_the_Disputant.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Silverquill, the Disputant.html" target="_blank" rel="noopener noreferrer">Silverquill, the Disputant</a></td>
+      <td>1.79</td>
+      <td>WB</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>41661</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.05</td>
+      <td>56.19</td>
+      <td>-1.86</td>
+      <td>315</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>49485</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.10</td>
+      <td>54.13</td>
+      <td>-1.97</td>
+      <td>109</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102611" target="_blank" rel="noopener noreferrer"><img src="img/Infirmary_Healer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Infirmary Healer.html" target="_blank" rel="noopener noreferrer">Infirmary Healer</a></td>
+      <td>6.79</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81107</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.90</td>
+      <td>53.92</td>
+      <td>-1.98</td>
+      <td>204</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102708" target="_blank" rel="noopener noreferrer"><img src="img/Mage_Tower_Referee.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mage Tower Referee.html" target="_blank" rel="noopener noreferrer">Mage Tower Referee</a></td>
+      <td>10.65</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85997</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.70</td>
+      <td>55.62</td>
+      <td>-2.08</td>
+      <td>178</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102723" target="_blank" rel="noopener noreferrer"><img src="img/Sundown_Pass.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundown Pass.html" target="_blank" rel="noopener noreferrer">Sundown Pass</a></td>
+      <td>5.03</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>67089</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>54.60</td>
+      <td>52.38</td>
+      <td>-2.22</td>
+      <td>147</td>
+      <td>51.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102665" target="_blank" rel="noopener noreferrer"><img src="img/Nita,_Forum_Conciliator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Nita, Forum Conciliator.html" target="_blank" rel="noopener noreferrer">Nita, Forum Conciliator</a></td>
+      <td>5.45</td>
+      <td>WB</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>24709</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>54.65</td>
+      <td>52.28</td>
+      <td>-2.37</td>
+      <td>461</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102535" target="_blank" rel="noopener noreferrer"><img src="img/Cheerful_Osteomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cheerful Osteomancer.html" target="_blank" rel="noopener noreferrer">Cheerful Osteomancer</a></td>
+      <td>9.18</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>30903</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.25</td>
+      <td>52.73</td>
+      <td>-2.52</td>
+      <td>275</td>
+      <td>52.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102554" target="_blank" rel="noopener noreferrer"><img src="img/Pull_from_the_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pull from the Grave.html" target="_blank" rel="noopener noreferrer">Pull from the Grave</a></td>
+      <td>10.19</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>7105</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.90</td>
+      <td>54.19</td>
+      <td>-2.71</td>
+      <td>358</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102481" target="_blank" rel="noopener noreferrer"><img src="img/Interjection.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Interjection.html" target="_blank" rel="noopener noreferrer">Interjection</a></td>
+      <td>10.36</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>28621</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>54.90</td>
+      <td>51.53</td>
+      <td>-3.37</td>
+      <td>163</td>
+      <td>52.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102547" target="_blank" rel="noopener noreferrer"><img src="img/Leech_Collector.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Leech Collector.html" target="_blank" rel="noopener noreferrer">Leech Collector</a></td>
+      <td>6.65</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>2541</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.75</td>
+      <td>53.02</td>
+      <td>-3.73</td>
+      <td>381</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102467" target="_blank" rel="noopener noreferrer"><img src="img/Ascendant_Dustspeaker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ascendant Dustspeaker.html" target="_blank" rel="noopener noreferrer">Ascendant Dustspeaker</a></td>
+      <td>8.88</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>27643</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.60</td>
+      <td>52.81</td>
+      <td>-3.79</td>
+      <td>178</td>
+      <td>55.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102544" target="_blank" rel="noopener noreferrer"><img src="img/Grave_Researcher.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Grave Researcher.html" target="_blank" rel="noopener noreferrer">Grave Researcher</a></td>
+      <td>2.11</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>75891</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.80</td>
+      <td>52.88</td>
+      <td>-4.92</td>
+      <td>191</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102692" target="_blank" rel="noopener noreferrer"><img src="img/Startled_Relic_Sloth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Startled Relic Sloth.html" target="_blank" rel="noopener noreferrer">Startled Relic Sloth</a></td>
+      <td>4.72</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>4497</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>54.20</td>
+      <td>49.25</td>
+      <td>-4.95</td>
+      <td>201</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102473" target="_blank" rel="noopener noreferrer"><img src="img/Ennis,_Debate_Moderator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ennis, Debate Moderator.html" target="_blank" rel="noopener noreferrer">Ennis, Debate Moderator</a></td>
+      <td>7.32</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>74913</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.90</td>
+      <td>51.74</td>
+      <td>-5.16</td>
+      <td>201</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102689" target="_blank" rel="noopener noreferrer"><img src="img/Spirit_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spirit Mascot.html" target="_blank" rel="noopener noreferrer">Spirit Mascot</a></td>
+      <td>7.80</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>53071</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.10</td>
+      <td>49.31</td>
+      <td>-5.79</td>
+      <td>144</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102622" target="_blank" rel="noopener noreferrer"><img src="img/Tenured_Concocter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tenured Concocter.html" target="_blank" rel="noopener noreferrer">Tenured Concocter</a></td>
+      <td>10.55</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>31229</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>54.25</td>
+      <td>48.41</td>
+      <td>-5.84</td>
+      <td>126</td>
+      <td>50.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102555" target="_blank" rel="noopener noreferrer"><img src="img/Rabid_Attack.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rabid Attack.html" target="_blank" rel="noopener noreferrer">Rabid Attack</a></td>
+      <td>9.75</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>26665</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.15</td>
+      <td>50.25</td>
+      <td>-5.90</td>
+      <td>396</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102541" target="_blank" rel="noopener noreferrer"><img src="img/Eternal_Student.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Eternal Student.html" target="_blank" rel="noopener noreferrer">Eternal Student</a></td>
+      <td>6.36</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>18189</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>55.60</td>
+      <td>49.51</td>
+      <td>-6.09</td>
+      <td>103</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102515" target="_blank" rel="noopener noreferrer"><img src="img/Landscape_Painter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Landscape Painter.html" target="_blank" rel="noopener noreferrer">Landscape Painter</a></td>
+      <td>8.96</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>33185</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>56.40</td>
+      <td>50.00</td>
+      <td>-6.40</td>
+      <td>114</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102561" target="_blank" rel="noopener noreferrer"><img src="img/Tragedy_Feaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tragedy Feaster.html" target="_blank" rel="noopener noreferrer">Tragedy Feaster</a></td>
+      <td>2.99</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>37749</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.50</td>
+      <td>50.94</td>
+      <td>-6.56</td>
+      <td>106</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102575" target="_blank" rel="noopener noreferrer"><img src="img/Garrison_Excavator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Garrison Excavator.html" target="_blank" rel="noopener noreferrer">Garrison Excavator</a></td>
+      <td>5.33</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60895</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>58.20</td>
+      <td>51.34</td>
+      <td>-6.86</td>
+      <td>187</td>
+      <td>58.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102646" target="_blank" rel="noopener noreferrer"><img src="img/Essenceknit_Scholar.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essenceknit Scholar.html" target="_blank" rel="noopener noreferrer">Essenceknit Scholar</a></td>
+      <td>4.33</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>102949</th>
+      <td>rare</td>
+      <td></td>
+      <td>5.16</td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.8</td>
+      <td>57.35</td>
+      <td>48.87</td>
+      <td>-8.48</td>
+      <td>133</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102806" target="_blank" rel="noopener noreferrer"><img src="img/Knockout_Maneuver.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Knockout Maneuver.html" target="_blank" rel="noopener noreferrer">Knockout Maneuver</a></td>
+      <td>5.34</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+  </tbody>
+</table>

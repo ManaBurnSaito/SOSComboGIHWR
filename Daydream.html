@@ -1,0 +1,2164 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>95852</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>50.90</td>
+      <td>60.32</td>
+      <td>9.42</td>
+      <td>126</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102783" target="_blank" rel="noopener noreferrer"><img src="img/Locust_Spray.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Locust Spray.html" target="_blank" rel="noopener noreferrer">Locust Spray</a></td>
+      <td>9.58</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>56080</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>56.70</td>
+      <td>65.00</td>
+      <td>8.30</td>
+      <td>120</td>
+      <td>63.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102632" target="_blank" rel="noopener noreferrer"><img src="img/Ark_of_Hunger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ark of Hunger.html" target="_blank" rel="noopener noreferrer">Ark of Hunger</a></td>
+      <td>2.02</td>
+      <td>WR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>1964</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>57.10</td>
+      <td>64.74</td>
+      <td>7.64</td>
+      <td>156</td>
+      <td>64.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102466" target="_blank" rel="noopener noreferrer"><img src="img/Antiquities_on_the_Loose.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Antiquities on the Loose.html" target="_blank" rel="noopener noreferrer">Antiquities on the Loose</a></td>
+      <td>1.95</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>4898</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>50.45</td>
+      <td>57.61</td>
+      <td>7.16</td>
+      <td>243</td>
+      <td>51.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102475" target="_blank" rel="noopener noreferrer"><img src="img/Graduation_Day.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Graduation Day.html" target="_blank" rel="noopener noreferrer">Graduation Day</a></td>
+      <td>7.66</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>72706</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>55.05</td>
+      <td>60.32</td>
+      <td>5.27</td>
+      <td>315</td>
+      <td>60.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102683" target="_blank" rel="noopener noreferrer"><img src="img/Scolding_Administrator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scolding Administrator.html" target="_blank" rel="noopener noreferrer">Scolding Administrator</a></td>
+      <td>4.28</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>59014</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.70</td>
+      <td>59.50</td>
+      <td>4.80</td>
+      <td>242</td>
+      <td>59.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102641" target="_blank" rel="noopener noreferrer"><img src="img/Conciliator's_Duelist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Conciliator's Duelist.html" target="_blank" rel="noopener noreferrer">Conciliator's Duelist</a></td>
+      <td>2.88</td>
+      <td>WB</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>62926</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>55.30</td>
+      <td>59.75</td>
+      <td>4.45</td>
+      <td>159</td>
+      <td>61.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102653" target="_blank" rel="noopener noreferrer"><img src="img/Hardened_Academic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hardened Academic.html" target="_blank" rel="noopener noreferrer">Hardened Academic</a></td>
+      <td>2.66</td>
+      <td>WR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>71402</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.60</td>
+      <td>57.96</td>
+      <td>4.36</td>
+      <td>383</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102679" target="_blank" rel="noopener noreferrer"><img src="img/Render_Speechless.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Render Speechless.html" target="_blank" rel="noopener noreferrer">Render Speechless</a></td>
+      <td>9.13</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>34890</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.45</td>
+      <td>57.41</td>
+      <td>3.96</td>
+      <td>108</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102567" target="_blank" rel="noopener noreferrer"><img src="img/Artistic_Process.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Artistic Process.html" target="_blank" rel="noopener noreferrer">Artistic Process</a></td>
+      <td>4.72</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>68142</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.45</td>
+      <td>58.13</td>
+      <td>3.68</td>
+      <td>375</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102669" target="_blank" rel="noopener noreferrer"><img src="img/Practiced_Scrollsmith.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Practiced Scrollsmith.html" target="_blank" rel="noopener noreferrer">Practiced Scrollsmith</a></td>
+      <td>4.35</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>33586</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.70</td>
+      <td>56.07</td>
+      <td>3.37</td>
+      <td>346</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102563" target="_blank" rel="noopener noreferrer"><img src="img/Wander_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wander Off.html" target="_blank" rel="noopener noreferrer">Wander Off</a></td>
+      <td>5.21</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>32282</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.40</td>
+      <td>55.70</td>
+      <td>3.30</td>
+      <td>158</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102559" target="_blank" rel="noopener noreferrer"><img src="img/Send_in_the_Pest.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Send in the Pest.html" target="_blank" rel="noopener noreferrer">Send in the Pest</a></td>
+      <td>7.92</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>35542</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.45</td>
+      <td>56.54</td>
+      <td>3.09</td>
+      <td>191</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102569" target="_blank" rel="noopener noreferrer"><img src="img/Charging_Strifeknight.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Charging Strifeknight.html" target="_blank" rel="noopener noreferrer">Charging Strifeknight</a></td>
+      <td>5.77</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>6528</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.20</td>
+      <td>56.07</td>
+      <td>2.87</td>
+      <td>305</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102480" target="_blank" rel="noopener noreferrer"><img src="img/Inkshape_Demonstrator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Inkshape Demonstrator.html" target="_blank" rel="noopener noreferrer">Inkshape Demonstrator</a></td>
+      <td>5.69</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>84442</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.65</td>
+      <td>56.48</td>
+      <td>2.83</td>
+      <td>108</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td>5.16</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>29022</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.80</td>
+      <td>55.22</td>
+      <td>2.42</td>
+      <td>460</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102549" target="_blank" rel="noopener noreferrer"><img src="img/Melancholic_Poet.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Melancholic Poet.html" target="_blank" rel="noopener noreferrer">Melancholic Poet</a></td>
+      <td>7.34</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>24784</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.50</td>
+      <td>55.80</td>
+      <td>2.30</td>
+      <td>362</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102536" target="_blank" rel="noopener noreferrer"><img src="img/Cost_of_Brilliance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cost of Brilliance.html" target="_blank" rel="noopener noreferrer">Cost of Brilliance</a></td>
+      <td>8.46</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>27066</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>50.50</td>
+      <td>52.76</td>
+      <td>2.26</td>
+      <td>199</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102543" target="_blank" rel="noopener noreferrer"><img src="img/Forum_Necroscribe.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum Necroscribe.html" target="_blank" rel="noopener noreferrer">Forum Necroscribe</a></td>
+      <td>5.54</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>25436</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.85</td>
+      <td>56.08</td>
+      <td>2.23</td>
+      <td>148</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102538" target="_blank" rel="noopener noreferrer"><img src="img/Dissection_Practice.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dissection Practice.html" target="_blank" rel="noopener noreferrer">Dissection Practice</a></td>
+      <td>5.60</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>66512</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>56.60</td>
+      <td>58.72</td>
+      <td>2.12</td>
+      <td>109</td>
+      <td>63.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102664" target="_blank" rel="noopener noreferrer"><img src="img/Moment_of_Reckoning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Moment of Reckoning.html" target="_blank" rel="noopener noreferrer">Moment of Reckoning</a></td>
+      <td>2.50</td>
+      <td>WB</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>3268</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.90</td>
+      <td>54.56</td>
+      <td>1.66</td>
+      <td>603</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102470" target="_blank" rel="noopener noreferrer"><img src="img/Eager_Glyphmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Eager Glyphmage.html" target="_blank" rel="noopener noreferrer">Eager Glyphmage</a></td>
+      <td>8.57</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>36194</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.35</td>
+      <td>54.00</td>
+      <td>1.65</td>
+      <td>100</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102571" target="_blank" rel="noopener noreferrer"><img src="img/Duel_Tactics.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Duel Tactics.html" target="_blank" rel="noopener noreferrer">Duel Tactics</a></td>
+      <td>9.00</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>73684</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.90</td>
+      <td>54.46</td>
+      <td>1.56</td>
+      <td>336</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102686" target="_blank" rel="noopener noreferrer"><img src="img/Snooping_Page.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snooping Page.html" target="_blank" rel="noopener noreferrer">Snooping Page</a></td>
+      <td>5.16</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>66186</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.65</td>
+      <td>56.20</td>
+      <td>1.55</td>
+      <td>242</td>
+      <td>59.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102663" target="_blank" rel="noopener noreferrer"><img src="img/Molten_Note.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Molten Note.html" target="_blank" rel="noopener noreferrer">Molten Note</a></td>
+      <td>4.73</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>5876</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.35</td>
+      <td>52.81</td>
+      <td>1.46</td>
+      <td>445</td>
+      <td>53.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102478" target="_blank" rel="noopener noreferrer"><img src="img/Honorbound_Page.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Honorbound Page.html" target="_blank" rel="noopener noreferrer">Honorbound Page</a></td>
+      <td>9.39</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>73032</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.60</td>
+      <td>56.01</td>
+      <td>1.41</td>
+      <td>316</td>
+      <td>59.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102684" target="_blank" rel="noopener noreferrer"><img src="img/Silverquill_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Silverquill Charm.html" target="_blank" rel="noopener noreferrer">Silverquill Charm</a></td>
+      <td>5.15</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>27718</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.60</td>
+      <td>54.57</td>
+      <td>0.97</td>
+      <td>361</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102545" target="_blank" rel="noopener noreferrer"><img src="img/Last_Gasp.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Last Gasp.html" target="_blank" rel="noopener noreferrer">Last Gasp</a></td>
+      <td>4.81</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>9136</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.15</td>
+      <td>53.11</td>
+      <td>0.96</td>
+      <td>450</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102488" target="_blank" rel="noopener noreferrer"><img src="img/Rehearsed_Debater.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rehearsed Debater.html" target="_blank" rel="noopener noreferrer">Rehearsed Debater</a></td>
+      <td>9.39</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>2616</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>49.50</td>
+      <td>50.29</td>
+      <td>0.79</td>
+      <td>3561</td>
+      <td>49.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td>9.26</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>28044</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.00</td>
+      <td>54.66</td>
+      <td>0.66</td>
+      <td>247</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102546" target="_blank" rel="noopener noreferrer"><img src="img/Lecturing_Scornmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lecturing Scornmage.html" target="_blank" rel="noopener noreferrer">Lecturing Scornmage</a></td>
+      <td>4.86</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>58688</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.20</td>
+      <td>54.61</td>
+      <td>0.41</td>
+      <td>304</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102640" target="_blank" rel="noopener noreferrer"><img src="img/Colossus_of_the_Blood_Age.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Colossus of the Blood Age.html" target="_blank" rel="noopener noreferrer">Colossus of the Blood Age</a></td>
+      <td>4.64</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>63252</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.40</td>
+      <td>53.77</td>
+      <td>0.37</td>
+      <td>504</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td>9.05</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>64882</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.80</td>
+      <td>52.02</td>
+      <td>0.22</td>
+      <td>173</td>
+      <td>54.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102659" target="_blank" rel="noopener noreferrer"><img src="img/Lorehold_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lorehold Charm.html" target="_blank" rel="noopener noreferrer">Lorehold Charm</a></td>
+      <td>8.05</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>89006</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.45</td>
+      <td>54.65</td>
+      <td>0.20</td>
+      <td>333</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102760" target="_blank" rel="noopener noreferrer"><img src="img/Repel_Calamity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Repel Calamity.html" target="_blank" rel="noopener noreferrer">Repel Calamity</a></td>
+      <td>4.07</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>11092</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>56.40</td>
+      <td>56.46</td>
+      <td>0.06</td>
+      <td>147</td>
+      <td>63.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102494" target="_blank" rel="noopener noreferrer"><img src="img/Stirring_Hopesinger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stirring Hopesinger.html" target="_blank" rel="noopener noreferrer">Stirring Hopesinger</a></td>
+      <td>1.58</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>39128</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.10</td>
+      <td>53.05</td>
+      <td>-0.05</td>
+      <td>213</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102580" target="_blank" rel="noopener noreferrer"><img src="img/Living_History.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Living History.html" target="_blank" rel="noopener noreferrer">Living History</a></td>
+      <td>6.98</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>7506</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.55</td>
+      <td>52.48</td>
+      <td>-0.07</td>
+      <td>524</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102483" target="_blank" rel="noopener noreferrer"><img src="img/Owlin_Historian.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Owlin Historian.html" target="_blank" rel="noopener noreferrer">Owlin Historian</a></td>
+      <td>8.70</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>1638</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.75</td>
+      <td>53.66</td>
+      <td>-0.09</td>
+      <td>587</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102465" target="_blank" rel="noopener noreferrer"><img src="img/Ajani's_Response.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ajani's Response.html" target="_blank" rel="noopener noreferrer">Ajani's Response</a></td>
+      <td>6.23</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3920</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.55</td>
+      <td>54.39</td>
+      <td>-0.16</td>
+      <td>114</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102472" target="_blank" rel="noopener noreferrer"><img src="img/Emeritus_of_Truce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emeritus of Truce.html" target="_blank" rel="noopener noreferrer">Emeritus of Truce</a></td>
+      <td>1.80</td>
+      <td>W</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>2290</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.60</td>
+      <td>52.38</td>
+      <td>-0.22</td>
+      <td>483</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102467" target="_blank" rel="noopener noreferrer"><img src="img/Ascendant_Dustspeaker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ascendant Dustspeaker.html" target="_blank" rel="noopener noreferrer">Ascendant Dustspeaker</a></td>
+      <td>8.88</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>32608</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.25</td>
+      <td>50.88</td>
+      <td>-0.37</td>
+      <td>171</td>
+      <td>53.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102560" target="_blank" rel="noopener noreferrer"><img src="img/Sneering_Shadewriter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sneering Shadewriter.html" target="_blank" rel="noopener noreferrer">Sneering Shadewriter</a></td>
+      <td>9.78</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3594</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.55</td>
+      <td>54.07</td>
+      <td>-0.48</td>
+      <td>984</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102471" target="_blank" rel="noopener noreferrer"><img src="img/Elite_Interceptor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elite Interceptor.html" target="_blank" rel="noopener noreferrer">Elite Interceptor</a></td>
+      <td>5.06</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>9788</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.75</td>
+      <td>52.25</td>
+      <td>-0.50</td>
+      <td>622</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102490" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Acolyte.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shattered Acolyte.html" target="_blank" rel="noopener noreferrer">Shattered Acolyte</a></td>
+      <td>8.17</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83138</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.80</td>
+      <td>52.29</td>
+      <td>-0.51</td>
+      <td>677</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102715" target="_blank" rel="noopener noreferrer"><img src="img/Forum_of_Amity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum of Amity.html" target="_blank" rel="noopener noreferrer">Forum of Amity</a></td>
+      <td>7.95</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>2942</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.60</td>
+      <td>52.04</td>
+      <td>-0.56</td>
+      <td>540</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102469" target="_blank" rel="noopener noreferrer"><img src="img/Dig_Site_Inventory.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dig Site Inventory.html" target="_blank" rel="noopener noreferrer">Dig Site Inventory</a></td>
+      <td>7.85</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>70098</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.55</td>
+      <td>53.95</td>
+      <td>-0.60</td>
+      <td>506</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102675" target="_blank" rel="noopener noreferrer"><img src="img/Pursue_the_Past.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pursue the Past.html" target="_blank" rel="noopener noreferrer">Pursue the Past</a></td>
+      <td>7.57</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44018</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.70</td>
+      <td>53.04</td>
+      <td>-0.66</td>
+      <td>313</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>41410</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.90</td>
+      <td>53.15</td>
+      <td>-0.75</td>
+      <td>429</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>4572</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.05</td>
+      <td>52.25</td>
+      <td>-0.80</td>
+      <td>178</td>
+      <td>56.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102474" target="_blank" rel="noopener noreferrer"><img src="img/Erode.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Erode.html" target="_blank" rel="noopener noreferrer">Erode</a></td>
+      <td>2.76</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>63578</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.95</td>
+      <td>52.12</td>
+      <td>-0.83</td>
+      <td>660</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102655" target="_blank" rel="noopener noreferrer"><img src="img/Inkling_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Inkling Mascot.html" target="_blank" rel="noopener noreferrer">Inkling Mascot</a></td>
+      <td>8.25</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>23154</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.85</td>
+      <td>51.01</td>
+      <td>-0.84</td>
+      <td>347</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102531" target="_blank" rel="noopener noreferrer"><img src="img/Adventurous_Eater.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Adventurous Eater.html" target="_blank" rel="noopener noreferrer">Adventurous Eater</a></td>
+      <td>8.17</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>95526</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.40</td>
+      <td>51.50</td>
+      <td>-0.90</td>
+      <td>167</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102781" target="_blank" rel="noopener noreferrer"><img src="img/Feed_the_Swarm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Feed the Swarm.html" target="_blank" rel="noopener noreferrer">Feed the Swarm</a></td>
+      <td>4.59</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>31630</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>50.95</td>
+      <td>50.00</td>
+      <td>-0.95</td>
+      <td>168</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102557" target="_blank" rel="noopener noreferrer"><img src="img/Scathing_Shadelock.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scathing Shadelock.html" target="_blank" rel="noopener noreferrer">Scathing Shadelock</a></td>
+      <td>7.08</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>56406</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.45</td>
+      <td>50.48</td>
+      <td>-0.97</td>
+      <td>105</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102633" target="_blank" rel="noopener noreferrer"><img src="img/Aziza,_Mage_Tower_Captain.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Aziza, Mage Tower Captain.html" target="_blank" rel="noopener noreferrer">Aziza, Mage Tower Captain</a></td>
+      <td>4.33</td>
+      <td>WR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>94548</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.70</td>
+      <td>52.47</td>
+      <td>-1.23</td>
+      <td>162</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102778" target="_blank" rel="noopener noreferrer"><img src="img/Bitter_Triumph.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Bitter Triumph.html" target="_blank" rel="noopener noreferrer">Bitter Triumph</a></td>
+      <td>3.36</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>10114</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.65</td>
+      <td>50.32</td>
+      <td>-1.33</td>
+      <td>312</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102491" target="_blank" rel="noopener noreferrer"><img src="img/Soaring_Stoneglider.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Soaring Stoneglider.html" target="_blank" rel="noopener noreferrer">Soaring Stoneglider</a></td>
+      <td>5.99</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>10440</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>50.90</td>
+      <td>49.55</td>
+      <td>-1.35</td>
+      <td>224</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102492" target="_blank" rel="noopener noreferrer"><img src="img/Spiritcall_Enthusiast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spiritcall Enthusiast.html" target="_blank" rel="noopener noreferrer">Spiritcall Enthusiast</a></td>
+      <td>7.60</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>11744</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.90</td>
+      <td>50.54</td>
+      <td>-1.36</td>
+      <td>279</td>
+      <td>54.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102496" target="_blank" rel="noopener noreferrer"><img src="img/Summoned_Dromedary.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Summoned Dromedary.html" target="_blank" rel="noopener noreferrer">Summoned Dromedary</a></td>
+      <td>6.44</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>75966</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.90</td>
+      <td>52.40</td>
+      <td>-1.50</td>
+      <td>334</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102693" target="_blank" rel="noopener noreferrer"><img src="img/Stirring_Honormancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stirring Honormancer.html" target="_blank" rel="noopener noreferrer">Stirring Honormancer</a></td>
+      <td>5.64</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>11418</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.15</td>
+      <td>51.61</td>
+      <td>-1.54</td>
+      <td>684</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102495" target="_blank" rel="noopener noreferrer"><img src="img/Stone_Docent.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stone Docent.html" target="_blank" rel="noopener noreferrer">Stone Docent</a></td>
+      <td>7.36</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>7832</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>57.25</td>
+      <td>55.69</td>
+      <td>-1.56</td>
+      <td>167</td>
+      <td>65.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102484" target="_blank" rel="noopener noreferrer"><img src="img/Practiced_Offense.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Practiced Offense.html" target="_blank" rel="noopener noreferrer">Practiced Offense</a></td>
+      <td>1.76</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>26088</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.05</td>
+      <td>52.48</td>
+      <td>-1.57</td>
+      <td>141</td>
+      <td>58.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102540" target="_blank" rel="noopener noreferrer"><img src="img/End_of_the_Hunt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//End of the Hunt.html" target="_blank" rel="noopener noreferrer">End of the Hunt</a></td>
+      <td>4.08</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>8810</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.90</td>
+      <td>50.26</td>
+      <td>-1.64</td>
+      <td>388</td>
+      <td>54.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102487" target="_blank" rel="noopener noreferrer"><img src="img/Rapier_Wit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rapier Wit.html" target="_blank" rel="noopener noreferrer">Rapier Wit</a></td>
+      <td>10.15</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>28696</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.70</td>
+      <td>51.03</td>
+      <td>-1.67</td>
+      <td>194</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102548" target="_blank" rel="noopener noreferrer"><img src="img/Masterful_Flourish.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Masterful Flourish.html" target="_blank" rel="noopener noreferrer">Masterful Flourish</a></td>
+      <td>10.49</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>6202</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>55.85</td>
+      <td>54.17</td>
+      <td>-1.68</td>
+      <td>216</td>
+      <td>62.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102479" target="_blank" rel="noopener noreferrer"><img src="img/Informed_Inkwright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Informed Inkwright.html" target="_blank" rel="noopener noreferrer">Informed Inkwright</a></td>
+      <td>1.82</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>41736</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.35</td>
+      <td>50.64</td>
+      <td>-1.71</td>
+      <td>156</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102588" target="_blank" rel="noopener noreferrer"><img src="img/Seize_the_Spoils.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Seize the Spoils.html" target="_blank" rel="noopener noreferrer">Seize the Spoils</a></td>
+      <td>9.13</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>87702</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>50.40</td>
+      <td>48.60</td>
+      <td>-1.80</td>
+      <td>107</td>
+      <td>51.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102756" target="_blank" rel="noopener noreferrer"><img src="img/Duty_Beyond_Death.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Duty Beyond Death.html" target="_blank" rel="noopener noreferrer">Duty Beyond Death</a></td>
+      <td>9.96</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>63904</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.10</td>
+      <td>51.29</td>
+      <td>-1.81</td>
+      <td>310</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102656" target="_blank" rel="noopener noreferrer"><img src="img/Killian's_Confidence.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Killian's Confidence.html" target="_blank" rel="noopener noreferrer">Killian's Confidence</a></td>
+      <td>5.47</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>88028</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.40</td>
+      <td>49.51</td>
+      <td>-1.89</td>
+      <td>204</td>
+      <td>53.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102757" target="_blank" rel="noopener noreferrer"><img src="img/Helping_Hand.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Helping Hand.html" target="_blank" rel="noopener noreferrer">Helping Hand</a></td>
+      <td>8.02</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>44344</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.25</td>
+      <td>50.28</td>
+      <td>-1.97</td>
+      <td>181</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102596" target="_blank" rel="noopener noreferrer"><img src="img/Zealous_Lorecaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zealous Lorecaster.html" target="_blank" rel="noopener noreferrer">Zealous Lorecaster</a></td>
+      <td>9.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>43040</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.25</td>
+      <td>49.28</td>
+      <td>-1.97</td>
+      <td>138</td>
+      <td>53.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102592" target="_blank" rel="noopener noreferrer"><img src="img/Tackle_Artist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tackle Artist.html" target="_blank" rel="noopener noreferrer">Tackle Artist</a></td>
+      <td>9.60</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>76618</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.95</td>
+      <td>51.96</td>
+      <td>-1.99</td>
+      <td>102</td>
+      <td>58.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102695" target="_blank" rel="noopener noreferrer"><img src="img/Suspend_Aggression.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Suspend Aggression.html" target="_blank" rel="noopener noreferrer">Suspend Aggression</a></td>
+      <td>4.43</td>
+      <td>WR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>85746</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.55</td>
+      <td>51.49</td>
+      <td>-2.06</td>
+      <td>101</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102723" target="_blank" rel="noopener noreferrer"><img src="img/Sundown_Pass.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundown Pass.html" target="_blank" rel="noopener noreferrer">Sundown Pass</a></td>
+      <td>5.03</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>6854</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.75</td>
+      <td>50.52</td>
+      <td>-2.23</td>
+      <td>287</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102481" target="_blank" rel="noopener noreferrer"><img src="img/Interjection.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Interjection.html" target="_blank" rel="noopener noreferrer">Interjection</a></td>
+      <td>10.36</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>7180</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.40</td>
+      <td>50.00</td>
+      <td>-2.40</td>
+      <td>152</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102482" target="_blank" rel="noopener noreferrer"><img src="img/Joined_Researchers.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Joined Researchers.html" target="_blank" rel="noopener noreferrer">Joined Researchers</a></td>
+      <td>5.16</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>4246</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>50.05</td>
+      <td>47.32</td>
+      <td>-2.73</td>
+      <td>410</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102473" target="_blank" rel="noopener noreferrer"><img src="img/Ennis,_Debate_Moderator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ennis, Debate Moderator.html" target="_blank" rel="noopener noreferrer">Ennis, Debate Moderator</a></td>
+      <td>7.32</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>40758</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>50.55</td>
+      <td>47.75</td>
+      <td>-2.80</td>
+      <td>111</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102585" target="_blank" rel="noopener noreferrer"><img src="img/Pigment_Wrangler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pigment Wrangler.html" target="_blank" rel="noopener noreferrer">Pigment Wrangler</a></td>
+      <td>5.87</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>37498</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.35</td>
+      <td>50.49</td>
+      <td>-2.86</td>
+      <td>305</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102575" target="_blank" rel="noopener noreferrer"><img src="img/Garrison_Excavator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Garrison Excavator.html" target="_blank" rel="noopener noreferrer">Garrison Excavator</a></td>
+      <td>5.33</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>78900</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.50</td>
+      <td>50.50</td>
+      <td>-3.00</td>
+      <td>499</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102702" target="_blank" rel="noopener noreferrer"><img src="img/Wilt_in_the_Heat.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wilt in the Heat.html" target="_blank" rel="noopener noreferrer">Wilt in the Heat</a></td>
+      <td>6.96</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>81834</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.45</td>
+      <td>51.39</td>
+      <td>-3.06</td>
+      <td>144</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>26740</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.15</td>
+      <td>50.90</td>
+      <td>-3.25</td>
+      <td>167</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102542" target="_blank" rel="noopener noreferrer"><img src="img/Foolish_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Foolish Fate.html" target="_blank" rel="noopener noreferrer">Foolish Fate</a></td>
+      <td>3.19</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>24458</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>50.50</td>
+      <td>47.21</td>
+      <td>-3.29</td>
+      <td>197</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102535" target="_blank" rel="noopener noreferrer"><img src="img/Cheerful_Osteomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cheerful Osteomancer.html" target="_blank" rel="noopener noreferrer">Cheerful Osteomancer</a></td>
+      <td>9.18</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>10766</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.45</td>
+      <td>50.15</td>
+      <td>-3.30</td>
+      <td>323</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102493" target="_blank" rel="noopener noreferrer"><img src="img/Stand_Up_for_Yourself.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stand Up for Yourself.html" target="_blank" rel="noopener noreferrer">Stand Up for Yourself</a></td>
+      <td>4.85</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>75640</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.65</td>
+      <td>50.00</td>
+      <td>-3.65</td>
+      <td>286</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102692" target="_blank" rel="noopener noreferrer"><img src="img/Startled_Relic_Sloth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Startled Relic Sloth.html" target="_blank" rel="noopener noreferrer">Startled Relic Sloth</a></td>
+      <td>4.72</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38476</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.20</td>
+      <td>50.38</td>
+      <td>-3.82</td>
+      <td>133</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102578" target="_blank" rel="noopener noreferrer"><img src="img/Impractical_Joke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Impractical Joke.html" target="_blank" rel="noopener noreferrer">Impractical Joke</a></td>
+      <td>3.36</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>55102</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.10</td>
+      <td>48.17</td>
+      <td>-3.93</td>
+      <td>328</td>
+      <td>54.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102629" target="_blank" rel="noopener noreferrer"><img src="img/Abigale,_Poet_Laureate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abigale, Poet Laureate.html" target="_blank" rel="noopener noreferrer">Abigale, Poet Laureate</a></td>
+      <td>4.93</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>5224</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.25</td>
+      <td>49.09</td>
+      <td>-4.16</td>
+      <td>328</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102476" target="_blank" rel="noopener noreferrer"><img src="img/Group_Project.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Group Project.html" target="_blank" rel="noopener noreferrer">Group Project</a></td>
+      <td>5.34</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>64230</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.80</td>
+      <td>48.63</td>
+      <td>-4.17</td>
+      <td>292</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102657" target="_blank" rel="noopener noreferrer"><img src="img/Kirol,_History_Buff.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Kirol, History Buff.html" target="_blank" rel="noopener noreferrer">Kirol, History Buff</a></td>
+      <td>5.69</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>36846</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.55</td>
+      <td>48.31</td>
+      <td>-4.24</td>
+      <td>178</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102573" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Firedancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Expressive Firedancer.html" target="_blank" rel="noopener noreferrer">Expressive Firedancer</a></td>
+      <td>8.59</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>97482</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.00</td>
+      <td>49.67</td>
+      <td>-4.33</td>
+      <td>153</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102789" target="_blank" rel="noopener noreferrer"><img src="img/Abrade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abrade.html" target="_blank" rel="noopener noreferrer">Abrade</a></td>
+      <td>3.40</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>88354</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.65</td>
+      <td>48.23</td>
+      <td>-4.42</td>
+      <td>226</td>
+      <td>55.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102758" target="_blank" rel="noopener noreferrer"><img src="img/Hop_to_It.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hop to It.html" target="_blank" rel="noopener noreferrer">Hop to It</a></td>
+      <td>6.89</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>98786</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>54.25</td>
+      <td>49.63</td>
+      <td>-4.62</td>
+      <td>135</td>
+      <td>59.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102793" target="_blank" rel="noopener noreferrer"><img src="img/Burst_Lightning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burst Lightning.html" target="_blank" rel="noopener noreferrer">Burst Lightning</a></td>
+      <td>3.28</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>100090</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.10</td>
+      <td>48.39</td>
+      <td>-4.71</td>
+      <td>124</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102797" target="_blank" rel="noopener noreferrer"><img src="img/Monstrous_Rage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Monstrous Rage.html" target="_blank" rel="noopener noreferrer">Monstrous Rage</a></td>
+      <td>7.42</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>8484</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.20</td>
+      <td>48.29</td>
+      <td>-4.91</td>
+      <td>381</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102486" target="_blank" rel="noopener noreferrer"><img src="img/Quill-Blade_Laureate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quill-Blade Laureate.html" target="_blank" rel="noopener noreferrer">Quill-Blade Laureate</a></td>
+      <td>4.42</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>8158</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.30</td>
+      <td>47.30</td>
+      <td>-5.00</td>
+      <td>315</td>
+      <td>55.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102485" target="_blank" rel="noopener noreferrer"><img src="img/Primary_Research.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Primary Research.html" target="_blank" rel="noopener noreferrer">Primary Research</a></td>
+      <td>5.88</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>74662</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.75</td>
+      <td>47.71</td>
+      <td>-5.04</td>
+      <td>547</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102689" target="_blank" rel="noopener noreferrer"><img src="img/Spirit_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spirit Mascot.html" target="_blank" rel="noopener noreferrer">Spirit Mascot</a></td>
+      <td>7.80</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>5550</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>49.75</td>
+      <td>44.44</td>
+      <td>-5.31</td>
+      <td>126</td>
+      <td>50.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102477" target="_blank" rel="noopener noreferrer"><img src="img/Harsh_Annotation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Harsh Annotation.html" target="_blank" rel="noopener noreferrer">Harsh Annotation</a></td>
+      <td>9.33</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>26414</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.00</td>
+      <td>46.30</td>
+      <td>-5.70</td>
+      <td>162</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102541" target="_blank" rel="noopener noreferrer"><img src="img/Eternal_Student.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Eternal Student.html" target="_blank" rel="noopener noreferrer">Eternal Student</a></td>
+      <td>6.36</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38150</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.70</td>
+      <td>46.72</td>
+      <td>-5.98</td>
+      <td>244</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>80856</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.75</td>
+      <td>45.67</td>
+      <td>-6.08</td>
+      <td>127</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102708" target="_blank" rel="noopener noreferrer"><img src="img/Mage_Tower_Referee.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mage Tower Referee.html" target="_blank" rel="noopener noreferrer">Mage Tower Referee</a></td>
+      <td>10.65</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>82812</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.45</td>
+      <td>47.31</td>
+      <td>-6.14</td>
+      <td>558</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86072</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.10</td>
+      <td>46.85</td>
+      <td>-6.25</td>
+      <td>333</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>37824</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.85</td>
+      <td>45.23</td>
+      <td>-6.62</td>
+      <td>241</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102576" target="_blank" rel="noopener noreferrer"><img src="img/Goblin_Glasswright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Goblin Glasswright.html" target="_blank" rel="noopener noreferrer">Goblin Glasswright</a></td>
+      <td>7.47</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>24132</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>52.00</td>
+      <td>45.32</td>
+      <td>-6.68</td>
+      <td>203</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102534" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Banemaker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Banemaker.html" target="_blank" rel="noopener noreferrer">Burrog Banemaker</a></td>
+      <td>8.53</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>42388</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>50.35</td>
+      <td>42.94</td>
+      <td>-7.41</td>
+      <td>170</td>
+      <td>51.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102590" target="_blank" rel="noopener noreferrer"><img src="img/Strife_Scholar.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strife Scholar.html" target="_blank" rel="noopener noreferrer">Strife Scholar</a></td>
+      <td>10.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>43692</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>53.60</td>
+      <td>45.20</td>
+      <td>-8.40</td>
+      <td>354</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>89658</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>50.20</td>
+      <td>38.46</td>
+      <td>-11.74</td>
+      <td>130</td>
+      <td>50.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102762" target="_blank" rel="noopener noreferrer"><img src="img/Requisition_Raid.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Requisition Raid.html" target="_blank" rel="noopener noreferrer">Requisition Raid</a></td>
+      <td>9.38</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>30652</th>
+      <td>uncommon</td>
+      <td>W</td>
+      <td>9.26</td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>49.5</td>
+      <td>51.10</td>
+      <td>37.19</td>
+      <td>-13.91</td>
+      <td>121</td>
+      <td>52.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102554" target="_blank" rel="noopener noreferrer"><img src="img/Pull_from_the_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pull from the Grave.html" target="_blank" rel="noopener noreferrer">Pull from the Grave</a></td>
+      <td>10.19</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,2354 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1028</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>58.70</td>
+      <td>70.37</td>
+      <td>11.67</td>
+      <td>108</td>
+      <td>65.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102463" target="_blank" rel="noopener noreferrer"><img src="img/Together_as_One.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Together as One.html" target="_blank" rel="noopener noreferrer">Together as One</a></td>
+      <td>2.04</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>75030</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>56.35</td>
+      <td>67.59</td>
+      <td>11.24</td>
+      <td>145</td>
+      <td>61.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102690" target="_blank" rel="noopener noreferrer"><img src="img/Splatter_Technique.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Splatter Technique.html" target="_blank" rel="noopener noreferrer">Splatter Technique</a></td>
+      <td>2.38</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>55796</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.10</td>
+      <td>65.79</td>
+      <td>10.69</td>
+      <td>190</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102631" target="_blank" rel="noopener noreferrer"><img src="img/Applied_Geometry.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Applied Geometry.html" target="_blank" rel="noopener noreferrer">Applied Geometry</a></td>
+      <td>2.46</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>34606</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.35</td>
+      <td>63.55</td>
+      <td>9.20</td>
+      <td>107</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102566" target="_blank" rel="noopener noreferrer"><img src="img/Archaic's_Agony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Archaic's Agony.html" target="_blank" rel="noopener noreferrer">Archaic's Agony</a></td>
+      <td>8.19</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>77638</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>56.15</td>
+      <td>65.15</td>
+      <td>9.00</td>
+      <td>132</td>
+      <td>60.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102698" target="_blank" rel="noopener noreferrer"><img src="img/Traumatic_Critique.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Traumatic Critique.html" target="_blank" rel="noopener noreferrer">Traumatic Critique</a></td>
+      <td>2.09</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>51884</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.55</td>
+      <td>64.34</td>
+      <td>8.79</td>
+      <td>143</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102619" target="_blank" rel="noopener noreferrer"><img src="img/Slumbering_Trudge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Slumbering Trudge.html" target="_blank" rel="noopener noreferrer">Slumbering Trudge</a></td>
+      <td>2.25</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>46016</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>51.10</td>
+      <td>58.88</td>
+      <td>7.78</td>
+      <td>107</td>
+      <td>50.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102601" target="_blank" rel="noopener noreferrer"><img src="img/Chelonian_Tackle.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Chelonian Tackle.html" target="_blank" rel="noopener noreferrer">Chelonian Tackle</a></td>
+      <td>9.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>103392</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.90</td>
+      <td>61.44</td>
+      <td>7.54</td>
+      <td>153</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102808" target="_blank" rel="noopener noreferrer"><img src="img/Royal_Treatment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Royal Treatment.html" target="_blank" rel="noopener noreferrer">Royal Treatment</a></td>
+      <td>7.47</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>45364</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.95</td>
+      <td>63.24</td>
+      <td>7.29</td>
+      <td>136</td>
+      <td>60.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102599" target="_blank" rel="noopener noreferrer"><img src="img/Ambitious_Augmenter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ambitious Augmenter.html" target="_blank" rel="noopener noreferrer">Ambitious Augmenter</a></td>
+      <td>2.15</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>53514</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.25</td>
+      <td>60.41</td>
+      <td>7.16</td>
+      <td>245</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102624" target="_blank" rel="noopener noreferrer"><img src="img/Topiary_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Topiary Lecturer.html" target="_blank" rel="noopener noreferrer">Topiary Lecturer</a></td>
+      <td>5.81</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>20262</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.30</td>
+      <td>62.44</td>
+      <td>7.14</td>
+      <td>221</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102522" target="_blank" rel="noopener noreferrer"><img src="img/Pensive_Professor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pensive Professor.html" target="_blank" rel="noopener noreferrer">Pensive Professor</a></td>
+      <td>2.11</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>45038</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.65</td>
+      <td>60.99</td>
+      <td>6.34</td>
+      <td>223</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102598" target="_blank" rel="noopener noreferrer"><img src="img/Additive_Evolution.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Additive Evolution.html" target="_blank" rel="noopener noreferrer">Additive Evolution</a></td>
+      <td>4.44</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82854</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.55</td>
+      <td>60.81</td>
+      <td>6.26</td>
+      <td>222</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21566</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.50</td>
+      <td>60.62</td>
+      <td>6.12</td>
+      <td>193</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102526" target="_blank" rel="noopener noreferrer"><img src="img/Skycoach_Conductor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Skycoach Conductor.html" target="_blank" rel="noopener noreferrer">Skycoach Conductor</a></td>
+      <td>2.58</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>18958</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.10</td>
+      <td>60.76</td>
+      <td>5.66</td>
+      <td>502</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102518" target="_blank" rel="noopener noreferrer"><img src="img/Matterbending_Mage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Matterbending Mage.html" target="_blank" rel="noopener noreferrer">Matterbending Mage</a></td>
+      <td>4.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81876</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.55</td>
+      <td>61.20</td>
+      <td>5.65</td>
+      <td>183</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>67532</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.20</td>
+      <td>60.59</td>
+      <td>5.39</td>
+      <td>406</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102667" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Surveyor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Surveyor.html" target="_blank" rel="noopener noreferrer">Paradox Surveyor</a></td>
+      <td>5.40</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>34932</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.55</td>
+      <td>59.88</td>
+      <td>5.33</td>
+      <td>167</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102567" target="_blank" rel="noopener noreferrer"><img src="img/Artistic_Process.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Artistic Process.html" target="_blank" rel="noopener noreferrer">Artistic Process</a></td>
+      <td>4.72</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>62642</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>49.55</td>
+      <td>54.62</td>
+      <td>5.07</td>
+      <td>119</td>
+      <td>47.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td>10.80</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81550</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.60</td>
+      <td>59.42</td>
+      <td>4.82</td>
+      <td>313</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>16024</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>50.35</td>
+      <td>55.17</td>
+      <td>4.82</td>
+      <td>116</td>
+      <td>49.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102509" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Anomaly.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Anomaly.html" target="_blank" rel="noopener noreferrer">Fractal Anomaly</a></td>
+      <td>10.73</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>86114</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.20</td>
+      <td>58.88</td>
+      <td>4.68</td>
+      <td>501</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44386</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.35</td>
+      <td>57.89</td>
+      <td>4.54</td>
+      <td>171</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102596" target="_blank" rel="noopener noreferrer"><img src="img/Zealous_Lorecaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zealous Lorecaster.html" target="_blank" rel="noopener noreferrer">Zealous Lorecaster</a></td>
+      <td>9.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>97524</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.10</td>
+      <td>59.60</td>
+      <td>4.50</td>
+      <td>151</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102789" target="_blank" rel="noopener noreferrer"><img src="img/Abrade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abrade.html" target="_blank" rel="noopener noreferrer">Abrade</a></td>
+      <td>3.40</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>59382</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.00</td>
+      <td>58.41</td>
+      <td>4.41</td>
+      <td>452</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102642" target="_blank" rel="noopener noreferrer"><img src="img/Cuboid_Colony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cuboid Colony.html" target="_blank" rel="noopener noreferrer">Cuboid Colony</a></td>
+      <td>5.79</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>48950</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>51.45</td>
+      <td>55.47</td>
+      <td>4.02</td>
+      <td>137</td>
+      <td>51.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102610" target="_blank" rel="noopener noreferrer"><img src="img/Hungry_Graffalon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hungry Graffalon.html" target="_blank" rel="noopener noreferrer">Hungry Graffalon</a></td>
+      <td>11.46</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>94264</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.85</td>
+      <td>59.59</td>
+      <td>3.74</td>
+      <td>386</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>42756</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.40</td>
+      <td>58.12</td>
+      <td>3.72</td>
+      <td>117</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102591" target="_blank" rel="noopener noreferrer"><img src="img/Tablet_of_Discovery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tablet of Discovery.html" target="_blank" rel="noopener noreferrer">Tablet of Discovery</a></td>
+      <td>5.53</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>102740</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.30</td>
+      <td>57.98</td>
+      <td>3.68</td>
+      <td>188</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102806" target="_blank" rel="noopener noreferrer"><img src="img/Knockout_Maneuver.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Knockout Maneuver.html" target="_blank" rel="noopener noreferrer">Knockout Maneuver</a></td>
+      <td>5.34</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>35584</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.55</td>
+      <td>58.00</td>
+      <td>3.45</td>
+      <td>100</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102569" target="_blank" rel="noopener noreferrer"><img src="img/Charging_Strifeknight.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Charging Strifeknight.html" target="_blank" rel="noopener noreferrer">Charging Strifeknight</a></td>
+      <td>5.77</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>58404</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>57.15</td>
+      <td>60.49</td>
+      <td>3.34</td>
+      <td>162</td>
+      <td>62.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102639" target="_blank" rel="noopener noreferrer"><img src="img/Colorstorm_Stallion.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Colorstorm Stallion.html" target="_blank" rel="noopener noreferrer">Colorstorm Stallion</a></td>
+      <td>2.06</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>71770</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.70</td>
+      <td>56.69</td>
+      <td>2.99</td>
+      <td>127</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102680" target="_blank" rel="noopener noreferrer"><img src="img/Resonating_Lute.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Resonating Lute.html" target="_blank" rel="noopener noreferrer">Resonating Lute</a></td>
+      <td>2.90</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>15372</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>56.35</td>
+      <td>59.12</td>
+      <td>2.77</td>
+      <td>159</td>
+      <td>61.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102507" target="_blank" rel="noopener noreferrer"><img src="img/Exhibition_Tidecaller.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Exhibition Tidecaller.html" target="_blank" rel="noopener noreferrer">Exhibition Tidecaller</a></td>
+      <td>2.48</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>69814</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.75</td>
+      <td>55.50</td>
+      <td>2.75</td>
+      <td>591</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102674" target="_blank" rel="noopener noreferrer"><img src="img/Pterafractyl.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pterafractyl.html" target="_blank" rel="noopener noreferrer">Pterafractyl</a></td>
+      <td>8.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38192</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.80</td>
+      <td>56.54</td>
+      <td>2.74</td>
+      <td>283</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>702</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.40</td>
+      <td>58.11</td>
+      <td>2.71</td>
+      <td>148</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102462" target="_blank" rel="noopener noreferrer"><img src="img/Sundering_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundering Archaic.html" target="_blank" rel="noopener noreferrer">Sundering Archaic</a></td>
+      <td>5.64</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>61338</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.05</td>
+      <td>55.76</td>
+      <td>2.71</td>
+      <td>495</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102648" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Mascot.html" target="_blank" rel="noopener noreferrer">Fractal Mascot</a></td>
+      <td>9.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>50906</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.40</td>
+      <td>58.06</td>
+      <td>2.66</td>
+      <td>155</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102616" target="_blank" rel="noopener noreferrer"><img src="img/Pestbrood_Sloth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pestbrood Sloth.html" target="_blank" rel="noopener noreferrer">Pestbrood Sloth</a></td>
+      <td>4.49</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>78616</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.10</td>
+      <td>56.69</td>
+      <td>2.59</td>
+      <td>411</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>65576</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.90</td>
+      <td>57.37</td>
+      <td>2.47</td>
+      <td>190</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102661" target="_blank" rel="noopener noreferrer"><img src="img/Mind_into_Matter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mind into Matter.html" target="_blank" rel="noopener noreferrer">Mind into Matter</a></td>
+      <td>2.66</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>76986</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.05</td>
+      <td>54.49</td>
+      <td>2.44</td>
+      <td>312</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102696" target="_blank" rel="noopener noreferrer"><img src="img/Tam,_Observant_Sequencer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tam, Observant Sequencer.html" target="_blank" rel="noopener noreferrer">Tam, Observant Sequencer</a></td>
+      <td>5.37</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>47646</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>56.55</td>
+      <td>58.89</td>
+      <td>2.34</td>
+      <td>253</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102606" target="_blank" rel="noopener noreferrer"><img src="img/Environmental_Scientist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Environmental Scientist.html" target="_blank" rel="noopener noreferrer">Environmental Scientist</a></td>
+      <td>3.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>50254</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.70</td>
+      <td>56.00</td>
+      <td>2.30</td>
+      <td>450</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102614" target="_blank" rel="noopener noreferrer"><img src="img/Noxious_Newt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Noxious Newt.html" target="_blank" rel="noopener noreferrer">Noxious Newt</a></td>
+      <td>6.17</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>54818</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.30</td>
+      <td>54.55</td>
+      <td>2.25</td>
+      <td>110</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102628" target="_blank" rel="noopener noreferrer"><img src="img/Zimone's_Experiment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zimone's Experiment.html" target="_blank" rel="noopener noreferrer">Zimone's Experiment</a></td>
+      <td>8.55</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>49276</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.05</td>
+      <td>55.24</td>
+      <td>2.19</td>
+      <td>143</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102611" target="_blank" rel="noopener noreferrer"><img src="img/Infirmary_Healer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Infirmary Healer.html" target="_blank" rel="noopener noreferrer">Infirmary Healer</a></td>
+      <td>6.79</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>40800</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>51.65</td>
+      <td>53.62</td>
+      <td>1.97</td>
+      <td>138</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102585" target="_blank" rel="noopener noreferrer"><img src="img/Pigment_Wrangler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pigment Wrangler.html" target="_blank" rel="noopener noreferrer">Pigment Wrangler</a></td>
+      <td>5.87</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>21240</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.65</td>
+      <td>56.54</td>
+      <td>1.89</td>
+      <td>642</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>47320</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.60</td>
+      <td>54.35</td>
+      <td>1.75</td>
+      <td>230</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102605" target="_blank" rel="noopener noreferrer"><img src="img/Emil,_Vastlands_Roamer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emil, Vastlands Roamer.html" target="_blank" rel="noopener noreferrer">Emil, Vastlands Roamer</a></td>
+      <td>5.97</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>376</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.90</td>
+      <td>54.62</td>
+      <td>1.72</td>
+      <td>119</td>
+      <td>54.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102461" target="_blank" rel="noopener noreferrer"><img src="img/Rancorous_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rancorous Archaic.html" target="_blank" rel="noopener noreferrer">Rancorous Archaic</a></td>
+      <td>10.56</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>20588</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.05</td>
+      <td>53.63</td>
+      <td>1.58</td>
+      <td>468</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102523" target="_blank" rel="noopener noreferrer"><img src="img/Procrastinate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Procrastinate.html" target="_blank" rel="noopener noreferrer">Procrastinate</a></td>
+      <td>10.07</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>54166</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.00</td>
+      <td>53.54</td>
+      <td>1.54</td>
+      <td>353</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102626" target="_blank" rel="noopener noreferrer"><img src="img/Wild_Hypothesis.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wild Hypothesis.html" target="_blank" rel="noopener noreferrer">Wild Hypothesis</a></td>
+      <td>10.44</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83832</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.00</td>
+      <td>55.50</td>
+      <td>1.50</td>
+      <td>755</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>71118</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.70</td>
+      <td>54.19</td>
+      <td>1.49</td>
+      <td>179</td>
+      <td>53.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102678" target="_blank" rel="noopener noreferrer"><img src="img/Rapturous_Moment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rapturous Moment.html" target="_blank" rel="noopener noreferrer">Rapturous Moment</a></td>
+      <td>7.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>76334</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>56.00</td>
+      <td>57.47</td>
+      <td>1.47</td>
+      <td>261</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102694" target="_blank" rel="noopener noreferrer"><img src="img/Stress_Dream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stress Dream.html" target="_blank" rel="noopener noreferrer">Stress Dream</a></td>
+      <td>3.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>86440</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.60</td>
+      <td>55.06</td>
+      <td>1.46</td>
+      <td>247</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102725" target="_blank" rel="noopener noreferrer"><img src="img/Titan's_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Titan's Grave.html" target="_blank" rel="noopener noreferrer">Titan's Grave</a></td>
+      <td>7.67</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44060</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.80</td>
+      <td>56.23</td>
+      <td>1.43</td>
+      <td>377</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>22218</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.10</td>
+      <td>54.47</td>
+      <td>1.37</td>
+      <td>380</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102528" target="_blank" rel="noopener noreferrer"><img src="img/Tester_of_the_Tangential.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tester of the Tangential.html" target="_blank" rel="noopener noreferrer">Tester of the Tangential</a></td>
+      <td>6.37</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>17980</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.55</td>
+      <td>53.90</td>
+      <td>1.35</td>
+      <td>564</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102515" target="_blank" rel="noopener noreferrer"><img src="img/Landscape_Painter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Landscape Painter.html" target="_blank" rel="noopener noreferrer">Landscape Painter</a></td>
+      <td>8.96</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>36888</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.65</td>
+      <td>54.98</td>
+      <td>1.33</td>
+      <td>311</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102573" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Firedancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Expressive Firedancer.html" target="_blank" rel="noopener noreferrer">Expressive Firedancer</a></td>
+      <td>8.59</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>43734</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.70</td>
+      <td>56.03</td>
+      <td>1.33</td>
+      <td>348</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17002</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.90</td>
+      <td>55.16</td>
+      <td>1.26</td>
+      <td>310</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102512" target="_blank" rel="noopener noreferrer"><img src="img/Homesickness.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Homesickness.html" target="_blank" rel="noopener noreferrer">Homesickness</a></td>
+      <td>6.62</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>20914</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.00</td>
+      <td>54.95</td>
+      <td>0.95</td>
+      <td>444</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>13416</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>51.95</td>
+      <td>52.88</td>
+      <td>0.93</td>
+      <td>399</td>
+      <td>52.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102501" target="_blank" rel="noopener noreferrer"><img src="img/Deluge_Virtuoso.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deluge Virtuoso.html" target="_blank" rel="noopener noreferrer">Deluge Virtuoso</a></td>
+      <td>9.53</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>13742</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.95</td>
+      <td>55.79</td>
+      <td>0.84</td>
+      <td>233</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102502" target="_blank" rel="noopener noreferrer"><img src="img/Divergent_Equation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Divergent Equation.html" target="_blank" rel="noopener noreferrer">Divergent Equation</a></td>
+      <td>6.14</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>74378</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.00</td>
+      <td>52.82</td>
+      <td>0.82</td>
+      <td>195</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102688" target="_blank" rel="noopener noreferrer"><img src="img/Spectacular_Skywhale.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacular Skywhale.html" target="_blank" rel="noopener noreferrer">Spectacular Skywhale</a></td>
+      <td>5.86</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>16350</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>51.70</td>
+      <td>52.48</td>
+      <td>0.78</td>
+      <td>3464</td>
+      <td>51.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td>10.13</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>85136</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.20</td>
+      <td>54.97</td>
+      <td>0.77</td>
+      <td>724</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>52536</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.40</td>
+      <td>55.10</td>
+      <td>0.70</td>
+      <td>510</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>68510</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.35</td>
+      <td>54.89</td>
+      <td>0.54</td>
+      <td>235</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102670" target="_blank" rel="noopener noreferrer"><img src="img/Prismari_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Prismari Charm.html" target="_blank" rel="noopener noreferrer">Prismari Charm</a></td>
+      <td>5.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>1354</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.50</td>
+      <td>54.95</td>
+      <td>0.45</td>
+      <td>111</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102464" target="_blank" rel="noopener noreferrer"><img src="img/Transcendent_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Transcendent Archaic.html" target="_blank" rel="noopener noreferrer">Transcendent Archaic</a></td>
+      <td>7.13</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>72422</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.25</td>
+      <td>55.60</td>
+      <td>0.35</td>
+      <td>268</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102682" target="_blank" rel="noopener noreferrer"><img src="img/Sanar,_Unfinished_Genius.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sanar, Unfinished Genius.html" target="_blank" rel="noopener noreferrer">Sanar, Unfinished Genius</a></td>
+      <td>4.32</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>77964</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.30</td>
+      <td>55.60</td>
+      <td>0.30</td>
+      <td>241</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102699" target="_blank" rel="noopener noreferrer"><img src="img/Vibrant_Outburst.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vibrant Outburst.html" target="_blank" rel="noopener noreferrer">Vibrant Outburst</a></td>
+      <td>4.13</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>19284</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.30</td>
+      <td>52.47</td>
+      <td>0.17</td>
+      <td>385</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102519" target="_blank" rel="noopener noreferrer"><img src="img/Muse_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse Seeker.html" target="_blank" rel="noopener noreferrer">Muse Seeker</a></td>
+      <td>6.29</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>75356</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.95</td>
+      <td>53.10</td>
+      <td>0.15</td>
+      <td>290</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102691" target="_blank" rel="noopener noreferrer"><img src="img/Stadium_Tidalmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stadium Tidalmage.html" target="_blank" rel="noopener noreferrer">Stadium Tidalmage</a></td>
+      <td>10.02</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>13090</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.10</td>
+      <td>53.22</td>
+      <td>0.12</td>
+      <td>233</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102500" target="_blank" rel="noopener noreferrer"><img src="img/Chase_Inspiration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Chase Inspiration.html" target="_blank" rel="noopener noreferrer">Chase Inspiration</a></td>
+      <td>11.41</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>98828</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.35</td>
+      <td>55.29</td>
+      <td>-0.06</td>
+      <td>170</td>
+      <td>59.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102793" target="_blank" rel="noopener noreferrer"><img src="img/Burst_Lightning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burst Lightning.html" target="_blank" rel="noopener noreferrer">Burst Lightning</a></td>
+      <td>3.28</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>69162</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.85</td>
+      <td>54.65</td>
+      <td>-0.20</td>
+      <td>333</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102672" target="_blank" rel="noopener noreferrer"><img src="img/Proctor's_Gaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Proctor's Gaze.html" target="_blank" rel="noopener noreferrer">Proctor's Gaze</a></td>
+      <td>5.12</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60360</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.05</td>
+      <td>53.80</td>
+      <td>-0.25</td>
+      <td>487</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>61664</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.60</td>
+      <td>52.34</td>
+      <td>-0.26</td>
+      <td>342</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102649" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Tender.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Tender.html" target="_blank" rel="noopener noreferrer">Fractal Tender</a></td>
+      <td>6.31</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>56774</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.55</td>
+      <td>53.23</td>
+      <td>-0.32</td>
+      <td>201</td>
+      <td>55.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102634" target="_blank" rel="noopener noreferrer"><img src="img/Berta,_Wise_Extrapolator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Berta, Wise Extrapolator.html" target="_blank" rel="noopener noreferrer">Berta, Wise Extrapolator</a></td>
+      <td>2.37</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>70466</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.65</td>
+      <td>54.33</td>
+      <td>-0.32</td>
+      <td>289</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102676" target="_blank" rel="noopener noreferrer"><img src="img/Quandrix_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quandrix Charm.html" target="_blank" rel="noopener noreferrer">Quandrix Charm</a></td>
+      <td>6.73</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>61990</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.85</td>
+      <td>52.50</td>
+      <td>-0.35</td>
+      <td>240</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td>6.15</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>52210</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>56.80</td>
+      <td>56.40</td>
+      <td>-0.40</td>
+      <td>211</td>
+      <td>61.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102620" target="_blank" rel="noopener noreferrer"><img src="img/Snarl_Song.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snarl Song.html" target="_blank" rel="noopener noreferrer">Snarl Song</a></td>
+      <td>4.65</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38518</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.30</td>
+      <td>54.88</td>
+      <td>-0.42</td>
+      <td>164</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102578" target="_blank" rel="noopener noreferrer"><img src="img/Impractical_Joke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Impractical Joke.html" target="_blank" rel="noopener noreferrer">Impractical Joke</a></td>
+      <td>3.36</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43082</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.35</td>
+      <td>51.82</td>
+      <td>-0.53</td>
+      <td>220</td>
+      <td>53.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102592" target="_blank" rel="noopener noreferrer"><img src="img/Tackle_Artist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tackle Artist.html" target="_blank" rel="noopener noreferrer">Tackle Artist</a></td>
+      <td>9.60</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>93612</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.85</td>
+      <td>53.19</td>
+      <td>-0.66</td>
+      <td>188</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102774" target="_blank" rel="noopener noreferrer"><img src="img/Sleight_of_Hand.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sleight of Hand.html" target="_blank" rel="noopener noreferrer">Sleight of Hand</a></td>
+      <td>7.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>44712</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>51.40</td>
+      <td>50.61</td>
+      <td>-0.79</td>
+      <td>164</td>
+      <td>51.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102597" target="_blank" rel="noopener noreferrer"><img src="img/Aberrant_Manawurm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Aberrant Manawurm.html" target="_blank" rel="noopener noreferrer">Aberrant Manawurm</a></td>
+      <td>8.91</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>93938</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.55</td>
+      <td>52.76</td>
+      <td>-0.79</td>
+      <td>127</td>
+      <td>55.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102775" target="_blank" rel="noopener noreferrer"><img src="img/Spell_Pierce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spell Pierce.html" target="_blank" rel="noopener noreferrer">Spell Pierce</a></td>
+      <td>9.26</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>18306</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.80</td>
+      <td>53.79</td>
+      <td>-1.01</td>
+      <td>132</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102516" target="_blank" rel="noopener noreferrer"><img src="img/Mana_Sculpt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mana Sculpt.html" target="_blank" rel="noopener noreferrer">Mana Sculpt</a></td>
+      <td>4.24</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>45690</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.60</td>
+      <td>52.52</td>
+      <td>-1.08</td>
+      <td>436</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102600" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Barrage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Barrage.html" target="_blank" rel="noopener noreferrer">Burrog Barrage</a></td>
+      <td>7.66</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>91982</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.40</td>
+      <td>53.26</td>
+      <td>-1.14</td>
+      <td>261</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102769" target="_blank" rel="noopener noreferrer"><img src="img/Disdainful_Stroke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Disdainful Stroke.html" target="_blank" rel="noopener noreferrer">Disdainful Stroke</a></td>
+      <td>6.56</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>49928</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.55</td>
+      <td>51.39</td>
+      <td>-1.16</td>
+      <td>144</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102613" target="_blank" rel="noopener noreferrer"><img src="img/Mindful_Biomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mindful Biomancer.html" target="_blank" rel="noopener noreferrer">Mindful Biomancer</a></td>
+      <td>9.33</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>43408</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.70</td>
+      <td>52.53</td>
+      <td>-1.17</td>
+      <td>158</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102593" target="_blank" rel="noopener noreferrer"><img src="img/Thunderdrum_Soloist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Thunderdrum Soloist.html" target="_blank" rel="noopener noreferrer">Thunderdrum Soloist</a></td>
+      <td>6.04</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>15046</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.45</td>
+      <td>53.26</td>
+      <td>-1.19</td>
+      <td>706</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>80572</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>51.65</td>
+      <td>50.39</td>
+      <td>-1.26</td>
+      <td>127</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102707" target="_blank" rel="noopener noreferrer"><img src="img/Diary_of_Dreams.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Diary of Dreams.html" target="_blank" rel="noopener noreferrer">Diary of Dreams</a></td>
+      <td>7.82</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>104044</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.60</td>
+      <td>52.27</td>
+      <td>-1.33</td>
+      <td>176</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102810" target="_blank" rel="noopener noreferrer"><img src="img/Shared_Roots.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shared Roots.html" target="_blank" rel="noopener noreferrer">Shared Roots</a></td>
+      <td>5.39</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>19936</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.50</td>
+      <td>51.08</td>
+      <td>-1.42</td>
+      <td>278</td>
+      <td>53.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td>7.25</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>37866</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.95</td>
+      <td>51.48</td>
+      <td>-1.47</td>
+      <td>305</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102576" target="_blank" rel="noopener noreferrer"><img src="img/Goblin_Glasswright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Goblin Glasswright.html" target="_blank" rel="noopener noreferrer">Goblin Glasswright</a></td>
+      <td>7.47</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17328</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.35</td>
+      <td>51.85</td>
+      <td>-1.50</td>
+      <td>540</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15698</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.35</td>
+      <td>52.70</td>
+      <td>-1.65</td>
+      <td>296</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102508" target="_blank" rel="noopener noreferrer"><img src="img/Flow_State.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flow State.html" target="_blank" rel="noopener noreferrer">Flow State</a></td>
+      <td>4.58</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>19610</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.25</td>
+      <td>50.55</td>
+      <td>-1.70</td>
+      <td>362</td>
+      <td>52.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102520" target="_blank" rel="noopener noreferrer"><img src="img/Muse's_Encouragement.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse's Encouragement.html" target="_blank" rel="noopener noreferrer">Muse's Encouragement</a></td>
+      <td>10.29</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85462</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.50</td>
+      <td>52.59</td>
+      <td>-1.91</td>
+      <td>135</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102722" target="_blank" rel="noopener noreferrer"><img src="img/Stormcarved_Coast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stormcarved Coast.html" target="_blank" rel="noopener noreferrer">Stormcarved Coast</a></td>
+      <td>4.76</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>14720</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>51.15</td>
+      <td>49.13</td>
+      <td>-2.02</td>
+      <td>287</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102505" target="_blank" rel="noopener noreferrer"><img src="img/Encouraging_Aviator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Encouraging Aviator.html" target="_blank" rel="noopener noreferrer">Encouraging Aviator</a></td>
+      <td>7.51</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>41452</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.00</td>
+      <td>52.94</td>
+      <td>-2.06</td>
+      <td>187</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21892</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>51.40</td>
+      <td>49.23</td>
+      <td>-2.17</td>
+      <td>392</td>
+      <td>51.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102527" target="_blank" rel="noopener noreferrer"><img src="img/Spellbook_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spellbook Seeker.html" target="_blank" rel="noopener noreferrer">Spellbook Seeker</a></td>
+      <td>10.09</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>55470</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>51.15</td>
+      <td>48.54</td>
+      <td>-2.61</td>
+      <td>206</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102630" target="_blank" rel="noopener noreferrer"><img src="img/Abstract_Paintmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abstract Paintmage.html" target="_blank" rel="noopener noreferrer">Abstract Paintmage</a></td>
+      <td>7.34</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60034</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.30</td>
+      <td>50.13</td>
+      <td>-3.17</td>
+      <td>391</td>
+      <td>54.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102644" target="_blank" rel="noopener noreferrer"><img src="img/Elemental_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elemental Mascot.html" target="_blank" rel="noopener noreferrer">Elemental Mascot</a></td>
+      <td>8.81</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>12438</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.90</td>
+      <td>51.22</td>
+      <td>-3.68</td>
+      <td>205</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102498" target="_blank" rel="noopener noreferrer"><img src="img/Brush_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Brush Off.html" target="_blank" rel="noopener noreferrer">Brush Off</a></td>
+      <td>6.79</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>41778</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.45</td>
+      <td>49.74</td>
+      <td>-3.71</td>
+      <td>195</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102588" target="_blank" rel="noopener noreferrer"><img src="img/Seize_the_Spoils.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Seize the Spoils.html" target="_blank" rel="noopener noreferrer">Seize the Spoils</a></td>
+      <td>9.13</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>16676</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.60</td>
+      <td>48.52</td>
+      <td>-4.08</td>
+      <td>169</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102511" target="_blank" rel="noopener noreferrer"><img src="img/Harmonized_Trio.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Harmonized Trio.html" target="_blank" rel="noopener noreferrer">Harmonized Trio</a></td>
+      <td>4.08</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>35258</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>50.90</td>
+      <td>46.73</td>
+      <td>-4.17</td>
+      <td>107</td>
+      <td>50.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102568" target="_blank" rel="noopener noreferrer"><img src="img/Blazing_Firesinger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Blazing Firesinger.html" target="_blank" rel="noopener noreferrer">Blazing Firesinger</a></td>
+      <td>8.13</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>22544</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.05</td>
+      <td>47.64</td>
+      <td>-4.41</td>
+      <td>275</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102529" target="_blank" rel="noopener noreferrer"><img src="img/Textbook_Tabulator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Textbook Tabulator.html" target="_blank" rel="noopener noreferrer">Textbook Tabulator</a></td>
+      <td>10.59</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>91656</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.50</td>
+      <td>50.00</td>
+      <td>-4.50</td>
+      <td>258</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102768" target="_blank" rel="noopener noreferrer"><img src="img/Deduce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deduce.html" target="_blank" rel="noopener noreferrer">Deduce</a></td>
+      <td>6.89</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52862</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.05</td>
+      <td>47.54</td>
+      <td>-4.51</td>
+      <td>122</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102622" target="_blank" rel="noopener noreferrer"><img src="img/Tenured_Concocter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tenured Concocter.html" target="_blank" rel="noopener noreferrer">Tenured Concocter</a></td>
+      <td>10.55</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17654</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>55.65</td>
+      <td>51.01</td>
+      <td>-4.64</td>
+      <td>198</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102514" target="_blank" rel="noopener noreferrer"><img src="img/Jadzi,_Steward_of_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Jadzi, Steward of Fate.html" target="_blank" rel="noopener noreferrer">Jadzi, Steward of Fate</a></td>
+      <td>1.96</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>82528</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>54.20</td>
+      <td>48.97</td>
+      <td>-5.23</td>
+      <td>145</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102713" target="_blank" rel="noopener noreferrer"><img src="img/Dreamroot_Cascade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dreamroot Cascade.html" target="_blank" rel="noopener noreferrer">Dreamroot Cascade</a></td>
+      <td>4.80</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>12112</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>53.60</td>
+      <td>47.64</td>
+      <td>-5.96</td>
+      <td>529</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102497" target="_blank" rel="noopener noreferrer"><img src="img/Banishing_Betrayal.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Banishing Betrayal.html" target="_blank" rel="noopener noreferrer">Banishing Betrayal</a></td>
+      <td>8.95</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>12764</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>10.13</td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>51.7</td>
+      <td>52.95</td>
+      <td>44.49</td>
+      <td>-8.46</td>
+      <td>272</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102499" target="_blank" rel="noopener noreferrer"><img src="img/Campus_Composer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Campus Composer.html" target="_blank" rel="noopener noreferrer">Campus Composer</a></td>
+      <td>6.28</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+  </tbody>
+</table>

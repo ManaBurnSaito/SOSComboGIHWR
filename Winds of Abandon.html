@@ -1,0 +1,682 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>70367</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>60.80</td>
+      <td>73.33</td>
+      <td>12.53</td>
+      <td>225</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102675" target="_blank" rel="noopener noreferrer"><img src="img/Pursue_the_Past.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pursue the Past.html" target="_blank" rel="noopener noreferrer">Pursue the Past</a></td>
+      <td>7.57</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>81777</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.75</td>
+      <td>71.53</td>
+      <td>11.78</td>
+      <td>144</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>74931</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.00</td>
+      <td>69.46</td>
+      <td>10.46</td>
+      <td>167</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102689" target="_blank" rel="noopener noreferrer"><img src="img/Spirit_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spirit Mascot.html" target="_blank" rel="noopener noreferrer">Spirit Mascot</a></td>
+      <td>7.80</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>68411</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>60.70</td>
+      <td>70.37</td>
+      <td>9.67</td>
+      <td>162</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102669" target="_blank" rel="noopener noreferrer"><img src="img/Practiced_Scrollsmith.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Practiced Scrollsmith.html" target="_blank" rel="noopener noreferrer">Practiced Scrollsmith</a></td>
+      <td>4.35</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>83407</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.05</td>
+      <td>68.39</td>
+      <td>9.34</td>
+      <td>193</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102715" target="_blank" rel="noopener noreferrer"><img src="img/Forum_of_Amity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum of Amity.html" target="_blank" rel="noopener noreferrer">Forum of Amity</a></td>
+      <td>7.95</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86341</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.35</td>
+      <td>68.49</td>
+      <td>9.14</td>
+      <td>146</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>43961</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.85</td>
+      <td>68.82</td>
+      <td>8.97</td>
+      <td>170</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>66455</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>60.90</td>
+      <td>69.77</td>
+      <td>8.87</td>
+      <td>129</td>
+      <td>59.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102663" target="_blank" rel="noopener noreferrer"><img src="img/Molten_Note.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Molten Note.html" target="_blank" rel="noopener noreferrer">Molten Note</a></td>
+      <td>4.73</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>41679</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>60.15</td>
+      <td>68.54</td>
+      <td>8.39</td>
+      <td>178</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>63847</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.20</td>
+      <td>67.59</td>
+      <td>8.39</td>
+      <td>108</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102655" target="_blank" rel="noopener noreferrer"><img src="img/Inkling_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Inkling Mascot.html" target="_blank" rel="noopener noreferrer">Inkling Mascot</a></td>
+      <td>8.25</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>82103</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>60.70</td>
+      <td>69.00</td>
+      <td>8.30</td>
+      <td>100</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>10057</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.00</td>
+      <td>67.06</td>
+      <td>8.06</td>
+      <td>170</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102490" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Acolyte.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shattered Acolyte.html" target="_blank" rel="noopener noreferrer">Shattered Acolyte</a></td>
+      <td>8.17</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>58957</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>60.45</td>
+      <td>68.15</td>
+      <td>7.70</td>
+      <td>135</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102640" target="_blank" rel="noopener noreferrer"><img src="img/Colossus_of_the_Blood_Age.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Colossus of the Blood Age.html" target="_blank" rel="noopener noreferrer">Colossus of the Blood Age</a></td>
+      <td>4.64</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>75909</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.90</td>
+      <td>67.27</td>
+      <td>7.37</td>
+      <td>110</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102692" target="_blank" rel="noopener noreferrer"><img src="img/Startled_Relic_Sloth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Startled Relic Sloth.html" target="_blank" rel="noopener noreferrer">Startled Relic Sloth</a></td>
+      <td>4.72</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>44287</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.95</td>
+      <td>67.03</td>
+      <td>7.08</td>
+      <td>185</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83081</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.70</td>
+      <td>65.84</td>
+      <td>6.14</td>
+      <td>281</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85363</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.35</td>
+      <td>65.38</td>
+      <td>6.03</td>
+      <td>156</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>7775</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>58.80</td>
+      <td>63.57</td>
+      <td>4.77</td>
+      <td>129</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102483" target="_blank" rel="noopener noreferrer"><img src="img/Owlin_Historian.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Owlin Historian.html" target="_blank" rel="noopener noreferrer">Owlin Historian</a></td>
+      <td>8.70</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3537</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.15</td>
+      <td>62.88</td>
+      <td>3.73</td>
+      <td>132</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102470" target="_blank" rel="noopener noreferrer"><img src="img/Eager_Glyphmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Eager Glyphmage.html" target="_blank" rel="noopener noreferrer">Eager Glyphmage</a></td>
+      <td>8.57</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>1907</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>60.00</td>
+      <td>63.64</td>
+      <td>3.64</td>
+      <td>209</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102465" target="_blank" rel="noopener noreferrer"><img src="img/Ajani's_Response.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ajani's Response.html" target="_blank" rel="noopener noreferrer">Ajani's Response</a></td>
+      <td>6.23</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3863</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>60.80</td>
+      <td>63.93</td>
+      <td>3.13</td>
+      <td>244</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102471" target="_blank" rel="noopener noreferrer"><img src="img/Elite_Interceptor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elite Interceptor.html" target="_blank" rel="noopener noreferrer">Elite Interceptor</a></td>
+      <td>5.06</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>79169</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.75</td>
+      <td>62.84</td>
+      <td>3.09</td>
+      <td>218</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102702" target="_blank" rel="noopener noreferrer"><img src="img/Wilt_in_the_Heat.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wilt in the Heat.html" target="_blank" rel="noopener noreferrer">Wilt in the Heat</a></td>
+      <td>6.96</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>90579</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>62.00</td>
+      <td>64.20</td>
+      <td>2.20</td>
+      <td>1137</td>
+      <td>62.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td>2.18</td>
+      <td>W</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>11035</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.70</td>
+      <td>61.67</td>
+      <td>1.97</td>
+      <td>120</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102493" target="_blank" rel="noopener noreferrer"><img src="img/Stand_Up_for_Yourself.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stand Up for Yourself.html" target="_blank" rel="noopener noreferrer">Stand Up for Yourself</a></td>
+      <td>4.85</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>11687</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.40</td>
+      <td>60.83</td>
+      <td>1.43</td>
+      <td>217</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102495" target="_blank" rel="noopener noreferrer"><img src="img/Stone_Docent.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stone Docent.html" target="_blank" rel="noopener noreferrer">Stone Docent</a></td>
+      <td>7.36</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>2559</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>58.85</td>
+      <td>60.16</td>
+      <td>1.31</td>
+      <td>128</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102467" target="_blank" rel="noopener noreferrer"><img src="img/Ascendant_Dustspeaker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ascendant Dustspeaker.html" target="_blank" rel="noopener noreferrer">Ascendant Dustspeaker</a></td>
+      <td>8.88</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3211</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>58.85</td>
+      <td>59.71</td>
+      <td>0.86</td>
+      <td>139</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102469" target="_blank" rel="noopener noreferrer"><img src="img/Dig_Site_Inventory.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dig Site Inventory.html" target="_blank" rel="noopener noreferrer">Dig Site Inventory</a></td>
+      <td>7.85</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>27987</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.85</td>
+      <td>55.93</td>
+      <td>-3.92</td>
+      <td>118</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102545" target="_blank" rel="noopener noreferrer"><img src="img/Last_Gasp.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Last Gasp.html" target="_blank" rel="noopener noreferrer">Last Gasp</a></td>
+      <td>4.81</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>89275</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>60.70</td>
+      <td>54.47</td>
+      <td>-6.23</td>
+      <td>123</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102760" target="_blank" rel="noopener noreferrer"><img src="img/Repel_Calamity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Repel Calamity.html" target="_blank" rel="noopener noreferrer">Repel Calamity</a></td>
+      <td>4.07</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>63521</th>
+      <td>mythic</td>
+      <td>W</td>
+      <td>2.18</td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>62.0</td>
+      <td>59.65</td>
+      <td>52.59</td>
+      <td>-7.06</td>
+      <td>116</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td>9.05</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+  </tbody>
+</table>

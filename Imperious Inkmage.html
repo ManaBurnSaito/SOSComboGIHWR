@@ -1,0 +1,2753 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>34750</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.15</td>
+      <td>65.00</td>
+      <td>7.85</td>
+      <td>100</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102566" target="_blank" rel="noopener noreferrer"><img src="img/Archaic's_Agony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Archaic's Agony.html" target="_blank" rel="noopener noreferrer">Archaic's Agony</a></td>
+      <td>8.19</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52354</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>59.60</td>
+      <td>67.19</td>
+      <td>7.59</td>
+      <td>128</td>
+      <td>61.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102620" target="_blank" rel="noopener noreferrer"><img src="img/Snarl_Song.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snarl Song.html" target="_blank" rel="noopener noreferrer">Snarl Song</a></td>
+      <td>4.65</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>8018</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>61.15</td>
+      <td>67.43</td>
+      <td>6.28</td>
+      <td>1179</td>
+      <td>65.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102484" target="_blank" rel="noopener noreferrer"><img src="img/Practiced_Offense.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Practiced Offense.html" target="_blank" rel="noopener noreferrer">Practiced Offense</a></td>
+      <td>1.76</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>69632</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>59.90</td>
+      <td>65.61</td>
+      <td>5.71</td>
+      <td>157</td>
+      <td>62.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102673" target="_blank" rel="noopener noreferrer"><img src="img/Professor_Dellian_Fel.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Professor Dellian Fel.html" target="_blank" rel="noopener noreferrer">Professor Dellian Fel</a></td>
+      <td>1.32</td>
+      <td>BG</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>4758</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.95</td>
+      <td>61.83</td>
+      <td>4.88</td>
+      <td>765</td>
+      <td>56.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102474" target="_blank" rel="noopener noreferrer"><img src="img/Erode.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Erode.html" target="_blank" rel="noopener noreferrer">Erode</a></td>
+      <td>2.76</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>25948</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.35</td>
+      <td>63.18</td>
+      <td>4.83</td>
+      <td>440</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102539" target="_blank" rel="noopener noreferrer"><img src="img/Emeritus_of_Woe.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emeritus of Woe.html" target="_blank" rel="noopener noreferrer">Emeritus of Woe</a></td>
+      <td>1.44</td>
+      <td>B</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>66698</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>60.50</td>
+      <td>65.16</td>
+      <td>4.66</td>
+      <td>1897</td>
+      <td>63.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102664" target="_blank" rel="noopener noreferrer"><img src="img/Moment_of_Reckoning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Moment of Reckoning.html" target="_blank" rel="noopener noreferrer">Moment of Reckoning</a></td>
+      <td>2.50</td>
+      <td>WB</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>82020</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.35</td>
+      <td>62.65</td>
+      <td>4.30</td>
+      <td>1320</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>25622</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.75</td>
+      <td>61.85</td>
+      <td>4.10</td>
+      <td>1958</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102538" target="_blank" rel="noopener noreferrer"><img src="img/Dissection_Practice.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dissection Practice.html" target="_blank" rel="noopener noreferrer">Dissection Practice</a></td>
+      <td>5.60</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>95386</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.35</td>
+      <td>62.24</td>
+      <td>3.89</td>
+      <td>196</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102780" target="_blank" rel="noopener noreferrer"><img src="img/Dismember.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dismember.html" target="_blank" rel="noopener noreferrer">Dismember</a></td>
+      <td>1.90</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>29534</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.90</td>
+      <td>62.65</td>
+      <td>3.75</td>
+      <td>830</td>
+      <td>60.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102550" target="_blank" rel="noopener noreferrer"><img src="img/Moseo,_Vein's_New_Dean.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Moseo, Vein's New Dean.html" target="_blank" rel="noopener noreferrer">Moseo, Vein's New Dean</a></td>
+      <td>1.95</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>11278</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>60.30</td>
+      <td>64.01</td>
+      <td>3.71</td>
+      <td>1103</td>
+      <td>63.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102494" target="_blank" rel="noopener noreferrer"><img src="img/Stirring_Hopesinger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stirring Hopesinger.html" target="_blank" rel="noopener noreferrer">Stirring Hopesinger</a></td>
+      <td>1.58</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>73544</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.05</td>
+      <td>59.62</td>
+      <td>3.57</td>
+      <td>624</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102685" target="_blank" rel="noopener noreferrer"><img src="img/Silverquill,_the_Disputant.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Silverquill, the Disputant.html" target="_blank" rel="noopener noreferrer">Silverquill, the Disputant</a></td>
+      <td>1.79</td>
+      <td>WB</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>83650</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.00</td>
+      <td>61.54</td>
+      <td>3.54</td>
+      <td>247</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102716" target="_blank" rel="noopener noreferrer"><img src="img/Great_Hall_of_the_Biblioplex.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Great Hall of the Biblioplex.html" target="_blank" rel="noopener noreferrer">Great Hall of the Biblioplex</a></td>
+      <td>4.61</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>76152</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.80</td>
+      <td>60.94</td>
+      <td>3.14</td>
+      <td>3674</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102693" target="_blank" rel="noopener noreferrer"><img src="img/Stirring_Honormancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stirring Honormancer.html" target="_blank" rel="noopener noreferrer">Stirring Honormancer</a></td>
+      <td>5.64</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>6388</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>59.75</td>
+      <td>62.80</td>
+      <td>3.05</td>
+      <td>1258</td>
+      <td>62.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102479" target="_blank" rel="noopener noreferrer"><img src="img/Informed_Inkwright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Informed Inkwright.html" target="_blank" rel="noopener noreferrer">Informed Inkwright</a></td>
+      <td>1.82</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>27904</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.50</td>
+      <td>60.54</td>
+      <td>3.04</td>
+      <td>5385</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102545" target="_blank" rel="noopener noreferrer"><img src="img/Last_Gasp.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Last Gasp.html" target="_blank" rel="noopener noreferrer">Last Gasp</a></td>
+      <td>4.81</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>26926</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.05</td>
+      <td>60.91</td>
+      <td>2.86</td>
+      <td>2259</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102542" target="_blank" rel="noopener noreferrer"><img src="img/Foolish_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Foolish Fate.html" target="_blank" rel="noopener noreferrer">Foolish Fate</a></td>
+      <td>3.19</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>73218</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.50</td>
+      <td>61.21</td>
+      <td>2.71</td>
+      <td>4024</td>
+      <td>59.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102684" target="_blank" rel="noopener noreferrer"><img src="img/Silverquill_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Silverquill Charm.html" target="_blank" rel="noopener noreferrer">Silverquill Charm</a></td>
+      <td>5.15</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>89192</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.35</td>
+      <td>61.04</td>
+      <td>2.69</td>
+      <td>2336</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102760" target="_blank" rel="noopener noreferrer"><img src="img/Repel_Calamity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Repel Calamity.html" target="_blank" rel="noopener noreferrer">Repel Calamity</a></td>
+      <td>4.07</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>28230</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.90</td>
+      <td>60.48</td>
+      <td>2.58</td>
+      <td>2895</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102546" target="_blank" rel="noopener noreferrer"><img src="img/Lecturing_Scornmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lecturing Scornmage.html" target="_blank" rel="noopener noreferrer">Lecturing Scornmage</a></td>
+      <td>4.86</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>47790</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>59.35</td>
+      <td>61.90</td>
+      <td>2.55</td>
+      <td>105</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102606" target="_blank" rel="noopener noreferrer"><img src="img/Environmental_Scientist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Environmental Scientist.html" target="_blank" rel="noopener noreferrer">Environmental Scientist</a></td>
+      <td>3.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>26274</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.95</td>
+      <td>60.39</td>
+      <td>2.44</td>
+      <td>2290</td>
+      <td>58.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102540" target="_blank" rel="noopener noreferrer"><img src="img/End_of_the_Hunt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//End of the Hunt.html" target="_blank" rel="noopener noreferrer">End of the Hunt</a></td>
+      <td>4.08</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>33772</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.60</td>
+      <td>58.99</td>
+      <td>2.39</td>
+      <td>3953</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102563" target="_blank" rel="noopener noreferrer"><img src="img/Wander_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wander Off.html" target="_blank" rel="noopener noreferrer">Wander Off</a></td>
+      <td>5.21</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>94734</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.60</td>
+      <td>59.95</td>
+      <td>2.35</td>
+      <td>2115</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102778" target="_blank" rel="noopener noreferrer"><img src="img/Bitter_Triumph.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Bitter Triumph.html" target="_blank" rel="noopener noreferrer">Bitter Triumph</a></td>
+      <td>3.36</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>97016</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.30</td>
+      <td>58.52</td>
+      <td>2.22</td>
+      <td>528</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102786" target="_blank" rel="noopener noreferrer"><img src="img/Stargaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stargaze.html" target="_blank" rel="noopener noreferrer">Stargaze</a></td>
+      <td>9.85</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>71588</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.50</td>
+      <td>59.61</td>
+      <td>2.11</td>
+      <td>5970</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102679" target="_blank" rel="noopener noreferrer"><img src="img/Render_Speechless.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Render Speechless.html" target="_blank" rel="noopener noreferrer">Render Speechless</a></td>
+      <td>9.13</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>8670</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.10</td>
+      <td>59.21</td>
+      <td>2.11</td>
+      <td>2584</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102486" target="_blank" rel="noopener noreferrer"><img src="img/Quill-Blade_Laureate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quill-Blade Laureate.html" target="_blank" rel="noopener noreferrer">Quill-Blade Laureate</a></td>
+      <td>4.42</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>59200</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.60</td>
+      <td>60.69</td>
+      <td>2.09</td>
+      <td>1956</td>
+      <td>59.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102641" target="_blank" rel="noopener noreferrer"><img src="img/Conciliator's_Duelist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Conciliator's Duelist.html" target="_blank" rel="noopener noreferrer">Conciliator's Duelist</a></td>
+      <td>2.88</td>
+      <td>WB</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>29208</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.70</td>
+      <td>58.72</td>
+      <td>2.02</td>
+      <td>5129</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102549" target="_blank" rel="noopener noreferrer"><img src="img/Melancholic_Poet.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Melancholic Poet.html" target="_blank" rel="noopener noreferrer">Melancholic Poet</a></td>
+      <td>7.34</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>1498</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.30</td>
+      <td>59.26</td>
+      <td>1.96</td>
+      <td>108</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102464" target="_blank" rel="noopener noreferrer"><img src="img/Transcendent_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Transcendent Archaic.html" target="_blank" rel="noopener noreferrer">Transcendent Archaic</a></td>
+      <td>7.13</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>83324</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.70</td>
+      <td>58.58</td>
+      <td>1.88</td>
+      <td>6113</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102715" target="_blank" rel="noopener noreferrer"><img src="img/Forum_of_Amity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum of Amity.html" target="_blank" rel="noopener noreferrer">Forum of Amity</a></td>
+      <td>7.95</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>70284</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.45</td>
+      <td>60.28</td>
+      <td>1.83</td>
+      <td>355</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102675" target="_blank" rel="noopener noreferrer"><img src="img/Pursue_the_Past.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pursue the Past.html" target="_blank" rel="noopener noreferrer">Pursue the Past</a></td>
+      <td>7.57</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3780</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.45</td>
+      <td>60.25</td>
+      <td>1.80</td>
+      <td>6752</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102471" target="_blank" rel="noopener noreferrer"><img src="img/Elite_Interceptor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elite Interceptor.html" target="_blank" rel="noopener noreferrer">Elite Interceptor</a></td>
+      <td>5.06</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>72892</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.95</td>
+      <td>60.63</td>
+      <td>1.68</td>
+      <td>4100</td>
+      <td>60.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102683" target="_blank" rel="noopener noreferrer"><img src="img/Scolding_Administrator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scolding Administrator.html" target="_blank" rel="noopener noreferrer">Scolding Administrator</a></td>
+      <td>4.28</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>24970</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.40</td>
+      <td>58.99</td>
+      <td>1.59</td>
+      <td>4838</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102536" target="_blank" rel="noopener noreferrer"><img src="img/Cost_of_Brilliance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cost of Brilliance.html" target="_blank" rel="noopener noreferrer">Cost of Brilliance</a></td>
+      <td>8.46</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>64090</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.00</td>
+      <td>58.56</td>
+      <td>1.56</td>
+      <td>3325</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102656" target="_blank" rel="noopener noreferrer"><img src="img/Killian's_Confidence.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Killian's Confidence.html" target="_blank" rel="noopener noreferrer">Killian's Confidence</a></td>
+      <td>5.47</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>1172</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>61.50</td>
+      <td>63.05</td>
+      <td>1.55</td>
+      <td>249</td>
+      <td>65.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102463" target="_blank" rel="noopener noreferrer"><img src="img/Together_as_One.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Together as One.html" target="_blank" rel="noopener noreferrer">Together as One</a></td>
+      <td>2.04</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>75826</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.55</td>
+      <td>59.02</td>
+      <td>1.47</td>
+      <td>183</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102692" target="_blank" rel="noopener noreferrer"><img src="img/Startled_Relic_Sloth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Startled Relic Sloth.html" target="_blank" rel="noopener noreferrer">Startled Relic Sloth</a></td>
+      <td>4.72</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>44204</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.60</td>
+      <td>59.05</td>
+      <td>1.45</td>
+      <td>232</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>1824</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.65</td>
+      <td>59.09</td>
+      <td>1.44</td>
+      <td>4375</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102465" target="_blank" rel="noopener noreferrer"><img src="img/Ajani's_Response.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ajani's Response.html" target="_blank" rel="noopener noreferrer">Ajani's Response</a></td>
+      <td>6.23</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>31490</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.75</td>
+      <td>57.02</td>
+      <td>1.27</td>
+      <td>356</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102556" target="_blank" rel="noopener noreferrer"><img src="img/Ral_Zarek,_Guest_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ral Zarek, Guest Lecturer.html" target="_blank" rel="noopener noreferrer">Ral Zarek, Guest Lecturer</a></td>
+      <td>1.65</td>
+      <td>B</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>6714</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.10</td>
+      <td>58.35</td>
+      <td>1.25</td>
+      <td>2372</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102480" target="_blank" rel="noopener noreferrer"><img src="img/Inkshape_Demonstrator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Inkshape Demonstrator.html" target="_blank" rel="noopener noreferrer">Inkshape Demonstrator</a></td>
+      <td>5.69</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>89518</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.35</td>
+      <td>59.58</td>
+      <td>1.23</td>
+      <td>287</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102761" target="_blank" rel="noopener noreferrer"><img src="img/Reprieve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Reprieve.html" target="_blank" rel="noopener noreferrer">Reprieve</a></td>
+      <td>3.98</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>84628</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.55</td>
+      <td>58.74</td>
+      <td>1.19</td>
+      <td>1047</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102719" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Sanctum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shattered Sanctum.html" target="_blank" rel="noopener noreferrer">Shattered Sanctum</a></td>
+      <td>5.16</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>2150</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>61.00</td>
+      <td>62.13</td>
+      <td>1.13</td>
+      <td>940</td>
+      <td>64.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102466" target="_blank" rel="noopener noreferrer"><img src="img/Antiquities_on_the_Loose.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Antiquities on the Loose.html" target="_blank" rel="noopener noreferrer">Antiquities on the Loose</a></td>
+      <td>1.95</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>30186</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.80</td>
+      <td>59.84</td>
+      <td>1.04</td>
+      <td>864</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102552" target="_blank" rel="noopener noreferrer"><img src="img/Postmortem_Professor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Postmortem Professor.html" target="_blank" rel="noopener noreferrer">Postmortem Professor</a></td>
+      <td>2.46</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>34098</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.45</td>
+      <td>56.45</td>
+      <td>1.00</td>
+      <td>124</td>
+      <td>53.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102564" target="_blank" rel="noopener noreferrer"><img src="img/Withering_Curse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Withering Curse.html" target="_blank" rel="noopener noreferrer">Withering Curse</a></td>
+      <td>2.75</td>
+      <td>B</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>61156</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>51.80</td>
+      <td>52.80</td>
+      <td>1.00</td>
+      <td>286</td>
+      <td>46.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102647" target="_blank" rel="noopener noreferrer"><img src="img/Fix_What's_Broken.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fix What's Broken.html" target="_blank" rel="noopener noreferrer">Fix What's Broken</a></td>
+      <td>7.41</td>
+      <td>WB</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>32468</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.30</td>
+      <td>57.26</td>
+      <td>0.96</td>
+      <td>1708</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102559" target="_blank" rel="noopener noreferrer"><img src="img/Send_in_the_Pest.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Send in the Pest.html" target="_blank" rel="noopener noreferrer">Send in the Pest</a></td>
+      <td>7.92</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>28882</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.60</td>
+      <td>57.54</td>
+      <td>0.94</td>
+      <td>2110</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102548" target="_blank" rel="noopener noreferrer"><img src="img/Masterful_Flourish.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Masterful Flourish.html" target="_blank" rel="noopener noreferrer">Masterful Flourish</a></td>
+      <td>10.49</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>43878</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.50</td>
+      <td>58.37</td>
+      <td>0.87</td>
+      <td>209</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>97668</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.90</td>
+      <td>58.72</td>
+      <td>0.82</td>
+      <td>109</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102789" target="_blank" rel="noopener noreferrer"><img src="img/Abrade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abrade.html" target="_blank" rel="noopener noreferrer">Abrade</a></td>
+      <td>3.40</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>32142</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.20</td>
+      <td>59.01</td>
+      <td>0.81</td>
+      <td>1032</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102558" target="_blank" rel="noopener noreferrer"><img src="img/Scheming_Silvertongue.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scheming Silvertongue.html" target="_blank" rel="noopener noreferrer">Scheming Silvertongue</a></td>
+      <td>1.92</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>9974</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.65</td>
+      <td>57.42</td>
+      <td>0.77</td>
+      <td>4194</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102490" target="_blank" rel="noopener noreferrer"><img src="img/Shattered_Acolyte.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shattered Acolyte.html" target="_blank" rel="noopener noreferrer">Shattered Acolyte</a></td>
+      <td>8.17</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>6062</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.25</td>
+      <td>55.99</td>
+      <td>0.74</td>
+      <td>2595</td>
+      <td>53.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102478" target="_blank" rel="noopener noreferrer"><img src="img/Honorbound_Page.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Honorbound Page.html" target="_blank" rel="noopener noreferrer">Honorbound Page</a></td>
+      <td>9.39</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>27252</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.40</td>
+      <td>55.12</td>
+      <td>0.72</td>
+      <td>1308</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102543" target="_blank" rel="noopener noreferrer"><img src="img/Forum_Necroscribe.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum Necroscribe.html" target="_blank" rel="noopener noreferrer">Forum Necroscribe</a></td>
+      <td>5.54</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>63764</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.85</td>
+      <td>57.56</td>
+      <td>0.71</td>
+      <td>6991</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102655" target="_blank" rel="noopener noreferrer"><img src="img/Inkling_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Inkling Mascot.html" target="_blank" rel="noopener noreferrer">Inkling Mascot</a></td>
+      <td>8.25</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>29860</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.40</td>
+      <td>57.03</td>
+      <td>0.63</td>
+      <td>370</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102551" target="_blank" rel="noopener noreferrer"><img src="img/Poisoner's_Apprentice.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Poisoner's Apprentice.html" target="_blank" rel="noopener noreferrer">Poisoner's Apprentice</a></td>
+      <td>5.44</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>63438</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.30</td>
+      <td>57.91</td>
+      <td>0.61</td>
+      <td>20601</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td>9.05</td>
+      <td>WB</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>9648</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.40</td>
+      <td>57.96</td>
+      <td>0.56</td>
+      <td>333</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102489" target="_blank" rel="noopener noreferrer"><img src="img/Restoration_Seminar.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Restoration Seminar.html" target="_blank" rel="noopener noreferrer">Restoration Seminar</a></td>
+      <td>2.03</td>
+      <td>W</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>24318</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.90</td>
+      <td>56.42</td>
+      <td>0.52</td>
+      <td>2157</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102534" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Banemaker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Banemaker.html" target="_blank" rel="noopener noreferrer">Burrog Banemaker</a></td>
+      <td>8.53</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86258</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.00</td>
+      <td>57.51</td>
+      <td>0.51</td>
+      <td>2085</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>5410</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.15</td>
+      <td>57.61</td>
+      <td>0.46</td>
+      <td>1425</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102476" target="_blank" rel="noopener noreferrer"><img src="img/Group_Project.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Group Project.html" target="_blank" rel="noopener noreferrer">Group Project</a></td>
+      <td>5.34</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>2802</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>53.40</td>
+      <td>53.77</td>
+      <td>0.37</td>
+      <td>504</td>
+      <td>49.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102468" target="_blank" rel="noopener noreferrer"><img src="img/Daydream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Daydream.html" target="_blank" rel="noopener noreferrer">Daydream</a></td>
+      <td>9.26</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81694</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.40</td>
+      <td>57.76</td>
+      <td>0.36</td>
+      <td>535</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>67024</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.35</td>
+      <td>54.69</td>
+      <td>0.34</td>
+      <td>629</td>
+      <td>51.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102665" target="_blank" rel="noopener noreferrer"><img src="img/Nita,_Forum_Conciliator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Nita, Forum Conciliator.html" target="_blank" rel="noopener noreferrer">Nita, Forum Conciliator</a></td>
+      <td>5.45</td>
+      <td>WB</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>3128</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.50</td>
+      <td>56.81</td>
+      <td>0.31</td>
+      <td>3420</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102469" target="_blank" rel="noopener noreferrer"><img src="img/Dig_Site_Inventory.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dig Site Inventory.html" target="_blank" rel="noopener noreferrer">Dig Site Inventory</a></td>
+      <td>7.85</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>3454</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.80</td>
+      <td>57.08</td>
+      <td>0.28</td>
+      <td>3744</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102470" target="_blank" rel="noopener noreferrer"><img src="img/Eager_Glyphmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Eager Glyphmage.html" target="_blank" rel="noopener noreferrer">Eager Glyphmage</a></td>
+      <td>8.57</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83976</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.80</td>
+      <td>57.04</td>
+      <td>0.24</td>
+      <td>135</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>7040</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.65</td>
+      <td>56.86</td>
+      <td>0.21</td>
+      <td>1924</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102481" target="_blank" rel="noopener noreferrer"><img src="img/Interjection.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Interjection.html" target="_blank" rel="noopener noreferrer">Interjection</a></td>
+      <td>10.36</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>10952</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.35</td>
+      <td>57.52</td>
+      <td>0.17</td>
+      <td>2213</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102493" target="_blank" rel="noopener noreferrer"><img src="img/Stand_Up_for_Yourself.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stand Up for Yourself.html" target="_blank" rel="noopener noreferrer">Stand Up for Yourself</a></td>
+      <td>4.85</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>9322</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.05</td>
+      <td>56.08</td>
+      <td>0.03</td>
+      <td>2739</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102488" target="_blank" rel="noopener noreferrer"><img src="img/Rehearsed_Debater.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rehearsed Debater.html" target="_blank" rel="noopener noreferrer">Rehearsed Debater</a></td>
+      <td>9.39</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>11604</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.05</td>
+      <td>56.89</td>
+      <td>-0.16</td>
+      <td>3565</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102495" target="_blank" rel="noopener noreferrer"><img src="img/Stone_Docent.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stone Docent.html" target="_blank" rel="noopener noreferrer">Stone Docent</a></td>
+      <td>7.36</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>32794</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.15</td>
+      <td>54.98</td>
+      <td>-0.17</td>
+      <td>1426</td>
+      <td>53.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102560" target="_blank" rel="noopener noreferrer"><img src="img/Sneering_Shadewriter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sneering Shadewriter.html" target="_blank" rel="noopener noreferrer">Sneering Shadewriter</a></td>
+      <td>9.78</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>24644</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.40</td>
+      <td>54.19</td>
+      <td>-0.21</td>
+      <td>1504</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102535" target="_blank" rel="noopener noreferrer"><img src="img/Cheerful_Osteomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cheerful Osteomancer.html" target="_blank" rel="noopener noreferrer">Cheerful Osteomancer</a></td>
+      <td>9.18</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>23340</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.75</td>
+      <td>55.52</td>
+      <td>-0.23</td>
+      <td>3204</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102531" target="_blank" rel="noopener noreferrer"><img src="img/Adventurous_Eater.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Adventurous Eater.html" target="_blank" rel="noopener noreferrer">Adventurous Eater</a></td>
+      <td>8.17</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>56266</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>60.60</td>
+      <td>60.31</td>
+      <td>-0.29</td>
+      <td>257</td>
+      <td>63.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102632" target="_blank" rel="noopener noreferrer"><img src="img/Ark_of_Hunger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ark of Hunger.html" target="_blank" rel="noopener noreferrer">Ark of Hunger</a></td>
+      <td>2.02</td>
+      <td>WR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>8996</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.80</td>
+      <td>55.47</td>
+      <td>-0.33</td>
+      <td>2003</td>
+      <td>54.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102487" target="_blank" rel="noopener noreferrer"><img src="img/Rapier_Wit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rapier Wit.html" target="_blank" rel="noopener noreferrer">Rapier Wit</a></td>
+      <td>10.15</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>8344</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.20</td>
+      <td>55.87</td>
+      <td>-0.33</td>
+      <td>707</td>
+      <td>55.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102485" target="_blank" rel="noopener noreferrer"><img src="img/Primary_Research.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Primary Research.html" target="_blank" rel="noopener noreferrer">Primary Research</a></td>
+      <td>5.88</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>10626</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.80</td>
+      <td>54.35</td>
+      <td>-0.45</td>
+      <td>712</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102492" target="_blank" rel="noopener noreferrer"><img src="img/Spiritcall_Enthusiast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spiritcall Enthusiast.html" target="_blank" rel="noopener noreferrer">Spiritcall Enthusiast</a></td>
+      <td>7.60</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>55288</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.00</td>
+      <td>55.55</td>
+      <td>-0.45</td>
+      <td>2785</td>
+      <td>54.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102629" target="_blank" rel="noopener noreferrer"><img src="img/Abigale,_Poet_Laureate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abigale, Poet Laureate.html" target="_blank" rel="noopener noreferrer">Abigale, Poet Laureate</a></td>
+      <td>4.93</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>88540</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.55</td>
+      <td>55.85</td>
+      <td>-0.70</td>
+      <td>1264</td>
+      <td>55.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102758" target="_blank" rel="noopener noreferrer"><img src="img/Hop_to_It.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hop to It.html" target="_blank" rel="noopener noreferrer">Hop to It</a></td>
+      <td>6.89</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>31816</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.85</td>
+      <td>54.07</td>
+      <td>-0.78</td>
+      <td>1106</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102557" target="_blank" rel="noopener noreferrer"><img src="img/Scathing_Shadelock.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Scathing Shadelock.html" target="_blank" rel="noopener noreferrer">Scathing Shadelock</a></td>
+      <td>7.08</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>27578</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.35</td>
+      <td>55.56</td>
+      <td>-0.79</td>
+      <td>657</td>
+      <td>55.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102544" target="_blank" rel="noopener noreferrer"><img src="img/Grave_Researcher.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Grave Researcher.html" target="_blank" rel="noopener noreferrer">Grave Researcher</a></td>
+      <td>2.11</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>87888</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.30</td>
+      <td>53.47</td>
+      <td>-0.83</td>
+      <td>303</td>
+      <td>51.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102756" target="_blank" rel="noopener noreferrer"><img src="img/Duty_Beyond_Death.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Duty Beyond Death.html" target="_blank" rel="noopener noreferrer">Duty Beyond Death</a></td>
+      <td>9.96</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81042</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.65</td>
+      <td>54.79</td>
+      <td>-0.86</td>
+      <td>929</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102708" target="_blank" rel="noopener noreferrer"><img src="img/Mage_Tower_Referee.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mage Tower Referee.html" target="_blank" rel="noopener noreferrer">Mage Tower Referee</a></td>
+      <td>10.65</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>7366</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.30</td>
+      <td>55.41</td>
+      <td>-0.89</td>
+      <td>832</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102482" target="_blank" rel="noopener noreferrer"><img src="img/Joined_Researchers.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Joined Researchers.html" target="_blank" rel="noopener noreferrer">Joined Researchers</a></td>
+      <td>5.16</td>
+      <td>W</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>846</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.20</td>
+      <td>57.26</td>
+      <td>-0.94</td>
+      <td>248</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102462" target="_blank" rel="noopener noreferrer"><img src="img/Sundering_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundering Archaic.html" target="_blank" rel="noopener noreferrer">Sundering Archaic</a></td>
+      <td>5.64</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>25296</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.90</td>
+      <td>55.91</td>
+      <td>-0.99</td>
+      <td>381</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102537" target="_blank" rel="noopener noreferrer"><img src="img/Decorum_Dissertation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Decorum Dissertation.html" target="_blank" rel="noopener noreferrer">Decorum Dissertation</a></td>
+      <td>2.05</td>
+      <td>B</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>23666</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.80</td>
+      <td>57.78</td>
+      <td>-1.02</td>
+      <td>225</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102532" target="_blank" rel="noopener noreferrer"><img src="img/Arcane_Omens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arcane Omens.html" target="_blank" rel="noopener noreferrer">Arcane Omens</a></td>
+      <td>6.89</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>5736</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>53.65</td>
+      <td>52.59</td>
+      <td>-1.06</td>
+      <td>386</td>
+      <td>50.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102477" target="_blank" rel="noopener noreferrer"><img src="img/Harsh_Annotation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Harsh Annotation.html" target="_blank" rel="noopener noreferrer">Harsh Annotation</a></td>
+      <td>9.33</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>31164</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.00</td>
+      <td>52.92</td>
+      <td>-1.08</td>
+      <td>497</td>
+      <td>50.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102555" target="_blank" rel="noopener noreferrer"><img src="img/Rabid_Attack.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rabid Attack.html" target="_blank" rel="noopener noreferrer">Rabid Attack</a></td>
+      <td>9.75</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>68328</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.35</td>
+      <td>57.23</td>
+      <td>-1.12</td>
+      <td>173</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102669" target="_blank" rel="noopener noreferrer"><img src="img/Practiced_Scrollsmith.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Practiced Scrollsmith.html" target="_blank" rel="noopener noreferrer">Practiced Scrollsmith</a></td>
+      <td>4.35</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>73870</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.80</td>
+      <td>55.66</td>
+      <td>-1.14</td>
+      <td>3277</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102686" target="_blank" rel="noopener noreferrer"><img src="img/Snooping_Page.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snooping Page.html" target="_blank" rel="noopener noreferrer">Snooping Page</a></td>
+      <td>5.16</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>26600</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.90</td>
+      <td>54.69</td>
+      <td>-1.21</td>
+      <td>1545</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102541" target="_blank" rel="noopener noreferrer"><img src="img/Eternal_Student.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Eternal Student.html" target="_blank" rel="noopener noreferrer">Eternal Student</a></td>
+      <td>6.36</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>96038</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.80</td>
+      <td>53.56</td>
+      <td>-1.24</td>
+      <td>702</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102783" target="_blank" rel="noopener noreferrer"><img src="img/Locust_Spray.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Locust Spray.html" target="_blank" rel="noopener noreferrer">Locust Spray</a></td>
+      <td>9.58</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>520</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.70</td>
+      <td>54.46</td>
+      <td>-1.24</td>
+      <td>213</td>
+      <td>54.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102461" target="_blank" rel="noopener noreferrer"><img src="img/Rancorous_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rancorous Archaic.html" target="_blank" rel="noopener noreferrer">Rancorous Archaic</a></td>
+      <td>10.56</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>80716</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.45</td>
+      <td>53.19</td>
+      <td>-1.26</td>
+      <td>141</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102707" target="_blank" rel="noopener noreferrer"><img src="img/Diary_of_Dreams.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Diary of Dreams.html" target="_blank" rel="noopener noreferrer">Diary of Dreams</a></td>
+      <td>7.82</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>86584</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.40</td>
+      <td>55.13</td>
+      <td>-1.27</td>
+      <td>575</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102725" target="_blank" rel="noopener noreferrer"><img src="img/Titan's_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Titan's Grave.html" target="_blank" rel="noopener noreferrer">Titan's Grave</a></td>
+      <td>7.67</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>74196</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.25</td>
+      <td>52.94</td>
+      <td>-1.31</td>
+      <td>374</td>
+      <td>51.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102687" target="_blank" rel="noopener noreferrer"><img src="img/Social_Snub.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Social Snub.html" target="_blank" rel="noopener noreferrer">Social Snub</a></td>
+      <td>10.46</td>
+      <td>WB</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>41596</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.80</td>
+      <td>56.45</td>
+      <td>-1.35</td>
+      <td>186</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>95712</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.30</td>
+      <td>54.94</td>
+      <td>-1.36</td>
+      <td>1580</td>
+      <td>55.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102781" target="_blank" rel="noopener noreferrer"><img src="img/Feed_the_Swarm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Feed the Swarm.html" target="_blank" rel="noopener noreferrer">Feed the Swarm</a></td>
+      <td>4.59</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>5084</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.35</td>
+      <td>52.93</td>
+      <td>-1.42</td>
+      <td>939</td>
+      <td>51.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102475" target="_blank" rel="noopener noreferrer"><img src="img/Graduation_Day.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Graduation Day.html" target="_blank" rel="noopener noreferrer">Graduation Day</a></td>
+      <td>7.66</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38336</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.60</td>
+      <td>55.15</td>
+      <td>-1.45</td>
+      <td>165</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>82346</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.75</td>
+      <td>55.28</td>
+      <td>-1.47</td>
+      <td>123</td>
+      <td>56.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102712" target="_blank" rel="noopener noreferrer"><img src="img/Deathcap_Glade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deathcap Glade.html" target="_blank" rel="noopener noreferrer">Deathcap Glade</a></td>
+      <td>5.07</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>4106</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.45</td>
+      <td>56.97</td>
+      <td>-1.48</td>
+      <td>488</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102472" target="_blank" rel="noopener noreferrer"><img src="img/Emeritus_of_Truce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emeritus of Truce.html" target="_blank" rel="noopener noreferrer">Emeritus of Truce</a></td>
+      <td>1.80</td>
+      <td>W</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>10300</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.55</td>
+      <td>54.06</td>
+      <td>-1.49</td>
+      <td>912</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102491" target="_blank" rel="noopener noreferrer"><img src="img/Soaring_Stoneglider.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Soaring Stoneglider.html" target="_blank" rel="noopener noreferrer">Soaring Stoneglider</a></td>
+      <td>5.99</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>2476</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.50</td>
+      <td>54.88</td>
+      <td>-1.62</td>
+      <td>1691</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102467" target="_blank" rel="noopener noreferrer"><img src="img/Ascendant_Dustspeaker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ascendant Dustspeaker.html" target="_blank" rel="noopener noreferrer">Ascendant Dustspeaker</a></td>
+      <td>8.88</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>97342</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>52.00</td>
+      <td>50.34</td>
+      <td>-1.66</td>
+      <td>147</td>
+      <td>46.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102788" target="_blank" rel="noopener noreferrer"><img src="img/Zombify.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zombify.html" target="_blank" rel="noopener noreferrer">Zombify</a></td>
+      <td>9.91</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>28556</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.65</td>
+      <td>52.68</td>
+      <td>-1.97</td>
+      <td>522</td>
+      <td>52.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102547" target="_blank" rel="noopener noreferrer"><img src="img/Leech_Collector.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Leech Collector.html" target="_blank" rel="noopener noreferrer">Leech Collector</a></td>
+      <td>6.65</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>89844</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.10</td>
+      <td>52.11</td>
+      <td>-1.99</td>
+      <td>355</td>
+      <td>50.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102762" target="_blank" rel="noopener noreferrer"><img src="img/Requisition_Raid.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Requisition Raid.html" target="_blank" rel="noopener noreferrer">Requisition Raid</a></td>
+      <td>9.38</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>30838</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.00</td>
+      <td>52.94</td>
+      <td>-2.06</td>
+      <td>850</td>
+      <td>52.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102554" target="_blank" rel="noopener noreferrer"><img src="img/Pull_from_the_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pull from the Grave.html" target="_blank" rel="noopener noreferrer">Pull from the Grave</a></td>
+      <td>10.19</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>88214</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.30</td>
+      <td>53.15</td>
+      <td>-2.15</td>
+      <td>604</td>
+      <td>53.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102757" target="_blank" rel="noopener noreferrer"><img src="img/Helping_Hand.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Helping Hand.html" target="_blank" rel="noopener noreferrer">Helping Hand</a></td>
+      <td>8.02</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82998</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.35</td>
+      <td>55.14</td>
+      <td>-2.21</td>
+      <td>1032</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85932</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.45</td>
+      <td>55.17</td>
+      <td>-2.28</td>
+      <td>145</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102723" target="_blank" rel="noopener noreferrer"><img src="img/Sundown_Pass.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundown Pass.html" target="_blank" rel="noopener noreferrer">Sundown Pass</a></td>
+      <td>5.03</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>7692</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.45</td>
+      <td>53.98</td>
+      <td>-2.47</td>
+      <td>1710</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102483" target="_blank" rel="noopener noreferrer"><img src="img/Owlin_Historian.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Owlin Historian.html" target="_blank" rel="noopener noreferrer">Owlin Historian</a></td>
+      <td>8.70</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>23992</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>54.00</td>
+      <td>51.33</td>
+      <td>-2.67</td>
+      <td>452</td>
+      <td>50.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102533" target="_blank" rel="noopener noreferrer"><img src="img/Arnyn,_Deathbloom_Botanist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arnyn, Deathbloom Botanist.html" target="_blank" rel="noopener noreferrer">Arnyn, Deathbloom Botanist</a></td>
+      <td>6.91</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52680</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.20</td>
+      <td>54.44</td>
+      <td>-2.76</td>
+      <td>180</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>84954</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>53.65</td>
+      <td>50.83</td>
+      <td>-2.82</td>
+      <td>181</td>
+      <td>50.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102720" target="_blank" rel="noopener noreferrer"><img src="img/Skycoach_Waypoint.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Skycoach Waypoint.html" target="_blank" rel="noopener noreferrer">Skycoach Waypoint</a></td>
+      <td>11.02</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>65394</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.80</td>
+      <td>54.81</td>
+      <td>-2.99</td>
+      <td>104</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102660" target="_blank" rel="noopener noreferrer"><img src="img/Lorehold,_the_Historian.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lorehold, the Historian.html" target="_blank" rel="noopener noreferrer">Lorehold, the Historian</a></td>
+      <td>1.50</td>
+      <td>WR</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>64416</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.70</td>
+      <td>53.70</td>
+      <td>-3.00</td>
+      <td>108</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102657" target="_blank" rel="noopener noreferrer"><img src="img/Kirol,_History_Buff.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Kirol, History Buff.html" target="_blank" rel="noopener noreferrer">Kirol, History Buff</a></td>
+      <td>5.69</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>54636</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.00</td>
+      <td>53.85</td>
+      <td>-3.15</td>
+      <td>104</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102627" target="_blank" rel="noopener noreferrer"><img src="img/Wildgrowth_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wildgrowth Archaic.html" target="_blank" rel="noopener noreferrer">Wildgrowth Archaic</a></td>
+      <td>1.91</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>81368</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.20</td>
+      <td>52.00</td>
+      <td>-3.20</td>
+      <td>100</td>
+      <td>53.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102709" target="_blank" rel="noopener noreferrer"><img src="img/Page,_Loose_Leaf.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Page, Loose Leaf.html" target="_blank" rel="noopener noreferrer">Page, Loose Leaf</a></td>
+      <td>11.31</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>96364</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.55</td>
+      <td>52.29</td>
+      <td>-3.26</td>
+      <td>109</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102784" target="_blank" rel="noopener noreferrer"><img src="img/Sheoldred's_Edict.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sheoldred's Edict.html" target="_blank" rel="noopener noreferrer">Sheoldred's Edict</a></td>
+      <td>4.24</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>44530</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.15</td>
+      <td>52.73</td>
+      <td>-3.42</td>
+      <td>110</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102596" target="_blank" rel="noopener noreferrer"><img src="img/Zealous_Lorecaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zealous Lorecaster.html" target="_blank" rel="noopener noreferrer">Zealous Lorecaster</a></td>
+      <td>9.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>4432</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>53.95</td>
+      <td>50.51</td>
+      <td>-3.44</td>
+      <td>877</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102473" target="_blank" rel="noopener noreferrer"><img src="img/Ennis,_Debate_Moderator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ennis, Debate Moderator.html" target="_blank" rel="noopener noreferrer">Ennis, Debate Moderator</a></td>
+      <td>7.32</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>62460</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.05</td>
+      <td>53.52</td>
+      <td>-3.53</td>
+      <td>256</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102651" target="_blank" rel="noopener noreferrer"><img src="img/Grapple_with_Death.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Grapple with Death.html" target="_blank" rel="noopener noreferrer">Grapple with Death</a></td>
+      <td>5.38</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38662</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.10</td>
+      <td>54.29</td>
+      <td>-3.81</td>
+      <td>105</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102578" target="_blank" rel="noopener noreferrer"><img src="img/Impractical_Joke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Impractical Joke.html" target="_blank" rel="noopener noreferrer">Impractical Joke</a></td>
+      <td>3.36</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>33120</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.15</td>
+      <td>52.10</td>
+      <td>-4.05</td>
+      <td>405</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102561" target="_blank" rel="noopener noreferrer"><img src="img/Tragedy_Feaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tragedy Feaster.html" target="_blank" rel="noopener noreferrer">Tragedy Feaster</a></td>
+      <td>2.99</td>
+      <td>B</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>66372</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.55</td>
+      <td>54.18</td>
+      <td>-4.37</td>
+      <td>275</td>
+      <td>59.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102663" target="_blank" rel="noopener noreferrer"><img src="img/Molten_Note.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Molten Note.html" target="_blank" rel="noopener noreferrer">Molten Note</a></td>
+      <td>4.73</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>58874</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>58.10</td>
+      <td>53.65</td>
+      <td>-4.45</td>
+      <td>315</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102640" target="_blank" rel="noopener noreferrer"><img src="img/Colossus_of_the_Blood_Age.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Colossus of the Blood Age.html" target="_blank" rel="noopener noreferrer">Colossus of the Blood Age</a></td>
+      <td>4.64</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>11930</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.80</td>
+      <td>50.69</td>
+      <td>-5.11</td>
+      <td>724</td>
+      <td>54.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102496" target="_blank" rel="noopener noreferrer"><img src="img/Summoned_Dromedary.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Summoned Dromedary.html" target="_blank" rel="noopener noreferrer">Summoned Dromedary</a></td>
+      <td>6.44</td>
+      <td>W</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>79086</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>57.40</td>
+      <td>51.45</td>
+      <td>-5.95</td>
+      <td>379</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102702" target="_blank" rel="noopener noreferrer"><img src="img/Wilt_in_the_Heat.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wilt in the Heat.html" target="_blank" rel="noopener noreferrer">Wilt in the Heat</a></td>
+      <td>6.96</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38010</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>55.75</td>
+      <td>49.59</td>
+      <td>-6.16</td>
+      <td>123</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102576" target="_blank" rel="noopener noreferrer"><img src="img/Goblin_Glasswright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Goblin Glasswright.html" target="_blank" rel="noopener noreferrer">Goblin Glasswright</a></td>
+      <td>7.47</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>90496</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>59.65</td>
+      <td>52.59</td>
+      <td>-7.06</td>
+      <td>116</td>
+      <td>62.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102764" target="_blank" rel="noopener noreferrer"><img src="img/Winds_of_Abandon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Winds of Abandon.html" target="_blank" rel="noopener noreferrer">Winds of Abandon</a></td>
+      <td>2.18</td>
+      <td>W</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>33446</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>53.30</td>
+      <td>44.59</td>
+      <td>-8.71</td>
+      <td>157</td>
+      <td>49.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102562" target="_blank" rel="noopener noreferrer"><img src="img/Ulna_Alley_Shopkeep.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ulna Alley Shopkeep.html" target="_blank" rel="noopener noreferrer">Ulna Alley Shopkeep</a></td>
+      <td>11.49</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>74848</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.65</td>
+      <td>47.62</td>
+      <td>-9.03</td>
+      <td>168</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102689" target="_blank" rel="noopener noreferrer"><img src="img/Spirit_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spirit Mascot.html" target="_blank" rel="noopener noreferrer">Spirit Mascot</a></td>
+      <td>7.80</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>57570</th>
+      <td>common</td>
+      <td>WB</td>
+      <td>9.05</td>
+      <td><a href=".//Imperious Inkmage.html" target="_blank" rel="noopener noreferrer">Imperious Inkmage</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102654" target="_blank" rel="noopener noreferrer"><img src="img/Imperious_Inkmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>57.3</td>
+      <td>56.40</td>
+      <td>45.10</td>
+      <td>-11.30</td>
+      <td>102</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102636" target="_blank" rel="noopener noreferrer"><img src="img/Bogwater_Lumaret.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Bogwater Lumaret.html" target="_blank" rel="noopener noreferrer">Bogwater Lumaret</a></td>
+      <td>6.39</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+  </tbody>
+</table>

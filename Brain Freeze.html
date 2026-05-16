@@ -1,0 +1,1062 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13970</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.45</td>
+      <td>73.08</td>
+      <td>15.63</td>
+      <td>208</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102502" target="_blank" rel="noopener noreferrer"><img src="img/Divergent_Equation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Divergent Equation.html" target="_blank" rel="noopener noreferrer">Divergent Equation</a></td>
+      <td>6.14</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>15926</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.85</td>
+      <td>70.99</td>
+      <td>14.14</td>
+      <td>162</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102508" target="_blank" rel="noopener noreferrer"><img src="img/Flow_State.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flow State.html" target="_blank" rel="noopener noreferrer">Flow State</a></td>
+      <td>4.58</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>15600</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>58.85</td>
+      <td>68.71</td>
+      <td>9.86</td>
+      <td>147</td>
+      <td>61.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102507" target="_blank" rel="noopener noreferrer"><img src="img/Exhibition_Tidecaller.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Exhibition Tidecaller.html" target="_blank" rel="noopener noreferrer">Exhibition Tidecaller</a></td>
+      <td>2.48</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>44288</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.30</td>
+      <td>66.91</td>
+      <td>9.61</td>
+      <td>278</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>75258</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>58.85</td>
+      <td>68.27</td>
+      <td>9.42</td>
+      <td>104</td>
+      <td>61.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102690" target="_blank" rel="noopener noreferrer"><img src="img/Splatter_Technique.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Splatter Technique.html" target="_blank" rel="noopener noreferrer">Splatter Technique</a></td>
+      <td>2.38</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>21468</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.15</td>
+      <td>65.76</td>
+      <td>8.61</td>
+      <td>295</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>94492</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>58.35</td>
+      <td>66.31</td>
+      <td>7.96</td>
+      <td>187</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>20816</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>54.55</td>
+      <td>62.12</td>
+      <td>7.57</td>
+      <td>132</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102523" target="_blank" rel="noopener noreferrer"><img src="img/Procrastinate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Procrastinate.html" target="_blank" rel="noopener noreferrer">Procrastinate</a></td>
+      <td>10.07</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21142</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.50</td>
+      <td>63.49</td>
+      <td>6.99</td>
+      <td>252</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>52764</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.90</td>
+      <td>63.73</td>
+      <td>6.83</td>
+      <td>102</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17230</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.40</td>
+      <td>62.99</td>
+      <td>6.59</td>
+      <td>154</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102512" target="_blank" rel="noopener noreferrer"><img src="img/Homesickness.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Homesickness.html" target="_blank" rel="noopener noreferrer">Homesickness</a></td>
+      <td>6.62</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>71346</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>55.20</td>
+      <td>61.33</td>
+      <td>6.13</td>
+      <td>181</td>
+      <td>53.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102678" target="_blank" rel="noopener noreferrer"><img src="img/Rapturous_Moment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rapturous Moment.html" target="_blank" rel="noopener noreferrer">Rapturous Moment</a></td>
+      <td>7.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>71998</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.20</td>
+      <td>62.22</td>
+      <td>6.02</td>
+      <td>135</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102680" target="_blank" rel="noopener noreferrer"><img src="img/Resonating_Lute.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Resonating Lute.html" target="_blank" rel="noopener noreferrer">Resonating Lute</a></td>
+      <td>2.90</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>84060</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.50</td>
+      <td>62.44</td>
+      <td>5.94</td>
+      <td>213</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>78844</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.60</td>
+      <td>61.31</td>
+      <td>4.71</td>
+      <td>336</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>12666</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.40</td>
+      <td>61.97</td>
+      <td>4.57</td>
+      <td>142</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102498" target="_blank" rel="noopener noreferrer"><img src="img/Brush_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Brush Off.html" target="_blank" rel="noopener noreferrer">Brush Off</a></td>
+      <td>6.79</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60588</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.55</td>
+      <td>61.03</td>
+      <td>4.48</td>
+      <td>136</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>43962</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.20</td>
+      <td>61.62</td>
+      <td>4.42</td>
+      <td>271</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>76562</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>58.50</td>
+      <td>62.89</td>
+      <td>4.39</td>
+      <td>194</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102694" target="_blank" rel="noopener noreferrer"><img src="img/Stress_Dream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stress Dream.html" target="_blank" rel="noopener noreferrer">Stress Dream</a></td>
+      <td>3.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38746</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.80</td>
+      <td>62.05</td>
+      <td>4.25</td>
+      <td>166</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102578" target="_blank" rel="noopener noreferrer"><img src="img/Impractical_Joke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Impractical Joke.html" target="_blank" rel="noopener noreferrer">Impractical Joke</a></td>
+      <td>3.36</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>93840</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.35</td>
+      <td>60.54</td>
+      <td>4.19</td>
+      <td>147</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102774" target="_blank" rel="noopener noreferrer"><img src="img/Sleight_of_Hand.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sleight of Hand.html" target="_blank" rel="noopener noreferrer">Sleight of Hand</a></td>
+      <td>7.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>72650</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.75</td>
+      <td>61.93</td>
+      <td>4.18</td>
+      <td>176</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102682" target="_blank" rel="noopener noreferrer"><img src="img/Sanar,_Unfinished_Genius.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sanar, Unfinished Genius.html" target="_blank" rel="noopener noreferrer">Sanar, Unfinished Genius</a></td>
+      <td>4.32</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>97752</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.60</td>
+      <td>61.19</td>
+      <td>3.59</td>
+      <td>134</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102789" target="_blank" rel="noopener noreferrer"><img src="img/Abrade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abrade.html" target="_blank" rel="noopener noreferrer">Abrade</a></td>
+      <td>3.40</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>44614</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>55.85</td>
+      <td>59.28</td>
+      <td>3.43</td>
+      <td>167</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102596" target="_blank" rel="noopener noreferrer"><img src="img/Zealous_Lorecaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zealous Lorecaster.html" target="_blank" rel="noopener noreferrer">Zealous Lorecaster</a></td>
+      <td>9.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>91884</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.00</td>
+      <td>60.00</td>
+      <td>3.00</td>
+      <td>160</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102768" target="_blank" rel="noopener noreferrer"><img src="img/Deduce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deduce.html" target="_blank" rel="noopener noreferrer">Deduce</a></td>
+      <td>6.89</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>23098</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.25</td>
+      <td>60.17</td>
+      <td>2.92</td>
+      <td>118</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102530" target="_blank" rel="noopener noreferrer"><img src="img/Wisdom_of_Ages.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wisdom of Ages.html" target="_blank" rel="noopener noreferrer">Wisdom of Ages</a></td>
+      <td>4.74</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>83082</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.05</td>
+      <td>59.91</td>
+      <td>2.86</td>
+      <td>217</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>12340</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.10</td>
+      <td>58.80</td>
+      <td>2.70</td>
+      <td>216</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102497" target="_blank" rel="noopener noreferrer"><img src="img/Banishing_Betrayal.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Banishing Betrayal.html" target="_blank" rel="noopener noreferrer">Banishing Betrayal</a></td>
+      <td>8.95</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15274</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.95</td>
+      <td>59.63</td>
+      <td>2.68</td>
+      <td>374</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>42984</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.90</td>
+      <td>59.48</td>
+      <td>2.58</td>
+      <td>116</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102591" target="_blank" rel="noopener noreferrer"><img src="img/Tablet_of_Discovery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tablet of Discovery.html" target="_blank" rel="noopener noreferrer">Tablet of Discovery</a></td>
+      <td>5.53</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60262</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>55.80</td>
+      <td>57.69</td>
+      <td>1.89</td>
+      <td>130</td>
+      <td>54.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102644" target="_blank" rel="noopener noreferrer"><img src="img/Elemental_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elemental Mascot.html" target="_blank" rel="noopener noreferrer">Elemental Mascot</a></td>
+      <td>8.81</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>68738</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.85</td>
+      <td>58.71</td>
+      <td>1.86</td>
+      <td>155</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102670" target="_blank" rel="noopener noreferrer"><img src="img/Prismari_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Prismari Charm.html" target="_blank" rel="noopener noreferrer">Prismari Charm</a></td>
+      <td>5.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>35160</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.05</td>
+      <td>58.46</td>
+      <td>1.41</td>
+      <td>130</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102567" target="_blank" rel="noopener noreferrer"><img src="img/Artistic_Process.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Artistic Process.html" target="_blank" rel="noopener noreferrer">Artistic Process</a></td>
+      <td>4.72</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81778</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.10</td>
+      <td>58.19</td>
+      <td>1.09</td>
+      <td>342</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85364</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.70</td>
+      <td>57.63</td>
+      <td>0.93</td>
+      <td>413</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>42006</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>55.95</td>
+      <td>56.87</td>
+      <td>0.92</td>
+      <td>262</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102588" target="_blank" rel="noopener noreferrer"><img src="img/Seize_the_Spoils.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Seize the Spoils.html" target="_blank" rel="noopener noreferrer">Seize the Spoils</a></td>
+      <td>9.13</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17556</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>55.85</td>
+      <td>56.43</td>
+      <td>0.58</td>
+      <td>241</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>78192</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.80</td>
+      <td>57.99</td>
+      <td>0.19</td>
+      <td>169</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102699" target="_blank" rel="noopener noreferrer"><img src="img/Vibrant_Outburst.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vibrant Outburst.html" target="_blank" rel="noopener noreferrer">Vibrant Outburst</a></td>
+      <td>4.13</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>92210</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.90</td>
+      <td>56.86</td>
+      <td>-0.04</td>
+      <td>153</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102769" target="_blank" rel="noopener noreferrer"><img src="img/Disdainful_Stroke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Disdainful Stroke.html" target="_blank" rel="noopener noreferrer">Disdainful Stroke</a></td>
+      <td>6.56</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>99056</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.85</td>
+      <td>57.59</td>
+      <td>-0.26</td>
+      <td>158</td>
+      <td>59.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102793" target="_blank" rel="noopener noreferrer"><img src="img/Burst_Lightning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burst Lightning.html" target="_blank" rel="noopener noreferrer">Burst Lightning</a></td>
+      <td>3.28</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>80800</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>54.15</td>
+      <td>53.85</td>
+      <td>-0.30</td>
+      <td>117</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102707" target="_blank" rel="noopener noreferrer"><img src="img/Diary_of_Dreams.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Diary of Dreams.html" target="_blank" rel="noopener noreferrer">Diary of Dreams</a></td>
+      <td>7.82</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>90906</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.70</td>
+      <td>55.85</td>
+      <td>-0.85</td>
+      <td>1266</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td>5.61</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>19186</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.60</td>
+      <td>56.41</td>
+      <td>-1.19</td>
+      <td>117</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102518" target="_blank" rel="noopener noreferrer"><img src="img/Matterbending_Mage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Matterbending Mage.html" target="_blank" rel="noopener noreferrer">Matterbending Mage</a></td>
+      <td>4.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>70368</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>58.15</td>
+      <td>56.86</td>
+      <td>-1.29</td>
+      <td>102</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102675" target="_blank" rel="noopener noreferrer"><img src="img/Pursue_the_Past.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pursue the Past.html" target="_blank" rel="noopener noreferrer">Pursue the Past</a></td>
+      <td>7.57</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86342</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.70</td>
+      <td>54.90</td>
+      <td>-1.80</td>
+      <td>204</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38420</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>56.30</td>
+      <td>53.85</td>
+      <td>-2.45</td>
+      <td>182</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38094</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>55.45</td>
+      <td>50.79</td>
+      <td>-4.66</td>
+      <td>191</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102576" target="_blank" rel="noopener noreferrer"><img src="img/Goblin_Glasswright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Goblin Glasswright.html" target="_blank" rel="noopener noreferrer">Goblin Glasswright</a></td>
+      <td>7.47</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>18208</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>55.05</td>
+      <td>49.60</td>
+      <td>-5.45</td>
+      <td>125</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102515" target="_blank" rel="noopener noreferrer"><img src="img/Landscape_Painter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Landscape Painter.html" target="_blank" rel="noopener noreferrer">Landscape Painter</a></td>
+      <td>8.96</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>41680</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>57.50</td>
+      <td>51.88</td>
+      <td>-5.62</td>
+      <td>133</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19512</th>
+      <td>rare</td>
+      <td>U</td>
+      <td>5.61</td>
+      <td><a href=".//Brain Freeze.html" target="_blank" rel="noopener noreferrer">Brain Freeze</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102765" target="_blank" rel="noopener noreferrer"><img src="img/Brain_Freeze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>56.7</td>
+      <td>54.80</td>
+      <td>47.01</td>
+      <td>-7.79</td>
+      <td>117</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102519" target="_blank" rel="noopener noreferrer"><img src="img/Muse_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse Seeker.html" target="_blank" rel="noopener noreferrer">Muse Seeker</a></td>
+      <td>6.29</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+  </tbody>
+</table>

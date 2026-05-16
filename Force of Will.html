@@ -1,0 +1,340 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>43968</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>56.80</td>
+      <td>68.60</td>
+      <td>11.80</td>
+      <td>121</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>78850</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>56.20</td>
+      <td>63.69</td>
+      <td>7.49</td>
+      <td>168</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>84066</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>56.10</td>
+      <td>63.31</td>
+      <td>7.21</td>
+      <td>139</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>94498</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>57.95</td>
+      <td>62.14</td>
+      <td>4.19</td>
+      <td>103</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>21474</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>56.75</td>
+      <td>60.87</td>
+      <td>4.12</td>
+      <td>138</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85370</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>56.30</td>
+      <td>59.77</td>
+      <td>3.47</td>
+      <td>174</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21148</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>56.10</td>
+      <td>57.14</td>
+      <td>1.04</td>
+      <td>112</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>92868</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>55.90</td>
+      <td>56.07</td>
+      <td>0.17</td>
+      <td>610</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td>3.14</td>
+      <td>U</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>44294</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>56.90</td>
+      <td>56.90</td>
+      <td>0.00</td>
+      <td>116</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15280</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>56.55</td>
+      <td>56.52</td>
+      <td>-0.03</td>
+      <td>184</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86348</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>56.30</td>
+      <td>54.95</td>
+      <td>-1.35</td>
+      <td>111</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17562</th>
+      <td>mythic</td>
+      <td>U</td>
+      <td>3.14</td>
+      <td><a href=".//Force of Will.html" target="_blank" rel="noopener noreferrer">Force of Will</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102771" target="_blank" rel="noopener noreferrer"><img src="img/Force_of_Will.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>55.9</td>
+      <td>55.45</td>
+      <td>48.25</td>
+      <td>-7.20</td>
+      <td>114</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+  </tbody>
+</table>

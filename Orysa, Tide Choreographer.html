@@ -1,0 +1,3342 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>49287</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.85</td>
+      <td>64.43</td>
+      <td>10.58</td>
+      <td>461</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102611" target="_blank" rel="noopener noreferrer"><img src="img/Infirmary_Healer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Infirmary Healer.html" target="_blank" rel="noopener noreferrer">Infirmary Healer</a></td>
+      <td>6.79</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>36247</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.25</td>
+      <td>63.21</td>
+      <td>8.96</td>
+      <td>106</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102571" target="_blank" rel="noopener noreferrer"><img src="img/Duel_Tactics.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Duel Tactics.html" target="_blank" rel="noopener noreferrer">Duel Tactics</a></td>
+      <td>9.00</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>47005</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.35</td>
+      <td>65.00</td>
+      <td>8.65</td>
+      <td>140</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102604" target="_blank" rel="noopener noreferrer"><img src="img/Emeritus_of_Abundance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emeritus of Abundance.html" target="_blank" rel="noopener noreferrer">Emeritus of Abundance</a></td>
+      <td>1.56</td>
+      <td>G</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>78301</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.20</td>
+      <td>64.55</td>
+      <td>8.35</td>
+      <td>189</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102700" target="_blank" rel="noopener noreferrer"><img src="img/Vicious_Rivalry.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vicious Rivalry.html" target="_blank" rel="noopener noreferrer">Vicious Rivalry</a></td>
+      <td>2.81</td>
+      <td>BG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>50917</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.20</td>
+      <td>63.85</td>
+      <td>7.65</td>
+      <td>509</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102616" target="_blank" rel="noopener noreferrer"><img src="img/Pestbrood_Sloth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pestbrood Sloth.html" target="_blank" rel="noopener noreferrer">Pestbrood Sloth</a></td>
+      <td>4.49</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>53851</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.15</td>
+      <td>62.24</td>
+      <td>7.09</td>
+      <td>286</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102625" target="_blank" rel="noopener noreferrer"><img src="img/Vastlands_Scavenger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vastlands Scavenger.html" target="_blank" rel="noopener noreferrer">Vastlands Scavenger</a></td>
+      <td>2.20</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>48309</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.85</td>
+      <td>62.64</td>
+      <td>6.79</td>
+      <td>182</td>
+      <td>58.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102608" target="_blank" rel="noopener noreferrer"><img src="img/Germination_Practicum.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Germination Practicum.html" target="_blank" rel="noopener noreferrer">Germination Practicum</a></td>
+      <td>1.58</td>
+      <td>G</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>34617</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.15</td>
+      <td>61.64</td>
+      <td>6.49</td>
+      <td>292</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102566" target="_blank" rel="noopener noreferrer"><img src="img/Archaic's_Agony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Archaic's Agony.html" target="_blank" rel="noopener noreferrer">Archaic's Agony</a></td>
+      <td>8.19</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>1039</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>59.50</td>
+      <td>65.96</td>
+      <td>6.46</td>
+      <td>423</td>
+      <td>65.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102463" target="_blank" rel="noopener noreferrer"><img src="img/Together_as_One.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Together as One.html" target="_blank" rel="noopener noreferrer">Together as One</a></td>
+      <td>2.04</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>82213</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.75</td>
+      <td>60.87</td>
+      <td>6.12</td>
+      <td>184</td>
+      <td>56.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102712" target="_blank" rel="noopener noreferrer"><img src="img/Deathcap_Glade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deathcap Glade.html" target="_blank" rel="noopener noreferrer">Deathcap Glade</a></td>
+      <td>5.07</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>51569</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.40</td>
+      <td>59.35</td>
+      <td>5.95</td>
+      <td>246</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102618" target="_blank" rel="noopener noreferrer"><img src="img/Shopkeeper's_Bane.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shopkeeper's Bane.html" target="_blank" rel="noopener noreferrer">Shopkeeper's Bane</a></td>
+      <td>9.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>16687</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.40</td>
+      <td>59.24</td>
+      <td>5.84</td>
+      <td>471</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102511" target="_blank" rel="noopener noreferrer"><img src="img/Harmonized_Trio.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Harmonized Trio.html" target="_blank" rel="noopener noreferrer">Harmonized Trio</a></td>
+      <td>4.08</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>70151</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.45</td>
+      <td>62.20</td>
+      <td>5.75</td>
+      <td>127</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102675" target="_blank" rel="noopener noreferrer"><img src="img/Pursue_the_Past.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pursue the Past.html" target="_blank" rel="noopener noreferrer">Pursue the Past</a></td>
+      <td>7.57</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>1365</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.30</td>
+      <td>61.05</td>
+      <td>5.75</td>
+      <td>493</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102464" target="_blank" rel="noopener noreferrer"><img src="img/Transcendent_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Transcendent Archaic.html" target="_blank" rel="noopener noreferrer">Transcendent Archaic</a></td>
+      <td>7.13</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>47657</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>57.35</td>
+      <td>63.00</td>
+      <td>5.65</td>
+      <td>827</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102606" target="_blank" rel="noopener noreferrer"><img src="img/Environmental_Scientist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Environmental Scientist.html" target="_blank" rel="noopener noreferrer">Environmental Scientist</a></td>
+      <td>3.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>85473</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.30</td>
+      <td>60.83</td>
+      <td>5.53</td>
+      <td>434</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102722" target="_blank" rel="noopener noreferrer"><img src="img/Stormcarved_Coast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stormcarved Coast.html" target="_blank" rel="noopener noreferrer">Stormcarved Coast</a></td>
+      <td>4.76</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>59393</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.80</td>
+      <td>60.19</td>
+      <td>5.39</td>
+      <td>927</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102642" target="_blank" rel="noopener noreferrer"><img src="img/Cuboid_Colony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cuboid Colony.html" target="_blank" rel="noopener noreferrer">Cuboid Colony</a></td>
+      <td>5.79</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>55807</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.90</td>
+      <td>61.28</td>
+      <td>5.38</td>
+      <td>483</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102631" target="_blank" rel="noopener noreferrer"><img src="img/Applied_Geometry.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Applied Geometry.html" target="_blank" rel="noopener noreferrer">Applied Geometry</a></td>
+      <td>2.46</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>26141</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.95</td>
+      <td>61.29</td>
+      <td>5.34</td>
+      <td>155</td>
+      <td>58.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102540" target="_blank" rel="noopener noreferrer"><img src="img/End_of_the_Hunt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//End of the Hunt.html" target="_blank" rel="noopener noreferrer">End of the Hunt</a></td>
+      <td>4.08</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>103403</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.70</td>
+      <td>59.94</td>
+      <td>5.24</td>
+      <td>342</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102808" target="_blank" rel="noopener noreferrer"><img src="img/Royal_Treatment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Royal Treatment.html" target="_blank" rel="noopener noreferrer">Royal Treatment</a></td>
+      <td>7.47</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>36573</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.25</td>
+      <td>59.42</td>
+      <td>5.17</td>
+      <td>138</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102572" target="_blank" rel="noopener noreferrer"><img src="img/Emeritus_of_Conflict.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emeritus of Conflict.html" target="_blank" rel="noopener noreferrer">Emeritus of Conflict</a></td>
+      <td>2.22</td>
+      <td>R</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>70803</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>57.20</td>
+      <td>62.20</td>
+      <td>5.00</td>
+      <td>246</td>
+      <td>61.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102677" target="_blank" rel="noopener noreferrer"><img src="img/Quandrix,_the_Proof.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quandrix, the Proof.html" target="_blank" rel="noopener noreferrer">Quandrix, the Proof</a></td>
+      <td>1.45</td>
+      <td>UG</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>45375</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.75</td>
+      <td>61.68</td>
+      <td>4.93</td>
+      <td>334</td>
+      <td>60.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102599" target="_blank" rel="noopener noreferrer"><img src="img/Ambitious_Augmenter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ambitious Augmenter.html" target="_blank" rel="noopener noreferrer">Ambitious Augmenter</a></td>
+      <td>2.15</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>35595</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.35</td>
+      <td>60.21</td>
+      <td>4.86</td>
+      <td>382</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102569" target="_blank" rel="noopener noreferrer"><img src="img/Charging_Strifeknight.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Charging Strifeknight.html" target="_blank" rel="noopener noreferrer">Charging Strifeknight</a></td>
+      <td>5.77</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>102751</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.10</td>
+      <td>59.93</td>
+      <td>4.83</td>
+      <td>579</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102806" target="_blank" rel="noopener noreferrer"><img src="img/Knockout_Maneuver.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Knockout Maneuver.html" target="_blank" rel="noopener noreferrer">Knockout Maneuver</a></td>
+      <td>5.34</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82539</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.00</td>
+      <td>59.81</td>
+      <td>4.81</td>
+      <td>418</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102713" target="_blank" rel="noopener noreferrer"><img src="img/Dreamroot_Cascade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dreamroot Cascade.html" target="_blank" rel="noopener noreferrer">Dreamroot Cascade</a></td>
+      <td>4.80</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>50265</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.50</td>
+      <td>59.27</td>
+      <td>4.77</td>
+      <td>1252</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102614" target="_blank" rel="noopener noreferrer"><img src="img/Noxious_Newt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Noxious Newt.html" target="_blank" rel="noopener noreferrer">Noxious Newt</a></td>
+      <td>6.17</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>53525</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.05</td>
+      <td>58.77</td>
+      <td>4.72</td>
+      <td>650</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102624" target="_blank" rel="noopener noreferrer"><img src="img/Topiary_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Topiary Lecturer.html" target="_blank" rel="noopener noreferrer">Topiary Lecturer</a></td>
+      <td>5.81</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>48961</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.25</td>
+      <td>56.88</td>
+      <td>4.63</td>
+      <td>269</td>
+      <td>51.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102610" target="_blank" rel="noopener noreferrer"><img src="img/Hungry_Graffalon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hungry Graffalon.html" target="_blank" rel="noopener noreferrer">Hungry Graffalon</a></td>
+      <td>11.46</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>20273</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.10</td>
+      <td>60.64</td>
+      <td>4.54</td>
+      <td>559</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102522" target="_blank" rel="noopener noreferrer"><img src="img/Pensive_Professor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pensive Professor.html" target="_blank" rel="noopener noreferrer">Pensive Professor</a></td>
+      <td>2.11</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>18969</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.90</td>
+      <td>60.36</td>
+      <td>4.46</td>
+      <td>1274</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102518" target="_blank" rel="noopener noreferrer"><img src="img/Matterbending_Mage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Matterbending Mage.html" target="_blank" rel="noopener noreferrer">Matterbending Mage</a></td>
+      <td>4.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>21577</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.30</td>
+      <td>59.75</td>
+      <td>4.45</td>
+      <td>482</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102526" target="_blank" rel="noopener noreferrer"><img src="img/Skycoach_Conductor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Skycoach Conductor.html" target="_blank" rel="noopener noreferrer">Skycoach Conductor</a></td>
+      <td>2.58</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>45701</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.40</td>
+      <td>58.81</td>
+      <td>4.41</td>
+      <td>1209</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102600" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Barrage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Barrage.html" target="_blank" rel="noopener noreferrer">Burrog Barrage</a></td>
+      <td>7.66</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>14079</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.80</td>
+      <td>60.07</td>
+      <td>4.27</td>
+      <td>268</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102503" target="_blank" rel="noopener noreferrer"><img src="img/Echocasting_Symposium.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Echocasting Symposium.html" target="_blank" rel="noopener noreferrer">Echocasting Symposium</a></td>
+      <td>1.75</td>
+      <td>U</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>58415</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>57.95</td>
+      <td>62.21</td>
+      <td>4.26</td>
+      <td>389</td>
+      <td>62.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102639" target="_blank" rel="noopener noreferrer"><img src="img/Colorstorm_Stallion.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Colorstorm Stallion.html" target="_blank" rel="noopener noreferrer">Colorstorm Stallion</a></td>
+      <td>2.06</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>41463</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.80</td>
+      <td>60.00</td>
+      <td>4.20</td>
+      <td>540</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>66239</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.55</td>
+      <td>60.74</td>
+      <td>4.19</td>
+      <td>163</td>
+      <td>59.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102663" target="_blank" rel="noopener noreferrer"><img src="img/Molten_Note.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Molten Note.html" target="_blank" rel="noopener noreferrer">Molten Note</a></td>
+      <td>4.73</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>33639</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.60</td>
+      <td>58.57</td>
+      <td>3.97</td>
+      <td>321</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102563" target="_blank" rel="noopener noreferrer"><img src="img/Wander_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wander Off.html" target="_blank" rel="noopener noreferrer">Wander Off</a></td>
+      <td>5.21</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>78953</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.40</td>
+      <td>59.34</td>
+      <td>3.94</td>
+      <td>241</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102702" target="_blank" rel="noopener noreferrer"><img src="img/Wilt_in_the_Heat.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wilt in the Heat.html" target="_blank" rel="noopener noreferrer">Wilt in the Heat</a></td>
+      <td>6.96</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19621</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.05</td>
+      <td>56.97</td>
+      <td>3.92</td>
+      <td>825</td>
+      <td>52.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102520" target="_blank" rel="noopener noreferrer"><img src="img/Muse's_Encouragement.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse's Encouragement.html" target="_blank" rel="noopener noreferrer">Muse's Encouragement</a></td>
+      <td>10.29</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>52221</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>57.60</td>
+      <td>61.50</td>
+      <td>3.90</td>
+      <td>652</td>
+      <td>61.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102620" target="_blank" rel="noopener noreferrer"><img src="img/Snarl_Song.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snarl Song.html" target="_blank" rel="noopener noreferrer">Snarl Song</a></td>
+      <td>4.65</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81235</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.20</td>
+      <td>57.09</td>
+      <td>3.89</td>
+      <td>296</td>
+      <td>53.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102709" target="_blank" rel="noopener noreferrer"><img src="img/Page,_Loose_Leaf.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Page, Loose Leaf.html" target="_blank" rel="noopener noreferrer">Page, Loose Leaf</a></td>
+      <td>11.31</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>47331</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.40</td>
+      <td>56.94</td>
+      <td>3.54</td>
+      <td>641</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102605" target="_blank" rel="noopener noreferrer"><img src="img/Emil,_Vastlands_Roamer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emil, Vastlands Roamer.html" target="_blank" rel="noopener noreferrer">Emil, Vastlands Roamer</a></td>
+      <td>5.97</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>79279</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.60</td>
+      <td>57.14</td>
+      <td>3.54</td>
+      <td>105</td>
+      <td>53.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102703" target="_blank" rel="noopener noreferrer"><img src="img/Witherbloom_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Witherbloom Charm.html" target="_blank" rel="noopener noreferrer">Witherbloom Charm</a></td>
+      <td>6.66</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>46027</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>51.90</td>
+      <td>55.44</td>
+      <td>3.54</td>
+      <td>294</td>
+      <td>50.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102601" target="_blank" rel="noopener noreferrer"><img src="img/Chelonian_Tackle.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Chelonian Tackle.html" target="_blank" rel="noopener noreferrer">Chelonian Tackle</a></td>
+      <td>9.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43419</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.50</td>
+      <td>58.01</td>
+      <td>3.51</td>
+      <td>362</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102593" target="_blank" rel="noopener noreferrer"><img src="img/Thunderdrum_Soloist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Thunderdrum Soloist.html" target="_blank" rel="noopener noreferrer">Thunderdrum Soloist</a></td>
+      <td>6.04</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>67543</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.00</td>
+      <td>59.51</td>
+      <td>3.51</td>
+      <td>1030</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102667" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Surveyor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Surveyor.html" target="_blank" rel="noopener noreferrer">Paradox Surveyor</a></td>
+      <td>5.40</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>70477</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.45</td>
+      <td>58.92</td>
+      <td>3.47</td>
+      <td>762</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102676" target="_blank" rel="noopener noreferrer"><img src="img/Quandrix_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quandrix Charm.html" target="_blank" rel="noopener noreferrer">Quandrix Charm</a></td>
+      <td>6.73</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82865</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.35</td>
+      <td>58.76</td>
+      <td>3.41</td>
+      <td>696</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>65913</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.45</td>
+      <td>56.85</td>
+      <td>3.40</td>
+      <td>146</td>
+      <td>53.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102662" target="_blank" rel="noopener noreferrer"><img src="img/Mind_Roots.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mind Roots.html" target="_blank" rel="noopener noreferrer">Mind Roots</a></td>
+      <td>6.93</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>69173</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.65</td>
+      <td>59.04</td>
+      <td>3.39</td>
+      <td>984</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102672" target="_blank" rel="noopener noreferrer"><img src="img/Proctor's_Gaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Proctor's Gaze.html" target="_blank" rel="noopener noreferrer">Proctor's Gaze</a></td>
+      <td>5.12</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>104055</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.40</td>
+      <td>57.76</td>
+      <td>3.36</td>
+      <td>625</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102810" target="_blank" rel="noopener noreferrer"><img src="img/Shared_Roots.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shared Roots.html" target="_blank" rel="noopener noreferrer">Shared Roots</a></td>
+      <td>5.39</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>58741</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.10</td>
+      <td>59.35</td>
+      <td>3.25</td>
+      <td>155</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102640" target="_blank" rel="noopener noreferrer"><img src="img/Colossus_of_the_Blood_Age.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Colossus of the Blood Age.html" target="_blank" rel="noopener noreferrer">Colossus of the Blood Age</a></td>
+      <td>4.64</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>98839</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.15</td>
+      <td>59.33</td>
+      <td>3.18</td>
+      <td>627</td>
+      <td>59.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102793" target="_blank" rel="noopener noreferrer"><img src="img/Burst_Lightning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burst Lightning.html" target="_blank" rel="noopener noreferrer">Burst Lightning</a></td>
+      <td>3.28</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>75041</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>57.15</td>
+      <td>60.30</td>
+      <td>3.15</td>
+      <td>461</td>
+      <td>61.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102690" target="_blank" rel="noopener noreferrer"><img src="img/Splatter_Technique.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Splatter Technique.html" target="_blank" rel="noopener noreferrer">Splatter Technique</a></td>
+      <td>2.38</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>34943</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.35</td>
+      <td>58.42</td>
+      <td>3.07</td>
+      <td>505</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102567" target="_blank" rel="noopener noreferrer"><img src="img/Artistic_Process.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Artistic Process.html" target="_blank" rel="noopener noreferrer">Artistic Process</a></td>
+      <td>4.72</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>37225</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.85</td>
+      <td>56.91</td>
+      <td>3.06</td>
+      <td>123</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102574" target="_blank" rel="noopener noreferrer"><img src="img/Flashback.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flashback.html" target="_blank" rel="noopener noreferrer">Flashback</a></td>
+      <td>5.45</td>
+      <td>R</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>69825</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.55</td>
+      <td>56.57</td>
+      <td>3.02</td>
+      <td>1439</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102674" target="_blank" rel="noopener noreferrer"><img src="img/Pterafractyl.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pterafractyl.html" target="_blank" rel="noopener noreferrer">Pterafractyl</a></td>
+      <td>8.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21251</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.45</td>
+      <td>58.47</td>
+      <td>3.02</td>
+      <td>1748</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>12775</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.75</td>
+      <td>56.76</td>
+      <td>3.01</td>
+      <td>976</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102499" target="_blank" rel="noopener noreferrer"><img src="img/Campus_Composer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Campus Composer.html" target="_blank" rel="noopener noreferrer">Campus Composer</a></td>
+      <td>6.28</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81887</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.35</td>
+      <td>59.31</td>
+      <td>2.96</td>
+      <td>462</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52547</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.20</td>
+      <td>58.13</td>
+      <td>2.93</td>
+      <td>1402</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>387</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.70</td>
+      <td>56.54</td>
+      <td>2.84</td>
+      <td>405</td>
+      <td>54.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102461" target="_blank" rel="noopener noreferrer"><img src="img/Rancorous_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rancorous Archaic.html" target="_blank" rel="noopener noreferrer">Rancorous Archaic</a></td>
+      <td>10.56</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17013</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.70</td>
+      <td>57.46</td>
+      <td>2.76</td>
+      <td>898</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102512" target="_blank" rel="noopener noreferrer"><img src="img/Homesickness.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Homesickness.html" target="_blank" rel="noopener noreferrer">Homesickness</a></td>
+      <td>6.62</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>51243</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.60</td>
+      <td>57.32</td>
+      <td>2.72</td>
+      <td>157</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102617" target="_blank" rel="noopener noreferrer"><img src="img/Planar_Engineering.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Planar Engineering.html" target="_blank" rel="noopener noreferrer">Planar Engineering</a></td>
+      <td>5.64</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>54829</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.10</td>
+      <td>55.70</td>
+      <td>2.60</td>
+      <td>307</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102628" target="_blank" rel="noopener noreferrer"><img src="img/Zimone's_Experiment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zimone's Experiment.html" target="_blank" rel="noopener noreferrer">Zimone's Experiment</a></td>
+      <td>8.55</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>56785</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.35</td>
+      <td>56.95</td>
+      <td>2.60</td>
+      <td>518</td>
+      <td>55.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102634" target="_blank" rel="noopener noreferrer"><img src="img/Berta,_Wise_Extrapolator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Berta, Wise Extrapolator.html" target="_blank" rel="noopener noreferrer">Berta, Wise Extrapolator</a></td>
+      <td>2.37</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>36899</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.45</td>
+      <td>56.94</td>
+      <td>2.49</td>
+      <td>648</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102573" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Firedancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Expressive Firedancer.html" target="_blank" rel="noopener noreferrer">Expressive Firedancer</a></td>
+      <td>8.59</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17665</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.45</td>
+      <td>58.94</td>
+      <td>2.49</td>
+      <td>604</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102514" target="_blank" rel="noopener noreferrer"><img src="img/Jadzi,_Steward_of_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Jadzi, Steward of Fate.html" target="_blank" rel="noopener noreferrer">Jadzi, Steward of Fate</a></td>
+      <td>1.96</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>42767</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.20</td>
+      <td>57.68</td>
+      <td>2.48</td>
+      <td>508</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102591" target="_blank" rel="noopener noreferrer"><img src="img/Tablet_of_Discovery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tablet of Discovery.html" target="_blank" rel="noopener noreferrer">Tablet of Discovery</a></td>
+      <td>5.53</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>27771</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.50</td>
+      <td>57.95</td>
+      <td>2.45</td>
+      <td>264</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102545" target="_blank" rel="noopener noreferrer"><img src="img/Last_Gasp.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Last Gasp.html" target="_blank" rel="noopener noreferrer">Last Gasp</a></td>
+      <td>4.81</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15383</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>57.15</td>
+      <td>59.60</td>
+      <td>2.45</td>
+      <td>349</td>
+      <td>61.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102507" target="_blank" rel="noopener noreferrer"><img src="img/Exhibition_Tidecaller.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Exhibition Tidecaller.html" target="_blank" rel="noopener noreferrer">Exhibition Tidecaller</a></td>
+      <td>2.48</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>12123</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.40</td>
+      <td>56.83</td>
+      <td>2.43</td>
+      <td>1420</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102497" target="_blank" rel="noopener noreferrer"><img src="img/Banishing_Betrayal.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Banishing Betrayal.html" target="_blank" rel="noopener noreferrer">Banishing Betrayal</a></td>
+      <td>8.95</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86451</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.40</td>
+      <td>56.78</td>
+      <td>2.38</td>
+      <td>981</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102725" target="_blank" rel="noopener noreferrer"><img src="img/Titan's_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Titan's Grave.html" target="_blank" rel="noopener noreferrer">Titan's Grave</a></td>
+      <td>7.67</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21903</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.20</td>
+      <td>54.58</td>
+      <td>2.38</td>
+      <td>971</td>
+      <td>51.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102527" target="_blank" rel="noopener noreferrer"><img src="img/Spellbook_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spellbook Seeker.html" target="_blank" rel="noopener noreferrer">Spellbook Seeker</a></td>
+      <td>10.09</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>52873</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.85</td>
+      <td>55.20</td>
+      <td>2.35</td>
+      <td>279</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102622" target="_blank" rel="noopener noreferrer"><img src="img/Tenured_Concocter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tenured Concocter.html" target="_blank" rel="noopener noreferrer">Tenured Concocter</a></td>
+      <td>10.55</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>35269</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>51.70</td>
+      <td>54.04</td>
+      <td>2.34</td>
+      <td>322</td>
+      <td>50.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102568" target="_blank" rel="noopener noreferrer"><img src="img/Blazing_Firesinger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Blazing Firesinger.html" target="_blank" rel="noopener noreferrer">Blazing Firesinger</a></td>
+      <td>8.13</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43745</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.50</td>
+      <td>57.81</td>
+      <td>2.31</td>
+      <td>1005</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>14731</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>51.95</td>
+      <td>54.12</td>
+      <td>2.17</td>
+      <td>704</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102505" target="_blank" rel="noopener noreferrer"><img src="img/Encouraging_Aviator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Encouraging Aviator.html" target="_blank" rel="noopener noreferrer">Encouraging Aviator</a></td>
+      <td>7.51</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>14405</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>58.95</td>
+      <td>61.07</td>
+      <td>2.12</td>
+      <td>244</td>
+      <td>64.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102504" target="_blank" rel="noopener noreferrer"><img src="img/Emeritus_of_Ideation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emeritus of Ideation.html" target="_blank" rel="noopener noreferrer">Emeritus of Ideation</a></td>
+      <td>1.38</td>
+      <td>U</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>77649</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.95</td>
+      <td>59.07</td>
+      <td>2.12</td>
+      <td>474</td>
+      <td>60.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102698" target="_blank" rel="noopener noreferrer"><img src="img/Traumatic_Critique.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Traumatic Critique.html" target="_blank" rel="noopener noreferrer">Traumatic Critique</a></td>
+      <td>2.09</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>22229</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.90</td>
+      <td>55.98</td>
+      <td>2.08</td>
+      <td>870</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102528" target="_blank" rel="noopener noreferrer"><img src="img/Tester_of_the_Tangential.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tester of the Tangential.html" target="_blank" rel="noopener noreferrer">Tester of the Tangential</a></td>
+      <td>6.37</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>79931</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.80</td>
+      <td>54.86</td>
+      <td>2.06</td>
+      <td>144</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102705" target="_blank" rel="noopener noreferrer"><img src="img/Zaffai_and_the_Tempests.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zaffai and the Tempests.html" target="_blank" rel="noopener noreferrer">Zaffai and the Tempests</a></td>
+      <td>6.02</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>15057</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.25</td>
+      <td>57.29</td>
+      <td>2.04</td>
+      <td>2166</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>42115</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.65</td>
+      <td>55.65</td>
+      <td>2.00</td>
+      <td>124</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102589" target="_blank" rel="noopener noreferrer"><img src="img/Steal_the_Show.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Steal the Show.html" target="_blank" rel="noopener noreferrer">Steal the Show</a></td>
+      <td>6.02</td>
+      <td>R</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>17991</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.35</td>
+      <td>55.32</td>
+      <td>1.97</td>
+      <td>1560</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102515" target="_blank" rel="noopener noreferrer"><img src="img/Landscape_Painter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Landscape Painter.html" target="_blank" rel="noopener noreferrer">Landscape Painter</a></td>
+      <td>8.96</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38529</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.10</td>
+      <td>58.04</td>
+      <td>1.94</td>
+      <td>603</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102578" target="_blank" rel="noopener noreferrer"><img src="img/Impractical_Joke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Impractical Joke.html" target="_blank" rel="noopener noreferrer">Impractical Joke</a></td>
+      <td>3.36</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>49939</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.35</td>
+      <td>55.21</td>
+      <td>1.86</td>
+      <td>384</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102613" target="_blank" rel="noopener noreferrer"><img src="img/Mindful_Biomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mindful Biomancer.html" target="_blank" rel="noopener noreferrer">Mindful Biomancer</a></td>
+      <td>9.33</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>54177</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.80</td>
+      <td>54.55</td>
+      <td>1.75</td>
+      <td>594</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102626" target="_blank" rel="noopener noreferrer"><img src="img/Wild_Hypothesis.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wild Hypothesis.html" target="_blank" rel="noopener noreferrer">Wild Hypothesis</a></td>
+      <td>10.44</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>80583</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.45</td>
+      <td>54.20</td>
+      <td>1.75</td>
+      <td>286</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102707" target="_blank" rel="noopener noreferrer"><img src="img/Diary_of_Dreams.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Diary of Dreams.html" target="_blank" rel="noopener noreferrer">Diary of Dreams</a></td>
+      <td>7.82</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>40811</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.45</td>
+      <td>54.17</td>
+      <td>1.72</td>
+      <td>539</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102585" target="_blank" rel="noopener noreferrer"><img src="img/Pigment_Wrangler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pigment Wrangler.html" target="_blank" rel="noopener noreferrer">Pigment Wrangler</a></td>
+      <td>5.87</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>54503</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.00</td>
+      <td>56.68</td>
+      <td>1.68</td>
+      <td>337</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102627" target="_blank" rel="noopener noreferrer"><img src="img/Wildgrowth_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wildgrowth Archaic.html" target="_blank" rel="noopener noreferrer">Wildgrowth Archaic</a></td>
+      <td>1.91</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>78627</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.90</td>
+      <td>56.54</td>
+      <td>1.64</td>
+      <td>1567</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>61675</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.40</td>
+      <td>55.02</td>
+      <td>1.62</td>
+      <td>767</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102649" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Tender.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Tender.html" target="_blank" rel="noopener noreferrer">Fractal Tender</a></td>
+      <td>6.31</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>65587</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.70</td>
+      <td>57.31</td>
+      <td>1.61</td>
+      <td>513</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102661" target="_blank" rel="noopener noreferrer"><img src="img/Mind_into_Matter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mind into Matter.html" target="_blank" rel="noopener noreferrer">Mind into Matter</a></td>
+      <td>2.66</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>12449</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.70</td>
+      <td>57.22</td>
+      <td>1.52</td>
+      <td>589</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102498" target="_blank" rel="noopener noreferrer"><img src="img/Brush_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Brush Off.html" target="_blank" rel="noopener noreferrer">Brush Off</a></td>
+      <td>6.79</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43093</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.15</td>
+      <td>54.64</td>
+      <td>1.49</td>
+      <td>496</td>
+      <td>53.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102592" target="_blank" rel="noopener noreferrer"><img src="img/Tackle_Artist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tackle Artist.html" target="_blank" rel="noopener noreferrer">Tackle Artist</a></td>
+      <td>9.60</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>13427</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.75</td>
+      <td>54.23</td>
+      <td>1.48</td>
+      <td>1134</td>
+      <td>52.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102501" target="_blank" rel="noopener noreferrer"><img src="img/Deluge_Virtuoso.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deluge Virtuoso.html" target="_blank" rel="noopener noreferrer">Deluge Virtuoso</a></td>
+      <td>9.53</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>13101</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.90</td>
+      <td>55.31</td>
+      <td>1.41</td>
+      <td>414</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102500" target="_blank" rel="noopener noreferrer"><img src="img/Chase_Inspiration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Chase Inspiration.html" target="_blank" rel="noopener noreferrer">Chase Inspiration</a></td>
+      <td>11.41</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38203</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.60</td>
+      <td>56.01</td>
+      <td>1.41</td>
+      <td>823</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>60045</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.10</td>
+      <td>55.47</td>
+      <td>1.37</td>
+      <td>1078</td>
+      <td>54.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102644" target="_blank" rel="noopener noreferrer"><img src="img/Elemental_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elemental Mascot.html" target="_blank" rel="noopener noreferrer">Elemental Mascot</a></td>
+      <td>8.81</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>45049</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.45</td>
+      <td>56.74</td>
+      <td>1.29</td>
+      <td>631</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102598" target="_blank" rel="noopener noreferrer"><img src="img/Additive_Evolution.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Additive Evolution.html" target="_blank" rel="noopener noreferrer">Additive Evolution</a></td>
+      <td>4.44</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>51895</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.35</td>
+      <td>57.61</td>
+      <td>1.26</td>
+      <td>309</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102619" target="_blank" rel="noopener noreferrer"><img src="img/Slumbering_Trudge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Slumbering Trudge.html" target="_blank" rel="noopener noreferrer">Slumbering Trudge</a></td>
+      <td>2.25</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>81561</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.40</td>
+      <td>56.66</td>
+      <td>1.26</td>
+      <td>1119</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>62327</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.05</td>
+      <td>56.30</td>
+      <td>1.25</td>
+      <td>508</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102651" target="_blank" rel="noopener noreferrer"><img src="img/Grapple_with_Death.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Grapple with Death.html" target="_blank" rel="noopener noreferrer">Grapple with Death</a></td>
+      <td>5.38</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38855</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>58.30</td>
+      <td>59.54</td>
+      <td>1.24</td>
+      <td>173</td>
+      <td>63.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102579" target="_blank" rel="noopener noreferrer"><img src="img/Improvisation_Capstone.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Improvisation Capstone.html" target="_blank" rel="noopener noreferrer">Improvisation Capstone</a></td>
+      <td>1.78</td>
+      <td>R</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>85147</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.00</td>
+      <td>56.24</td>
+      <td>1.24</td>
+      <td>2347</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>76997</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.85</td>
+      <td>54.08</td>
+      <td>1.23</td>
+      <td>834</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102696" target="_blank" rel="noopener noreferrer"><img src="img/Tam,_Observant_Sequencer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tam, Observant Sequencer.html" target="_blank" rel="noopener noreferrer">Tam, Observant Sequencer</a></td>
+      <td>5.37</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>44397</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.15</td>
+      <td>55.38</td>
+      <td>1.23</td>
+      <td>623</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102596" target="_blank" rel="noopener noreferrer"><img src="img/Zealous_Lorecaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zealous Lorecaster.html" target="_blank" rel="noopener noreferrer">Zealous Lorecaster</a></td>
+      <td>9.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>76345</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.80</td>
+      <td>58.01</td>
+      <td>1.21</td>
+      <td>955</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102694" target="_blank" rel="noopener noreferrer"><img src="img/Stress_Dream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stress Dream.html" target="_blank" rel="noopener noreferrer">Stress Dream</a></td>
+      <td>3.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>713</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.20</td>
+      <td>57.40</td>
+      <td>1.20</td>
+      <td>622</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102462" target="_blank" rel="noopener noreferrer"><img src="img/Sundering_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundering Archaic.html" target="_blank" rel="noopener noreferrer">Sundering Archaic</a></td>
+      <td>5.64</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>23533</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.80</td>
+      <td>57.93</td>
+      <td>1.13</td>
+      <td>290</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102532" target="_blank" rel="noopener noreferrer"><img src="img/Arcane_Omens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arcane Omens.html" target="_blank" rel="noopener noreferrer">Arcane Omens</a></td>
+      <td>6.89</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>44071</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.60</td>
+      <td>56.66</td>
+      <td>1.06</td>
+      <td>1329</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>37877</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.75</td>
+      <td>54.80</td>
+      <td>1.05</td>
+      <td>1104</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102576" target="_blank" rel="noopener noreferrer"><img src="img/Goblin_Glasswright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Goblin Glasswright.html" target="_blank" rel="noopener noreferrer">Goblin Glasswright</a></td>
+      <td>7.47</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17339</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.15</td>
+      <td>55.09</td>
+      <td>0.94</td>
+      <td>1639</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>62653</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>50.35</td>
+      <td>51.25</td>
+      <td>0.90</td>
+      <td>160</td>
+      <td>47.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td>10.80</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>86125</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.00</td>
+      <td>55.87</td>
+      <td>0.87</td>
+      <td>1473</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>61349</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.85</td>
+      <td>54.71</td>
+      <td>0.86</td>
+      <td>1157</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102648" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Mascot.html" target="_blank" rel="noopener noreferrer">Fractal Mascot</a></td>
+      <td>9.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19295</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.10</td>
+      <td>53.96</td>
+      <td>0.86</td>
+      <td>960</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102519" target="_blank" rel="noopener noreferrer"><img src="img/Muse_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse Seeker.html" target="_blank" rel="noopener noreferrer">Muse Seeker</a></td>
+      <td>6.29</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>20925</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.80</td>
+      <td>55.66</td>
+      <td>0.86</td>
+      <td>1263</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>91667</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.30</td>
+      <td>56.15</td>
+      <td>0.85</td>
+      <td>748</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102768" target="_blank" rel="noopener noreferrer"><img src="img/Deduce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deduce.html" target="_blank" rel="noopener noreferrer">Deduce</a></td>
+      <td>6.89</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>93623</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.65</td>
+      <td>55.46</td>
+      <td>0.81</td>
+      <td>577</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102774" target="_blank" rel="noopener noreferrer"><img src="img/Sleight_of_Hand.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sleight of Hand.html" target="_blank" rel="noopener noreferrer">Sleight of Hand</a></td>
+      <td>7.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>19947</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.30</td>
+      <td>54.07</td>
+      <td>0.77</td>
+      <td>8953</td>
+      <td>53.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td>7.25</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>83843</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.80</td>
+      <td>55.55</td>
+      <td>0.75</td>
+      <td>2236</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>93297</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.45</td>
+      <td>55.08</td>
+      <td>0.63</td>
+      <td>118</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102773" target="_blank" rel="noopener noreferrer"><img src="img/Preordain.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Preordain.html" target="_blank" rel="noopener noreferrer">Preordain</a></td>
+      <td>4.89</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>22555</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.85</td>
+      <td>53.44</td>
+      <td>0.59</td>
+      <td>683</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102529" target="_blank" rel="noopener noreferrer"><img src="img/Textbook_Tabulator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Textbook Tabulator.html" target="_blank" rel="noopener noreferrer">Textbook Tabulator</a></td>
+      <td>10.59</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>40159</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.20</td>
+      <td>53.76</td>
+      <td>0.56</td>
+      <td>186</td>
+      <td>53.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102583" target="_blank" rel="noopener noreferrer"><img src="img/Mica,_Reader_of_Ruins.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mica, Reader of Ruins.html" target="_blank" rel="noopener noreferrer">Mica, Reader of Ruins</a></td>
+      <td>8.95</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>94275</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.65</td>
+      <td>57.20</td>
+      <td>0.55</td>
+      <td>1035</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>91993</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.20</td>
+      <td>55.68</td>
+      <td>0.48</td>
+      <td>774</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102769" target="_blank" rel="noopener noreferrer"><img src="img/Disdainful_Stroke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Disdainful Stroke.html" target="_blank" rel="noopener noreferrer">Disdainful Stroke</a></td>
+      <td>6.56</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60371</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.85</td>
+      <td>55.21</td>
+      <td>0.36</td>
+      <td>1324</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>13753</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.75</td>
+      <td>56.00</td>
+      <td>0.25</td>
+      <td>625</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102502" target="_blank" rel="noopener noreferrer"><img src="img/Divergent_Equation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Divergent Equation.html" target="_blank" rel="noopener noreferrer">Divergent Equation</a></td>
+      <td>6.14</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>68521</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.15</td>
+      <td>55.33</td>
+      <td>0.18</td>
+      <td>732</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102670" target="_blank" rel="noopener noreferrer"><img src="img/Prismari_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Prismari Charm.html" target="_blank" rel="noopener noreferrer">Prismari Charm</a></td>
+      <td>5.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>77975</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.10</td>
+      <td>56.11</td>
+      <td>0.01</td>
+      <td>802</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102699" target="_blank" rel="noopener noreferrer"><img src="img/Vibrant_Outburst.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vibrant Outburst.html" target="_blank" rel="noopener noreferrer">Vibrant Outburst</a></td>
+      <td>4.13</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>75367</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.75</td>
+      <td>53.55</td>
+      <td>-0.20</td>
+      <td>1029</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102691" target="_blank" rel="noopener noreferrer"><img src="img/Stadium_Tidalmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stadium Tidalmage.html" target="_blank" rel="noopener noreferrer">Stadium Tidalmage</a></td>
+      <td>10.02</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>71781</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.50</td>
+      <td>54.27</td>
+      <td>-0.23</td>
+      <td>328</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102680" target="_blank" rel="noopener noreferrer"><img src="img/Resonating_Lute.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Resonating Lute.html" target="_blank" rel="noopener noreferrer">Resonating Lute</a></td>
+      <td>2.90</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>41789</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.25</td>
+      <td>53.98</td>
+      <td>-0.27</td>
+      <td>578</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102588" target="_blank" rel="noopener noreferrer"><img src="img/Seize_the_Spoils.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Seize the Spoils.html" target="_blank" rel="noopener noreferrer">Seize the Spoils</a></td>
+      <td>9.13</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>97535</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.90</td>
+      <td>55.56</td>
+      <td>-0.34</td>
+      <td>558</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102789" target="_blank" rel="noopener noreferrer"><img src="img/Abrade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abrade.html" target="_blank" rel="noopener noreferrer">Abrade</a></td>
+      <td>3.40</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>85799</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.45</td>
+      <td>55.05</td>
+      <td>-0.40</td>
+      <td>109</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102723" target="_blank" rel="noopener noreferrer"><img src="img/Sundown_Pass.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundown Pass.html" target="_blank" rel="noopener noreferrer">Sundown Pass</a></td>
+      <td>5.03</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>15709</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.15</td>
+      <td>54.75</td>
+      <td>-0.40</td>
+      <td>895</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102508" target="_blank" rel="noopener noreferrer"><img src="img/Flow_State.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flow State.html" target="_blank" rel="noopener noreferrer">Flow State</a></td>
+      <td>4.58</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>1691</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.65</td>
+      <td>55.19</td>
+      <td>-0.46</td>
+      <td>154</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102465" target="_blank" rel="noopener noreferrer"><img src="img/Ajani's_Response.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ajani's Response.html" target="_blank" rel="noopener noreferrer">Ajani's Response</a></td>
+      <td>6.23</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>47983</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.65</td>
+      <td>52.15</td>
+      <td>-0.50</td>
+      <td>163</td>
+      <td>52.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102607" target="_blank" rel="noopener noreferrer"><img src="img/Follow_the_Lumarets.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Follow the Lumarets.html" target="_blank" rel="noopener noreferrer">Follow the Lumarets</a></td>
+      <td>10.67</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83517</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.00</td>
+      <td>55.26</td>
+      <td>-0.74</td>
+      <td>190</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102716" target="_blank" rel="noopener noreferrer"><img src="img/Great_Hall_of_the_Biblioplex.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Great Hall of the Biblioplex.html" target="_blank" rel="noopener noreferrer">Great Hall of the Biblioplex</a></td>
+      <td>4.61</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>62001</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.65</td>
+      <td>52.84</td>
+      <td>-0.81</td>
+      <td>229</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td>6.15</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>72433</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.05</td>
+      <td>55.18</td>
+      <td>-0.87</td>
+      <td>879</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102682" target="_blank" rel="noopener noreferrer"><img src="img/Sanar,_Unfinished_Genius.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sanar, Unfinished Genius.html" target="_blank" rel="noopener noreferrer">Sanar, Unfinished Genius</a></td>
+      <td>4.32</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>100143</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.00</td>
+      <td>53.90</td>
+      <td>-1.10</td>
+      <td>141</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102797" target="_blank" rel="noopener noreferrer"><img src="img/Monstrous_Rage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Monstrous Rage.html" target="_blank" rel="noopener noreferrer">Monstrous Rage</a></td>
+      <td>7.42</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>18643</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>57.35</td>
+      <td>56.22</td>
+      <td>-1.13</td>
+      <td>233</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102517" target="_blank" rel="noopener noreferrer"><img src="img/Mathemagics.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mathemagics.html" target="_blank" rel="noopener noreferrer">Mathemagics</a></td>
+      <td>2.44</td>
+      <td>U</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>74389</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.80</td>
+      <td>51.65</td>
+      <td>-1.15</td>
+      <td>575</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102688" target="_blank" rel="noopener noreferrer"><img src="img/Spectacular_Skywhale.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacular Skywhale.html" target="_blank" rel="noopener noreferrer">Spectacular Skywhale</a></td>
+      <td>5.86</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>20599</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.85</td>
+      <td>51.65</td>
+      <td>-1.20</td>
+      <td>908</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102523" target="_blank" rel="noopener noreferrer"><img src="img/Procrastinate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Procrastinate.html" target="_blank" rel="noopener noreferrer">Procrastinate</a></td>
+      <td>10.07</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>16361</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.50</td>
+      <td>51.08</td>
+      <td>-1.42</td>
+      <td>278</td>
+      <td>51.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td>10.13</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>68847</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.95</td>
+      <td>52.42</td>
+      <td>-1.53</td>
+      <td>124</td>
+      <td>54.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102671" target="_blank" rel="noopener noreferrer"><img src="img/Prismari,_the_Inspiration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Prismari, the Inspiration.html" target="_blank" rel="noopener noreferrer">Prismari, the Inspiration</a></td>
+      <td>2.27</td>
+      <td>UR</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>56133</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>58.60</td>
+      <td>57.00</td>
+      <td>-1.60</td>
+      <td>100</td>
+      <td>63.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102632" target="_blank" rel="noopener noreferrer"><img src="img/Ark_of_Hunger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ark of Hunger.html" target="_blank" rel="noopener noreferrer">Ark of Hunger</a></td>
+      <td>2.02</td>
+      <td>WR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>64609</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.75</td>
+      <td>53.04</td>
+      <td>-1.71</td>
+      <td>115</td>
+      <td>56.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102658" target="_blank" rel="noopener noreferrer"><img src="img/Lluwen,_Exchange_Student.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Lluwen, Exchange Student.html" target="_blank" rel="noopener noreferrer">Lluwen, Exchange Student</a></td>
+      <td>4.83</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>42441</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.25</td>
+      <td>50.44</td>
+      <td>-1.81</td>
+      <td>226</td>
+      <td>51.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102590" target="_blank" rel="noopener noreferrer"><img src="img/Strife_Scholar.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strife Scholar.html" target="_blank" rel="noopener noreferrer">Strife Scholar</a></td>
+      <td>10.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>40485</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.60</td>
+      <td>54.51</td>
+      <td>-2.09</td>
+      <td>233</td>
+      <td>59.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102584" target="_blank" rel="noopener noreferrer"><img src="img/Molten-Core_Maestro.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Molten-Core Maestro.html" target="_blank" rel="noopener noreferrer">Molten-Core Maestro</a></td>
+      <td>1.93</td>
+      <td>R</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>16035</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>51.15</td>
+      <td>48.78</td>
+      <td>-2.37</td>
+      <td>205</td>
+      <td>49.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102509" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Anomaly.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Anomaly.html" target="_blank" rel="noopener noreferrer">Fractal Anomaly</a></td>
+      <td>10.73</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>26793</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>56.05</td>
+      <td>53.53</td>
+      <td>-2.52</td>
+      <td>170</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102542" target="_blank" rel="noopener noreferrer"><img src="img/Foolish_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Foolish Fate.html" target="_blank" rel="noopener noreferrer">Foolish Fate</a></td>
+      <td>3.19</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>83191</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.70</td>
+      <td>51.59</td>
+      <td>-3.11</td>
+      <td>314</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102715" target="_blank" rel="noopener noreferrer"><img src="img/Forum_of_Amity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum of Amity.html" target="_blank" rel="noopener noreferrer">Forum of Amity</a></td>
+      <td>7.95</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>18317</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.60</td>
+      <td>52.39</td>
+      <td>-3.21</td>
+      <td>418</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102516" target="_blank" rel="noopener noreferrer"><img src="img/Mana_Sculpt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mana Sculpt.html" target="_blank" rel="noopener noreferrer">Mana Sculpt</a></td>
+      <td>4.24</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>55481</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>51.95</td>
+      <td>48.46</td>
+      <td>-3.49</td>
+      <td>553</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102630" target="_blank" rel="noopener noreferrer"><img src="img/Abstract_Paintmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abstract Paintmage.html" target="_blank" rel="noopener noreferrer">Abstract Paintmage</a></td>
+      <td>7.34</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>93949</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.35</td>
+      <td>50.61</td>
+      <td>-3.74</td>
+      <td>247</td>
+      <td>55.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102775" target="_blank" rel="noopener noreferrer"><img src="img/Spell_Pierce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spell Pierce.html" target="_blank" rel="noopener noreferrer">Spell Pierce</a></td>
+      <td>9.26</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>94601</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.60</td>
+      <td>51.52</td>
+      <td>-4.08</td>
+      <td>165</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102778" target="_blank" rel="noopener noreferrer"><img src="img/Bitter_Triumph.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Bitter Triumph.html" target="_blank" rel="noopener noreferrer">Bitter Triumph</a></td>
+      <td>3.36</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>22881</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.55</td>
+      <td>51.44</td>
+      <td>-4.11</td>
+      <td>208</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102530" target="_blank" rel="noopener noreferrer"><img src="img/Wisdom_of_Ages.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wisdom of Ages.html" target="_blank" rel="noopener noreferrer">Wisdom of Ages</a></td>
+      <td>4.74</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>60697</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.95</td>
+      <td>51.72</td>
+      <td>-4.23</td>
+      <td>116</td>
+      <td>58.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102646" target="_blank" rel="noopener noreferrer"><img src="img/Essenceknit_Scholar.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essenceknit Scholar.html" target="_blank" rel="noopener noreferrer">Essenceknit Scholar</a></td>
+      <td>4.33</td>
+      <td>BG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>53199</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.90</td>
+      <td>50.34</td>
+      <td>-4.56</td>
+      <td>145</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102623" target="_blank" rel="noopener noreferrer"><img src="img/Thornfist_Striker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Thornfist Striker.html" target="_blank" rel="noopener noreferrer">Thornfist Striker</a></td>
+      <td>6.69</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>39833</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>55.10</td>
+      <td>50.40</td>
+      <td>-4.70</td>
+      <td>252</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102582" target="_blank" rel="noopener noreferrer"><img src="img/Magmablood_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Magmablood Archaic.html" target="_blank" rel="noopener noreferrer">Magmablood Archaic</a></td>
+      <td>2.47</td>
+      <td>R</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>57437</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>54.40</td>
+      <td>49.33</td>
+      <td>-5.07</td>
+      <td>150</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102636" target="_blank" rel="noopener noreferrer"><img src="img/Bogwater_Lumaret.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Bogwater Lumaret.html" target="_blank" rel="noopener noreferrer">Bogwater Lumaret</a></td>
+      <td>6.39</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44723</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.20</td>
+      <td>46.86</td>
+      <td>-5.34</td>
+      <td>271</td>
+      <td>51.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102597" target="_blank" rel="noopener noreferrer"><img src="img/Aberrant_Manawurm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Aberrant Manawurm.html" target="_blank" rel="noopener noreferrer">Aberrant Manawurm</a></td>
+      <td>8.91</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>71129</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.50</td>
+      <td>48.09</td>
+      <td>-5.41</td>
+      <td>549</td>
+      <td>53.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102678" target="_blank" rel="noopener noreferrer"><img src="img/Rapturous_Moment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rapturous Moment.html" target="_blank" rel="noopener noreferrer">Rapturous Moment</a></td>
+      <td>7.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>80909</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>53.65</td>
+      <td>47.87</td>
+      <td>-5.78</td>
+      <td>188</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102708" target="_blank" rel="noopener noreferrer"><img src="img/Mage_Tower_Referee.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mage Tower Referee.html" target="_blank" rel="noopener noreferrer">Mage Tower Referee</a></td>
+      <td>10.65</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>24511</th>
+      <td>uncommon</td>
+      <td>U</td>
+      <td>7.25</td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>53.3</td>
+      <td>52.40</td>
+      <td>42.00</td>
+      <td>-10.40</td>
+      <td>100</td>
+      <td>51.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102535" target="_blank" rel="noopener noreferrer"><img src="img/Cheerful_Osteomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cheerful Osteomancer.html" target="_blank" rel="noopener noreferrer">Cheerful Osteomancer</a></td>
+      <td>9.18</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+  </tbody>
+</table>

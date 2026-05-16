@@ -1,0 +1,1917 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1168</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>59.85</td>
+      <td>76.85</td>
+      <td>17.00</td>
+      <td>108</td>
+      <td>65.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102463" target="_blank" rel="noopener noreferrer"><img src="img/Together_as_One.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Together as One.html" target="_blank" rel="noopener noreferrer">Together as One</a></td>
+      <td>2.04</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>18772</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>57.70</td>
+      <td>68.03</td>
+      <td>10.33</td>
+      <td>122</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102517" target="_blank" rel="noopener noreferrer"><img src="img/Mathemagics.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mathemagics.html" target="_blank" rel="noopener noreferrer">Mathemagics</a></td>
+      <td>2.44</td>
+      <td>U</td>
+      <td>mythic</td>
+    </tr>
+    <tr>
+      <th>15838</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.50</td>
+      <td>65.38</td>
+      <td>9.88</td>
+      <td>208</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102508" target="_blank" rel="noopener noreferrer"><img src="img/Flow_State.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flow State.html" target="_blank" rel="noopener noreferrer">Flow State</a></td>
+      <td>4.58</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>65716</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.05</td>
+      <td>64.77</td>
+      <td>8.72</td>
+      <td>298</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102661" target="_blank" rel="noopener noreferrer"><img src="img/Mind_into_Matter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mind into Matter.html" target="_blank" rel="noopener noreferrer">Mind into Matter</a></td>
+      <td>2.66</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>45504</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>57.10</td>
+      <td>64.77</td>
+      <td>7.67</td>
+      <td>176</td>
+      <td>60.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102599" target="_blank" rel="noopener noreferrer"><img src="img/Ambitious_Augmenter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ambitious Augmenter.html" target="_blank" rel="noopener noreferrer">Ambitious Augmenter</a></td>
+      <td>2.15</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>69954</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.90</td>
+      <td>60.37</td>
+      <td>6.47</td>
+      <td>1181</td>
+      <td>53.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102674" target="_blank" rel="noopener noreferrer"><img src="img/Pterafractyl.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pterafractyl.html" target="_blank" rel="noopener noreferrer">Pterafractyl</a></td>
+      <td>8.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>53654</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.40</td>
+      <td>60.56</td>
+      <td>6.16</td>
+      <td>393</td>
+      <td>54.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102624" target="_blank" rel="noopener noreferrer"><img src="img/Topiary_Lecturer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Topiary Lecturer.html" target="_blank" rel="noopener noreferrer">Topiary Lecturer</a></td>
+      <td>5.81</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>91796</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.65</td>
+      <td>61.76</td>
+      <td>6.11</td>
+      <td>170</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102768" target="_blank" rel="noopener noreferrer"><img src="img/Deduce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deduce.html" target="_blank" rel="noopener noreferrer">Deduce</a></td>
+      <td>6.89</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82668</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.35</td>
+      <td>61.14</td>
+      <td>5.79</td>
+      <td>193</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102713" target="_blank" rel="noopener noreferrer"><img src="img/Dreamroot_Cascade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Dreamroot Cascade.html" target="_blank" rel="noopener noreferrer">Dreamroot Cascade</a></td>
+      <td>4.80</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>16816</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.75</td>
+      <td>59.52</td>
+      <td>5.77</td>
+      <td>126</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102511" target="_blank" rel="noopener noreferrer"><img src="img/Harmonized_Trio.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Harmonized Trio.html" target="_blank" rel="noopener noreferrer">Harmonized Trio</a></td>
+      <td>4.08</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>61804</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.75</td>
+      <td>59.38</td>
+      <td>5.63</td>
+      <td>421</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102649" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Tender.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Tender.html" target="_blank" rel="noopener noreferrer">Fractal Tender</a></td>
+      <td>6.31</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>55936</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.25</td>
+      <td>61.82</td>
+      <td>5.57</td>
+      <td>275</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102631" target="_blank" rel="noopener noreferrer"><img src="img/Applied_Geometry.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Applied Geometry.html" target="_blank" rel="noopener noreferrer">Applied Geometry</a></td>
+      <td>2.46</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>67672</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.35</td>
+      <td>61.65</td>
+      <td>5.30</td>
+      <td>644</td>
+      <td>58.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102667" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Surveyor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Surveyor.html" target="_blank" rel="noopener noreferrer">Paradox Surveyor</a></td>
+      <td>5.40</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52024</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.70</td>
+      <td>61.95</td>
+      <td>5.25</td>
+      <td>226</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102619" target="_blank" rel="noopener noreferrer"><img src="img/Slumbering_Trudge.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Slumbering Trudge.html" target="_blank" rel="noopener noreferrer">Slumbering Trudge</a></td>
+      <td>2.25</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>86580</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.75</td>
+      <td>59.87</td>
+      <td>5.12</td>
+      <td>461</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102725" target="_blank" rel="noopener noreferrer"><img src="img/Titan's_Grave.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Titan's Grave.html" target="_blank" rel="noopener noreferrer">Titan's Grave</a></td>
+      <td>7.67</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>47460</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.75</td>
+      <td>58.78</td>
+      <td>5.03</td>
+      <td>296</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102605" target="_blank" rel="noopener noreferrer"><img src="img/Emil,_Vastlands_Roamer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Emil, Vastlands Roamer.html" target="_blank" rel="noopener noreferrer">Emil, Vastlands Roamer</a></td>
+      <td>5.97</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>17794</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.80</td>
+      <td>61.67</td>
+      <td>4.87</td>
+      <td>180</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102514" target="_blank" rel="noopener noreferrer"><img src="img/Jadzi,_Steward_of_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Jadzi, Steward of Fate.html" target="_blank" rel="noopener noreferrer">Jadzi, Steward of Fate</a></td>
+      <td>1.96</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>83972</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.15</td>
+      <td>60.00</td>
+      <td>4.85</td>
+      <td>1005</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>76474</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>57.15</td>
+      <td>62.00</td>
+      <td>4.85</td>
+      <td>150</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102694" target="_blank" rel="noopener noreferrer"><img src="img/Stress_Dream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stress Dream.html" target="_blank" rel="noopener noreferrer">Stress Dream</a></td>
+      <td>3.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>46156</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>52.25</td>
+      <td>56.92</td>
+      <td>4.67</td>
+      <td>130</td>
+      <td>50.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102601" target="_blank" rel="noopener noreferrer"><img src="img/Chelonian_Tackle.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Chelonian Tackle.html" target="_blank" rel="noopener noreferrer">Chelonian Tackle</a></td>
+      <td>9.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>53980</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.50</td>
+      <td>60.00</td>
+      <td>4.50</td>
+      <td>110</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102625" target="_blank" rel="noopener noreferrer"><img src="img/Vastlands_Scavenger.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vastlands Scavenger.html" target="_blank" rel="noopener noreferrer">Vastlands Scavenger</a></td>
+      <td>2.20</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>61478</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.20</td>
+      <td>58.50</td>
+      <td>4.30</td>
+      <td>665</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102648" target="_blank" rel="noopener noreferrer"><img src="img/Fractal_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractal Mascot.html" target="_blank" rel="noopener noreferrer">Fractal Mascot</a></td>
+      <td>9.71</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>47786</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>57.70</td>
+      <td>61.88</td>
+      <td>4.18</td>
+      <td>383</td>
+      <td>61.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102606" target="_blank" rel="noopener noreferrer"><img src="img/Environmental_Scientist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Environmental Scientist.html" target="_blank" rel="noopener noreferrer">Environmental Scientist</a></td>
+      <td>3.10</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>51046</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.55</td>
+      <td>60.69</td>
+      <td>4.14</td>
+      <td>262</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102616" target="_blank" rel="noopener noreferrer"><img src="img/Pestbrood_Sloth.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pestbrood Sloth.html" target="_blank" rel="noopener noreferrer">Pestbrood Sloth</a></td>
+      <td>4.49</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>34746</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.50</td>
+      <td>59.46</td>
+      <td>3.96</td>
+      <td>111</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102566" target="_blank" rel="noopener noreferrer"><img src="img/Archaic's_Agony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Archaic's Agony.html" target="_blank" rel="noopener noreferrer">Archaic's Agony</a></td>
+      <td>8.19</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>54306</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.15</td>
+      <td>57.07</td>
+      <td>3.92</td>
+      <td>778</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102626" target="_blank" rel="noopener noreferrer"><img src="img/Wild_Hypothesis.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wild Hypothesis.html" target="_blank" rel="noopener noreferrer">Wild Hypothesis</a></td>
+      <td>10.44</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>20402</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.45</td>
+      <td>60.12</td>
+      <td>3.67</td>
+      <td>173</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102522" target="_blank" rel="noopener noreferrer"><img src="img/Pensive_Professor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pensive Professor.html" target="_blank" rel="noopener noreferrer">Pensive Professor</a></td>
+      <td>2.11</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>70606</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.80</td>
+      <td>59.46</td>
+      <td>3.66</td>
+      <td>518</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102676" target="_blank" rel="noopener noreferrer"><img src="img/Quandrix_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quandrix Charm.html" target="_blank" rel="noopener noreferrer">Quandrix Charm</a></td>
+      <td>6.73</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>45178</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.80</td>
+      <td>59.45</td>
+      <td>3.65</td>
+      <td>328</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102598" target="_blank" rel="noopener noreferrer"><img src="img/Additive_Evolution.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Additive Evolution.html" target="_blank" rel="noopener noreferrer">Additive Evolution</a></td>
+      <td>4.44</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>17142</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.05</td>
+      <td>58.49</td>
+      <td>3.44</td>
+      <td>212</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102512" target="_blank" rel="noopener noreferrer"><img src="img/Homesickness.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Homesickness.html" target="_blank" rel="noopener noreferrer">Homesickness</a></td>
+      <td>6.62</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>516</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.05</td>
+      <td>57.49</td>
+      <td>3.44</td>
+      <td>167</td>
+      <td>54.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102461" target="_blank" rel="noopener noreferrer"><img src="img/Rancorous_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rancorous Archaic.html" target="_blank" rel="noopener noreferrer">Rancorous Archaic</a></td>
+      <td>10.56</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>92122</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.55</td>
+      <td>58.58</td>
+      <td>3.03</td>
+      <td>239</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102769" target="_blank" rel="noopener noreferrer"><img src="img/Disdainful_Stroke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Disdainful Stroke.html" target="_blank" rel="noopener noreferrer">Disdainful Stroke</a></td>
+      <td>6.56</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>49416</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.20</td>
+      <td>57.19</td>
+      <td>2.99</td>
+      <td>299</td>
+      <td>54.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102611" target="_blank" rel="noopener noreferrer"><img src="img/Infirmary_Healer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Infirmary Healer.html" target="_blank" rel="noopener noreferrer">Infirmary Healer</a></td>
+      <td>6.79</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>22032</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>52.55</td>
+      <td>55.41</td>
+      <td>2.86</td>
+      <td>222</td>
+      <td>51.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102527" target="_blank" rel="noopener noreferrer"><img src="img/Spellbook_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spellbook Seeker.html" target="_blank" rel="noopener noreferrer">Spellbook Seeker</a></td>
+      <td>10.09</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>22358</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.25</td>
+      <td>57.10</td>
+      <td>2.85</td>
+      <td>303</td>
+      <td>54.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102528" target="_blank" rel="noopener noreferrer"><img src="img/Tester_of_the_Tangential.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tester of the Tangential.html" target="_blank" rel="noopener noreferrer">Tester of the Tangential</a></td>
+      <td>6.37</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>77126</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.20</td>
+      <td>56.03</td>
+      <td>2.83</td>
+      <td>373</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102696" target="_blank" rel="noopener noreferrer"><img src="img/Tam,_Observant_Sequencer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tam, Observant Sequencer.html" target="_blank" rel="noopener noreferrer">Tam, Observant Sequencer</a></td>
+      <td>5.37</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>20728</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.20</td>
+      <td>56.03</td>
+      <td>2.83</td>
+      <td>514</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102523" target="_blank" rel="noopener noreferrer"><img src="img/Procrastinate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Procrastinate.html" target="_blank" rel="noopener noreferrer">Procrastinate</a></td>
+      <td>10.07</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85602</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.65</td>
+      <td>58.20</td>
+      <td>2.55</td>
+      <td>122</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102722" target="_blank" rel="noopener noreferrer"><img src="img/Stormcarved_Coast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stormcarved Coast.html" target="_blank" rel="noopener noreferrer">Stormcarved Coast</a></td>
+      <td>4.76</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>52350</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>57.95</td>
+      <td>60.47</td>
+      <td>2.52</td>
+      <td>301</td>
+      <td>61.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102620" target="_blank" rel="noopener noreferrer"><img src="img/Snarl_Song.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snarl Song.html" target="_blank" rel="noopener noreferrer">Snarl Song</a></td>
+      <td>4.65</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>77778</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>57.30</td>
+      <td>59.57</td>
+      <td>2.27</td>
+      <td>141</td>
+      <td>60.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102698" target="_blank" rel="noopener noreferrer"><img src="img/Traumatic_Critique.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Traumatic Critique.html" target="_blank" rel="noopener noreferrer">Traumatic Critique</a></td>
+      <td>2.09</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>56914</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.70</td>
+      <td>56.94</td>
+      <td>2.24</td>
+      <td>216</td>
+      <td>55.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102634" target="_blank" rel="noopener noreferrer"><img src="img/Berta,_Wise_Extrapolator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Berta, Wise Extrapolator.html" target="_blank" rel="noopener noreferrer">Berta, Wise Extrapolator</a></td>
+      <td>2.37</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>50394</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.85</td>
+      <td>56.99</td>
+      <td>2.14</td>
+      <td>672</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102614" target="_blank" rel="noopener noreferrer"><img src="img/Noxious_Newt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Noxious Newt.html" target="_blank" rel="noopener noreferrer">Noxious Newt</a></td>
+      <td>6.17</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>85276</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.35</td>
+      <td>57.46</td>
+      <td>2.11</td>
+      <td>536</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>18120</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.70</td>
+      <td>55.73</td>
+      <td>2.03</td>
+      <td>323</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102515" target="_blank" rel="noopener noreferrer"><img src="img/Landscape_Painter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Landscape Painter.html" target="_blank" rel="noopener noreferrer">Landscape Painter</a></td>
+      <td>8.96</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>13556</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.10</td>
+      <td>54.95</td>
+      <td>1.85</td>
+      <td>222</td>
+      <td>52.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102501" target="_blank" rel="noopener noreferrer"><img src="img/Deluge_Virtuoso.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deluge Virtuoso.html" target="_blank" rel="noopener noreferrer">Deluge Virtuoso</a></td>
+      <td>9.53</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>69302</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.00</td>
+      <td>57.65</td>
+      <td>1.65</td>
+      <td>510</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102672" target="_blank" rel="noopener noreferrer"><img src="img/Proctor's_Gaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Proctor's Gaze.html" target="_blank" rel="noopener noreferrer">Proctor's Gaze</a></td>
+      <td>5.12</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82994</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.70</td>
+      <td>57.32</td>
+      <td>1.62</td>
+      <td>164</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19098</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.25</td>
+      <td>57.84</td>
+      <td>1.59</td>
+      <td>408</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102518" target="_blank" rel="noopener noreferrer"><img src="img/Matterbending_Mage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Matterbending Mage.html" target="_blank" rel="noopener noreferrer">Matterbending Mage</a></td>
+      <td>4.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>12252</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.75</td>
+      <td>56.33</td>
+      <td>1.58</td>
+      <td>371</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102497" target="_blank" rel="noopener noreferrer"><img src="img/Banishing_Betrayal.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Banishing Betrayal.html" target="_blank" rel="noopener noreferrer">Banishing Betrayal</a></td>
+      <td>8.95</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>12904</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.10</td>
+      <td>55.63</td>
+      <td>1.53</td>
+      <td>151</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102499" target="_blank" rel="noopener noreferrer"><img src="img/Campus_Composer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Campus Composer.html" target="_blank" rel="noopener noreferrer">Campus Composer</a></td>
+      <td>6.28</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>54958</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.45</td>
+      <td>54.95</td>
+      <td>1.50</td>
+      <td>202</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102628" target="_blank" rel="noopener noreferrer"><img src="img/Zimone's_Experiment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zimone's Experiment.html" target="_blank" rel="noopener noreferrer">Zimone's Experiment</a></td>
+      <td>8.55</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>21380</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.80</td>
+      <td>57.30</td>
+      <td>1.50</td>
+      <td>555</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>14860</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>52.30</td>
+      <td>53.75</td>
+      <td>1.45</td>
+      <td>160</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102505" target="_blank" rel="noopener noreferrer"><img src="img/Encouraging_Aviator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Encouraging Aviator.html" target="_blank" rel="noopener noreferrer">Encouraging Aviator</a></td>
+      <td>7.51</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52676</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.55</td>
+      <td>56.67</td>
+      <td>1.12</td>
+      <td>697</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102621" target="_blank" rel="noopener noreferrer"><img src="img/Studious_First-Year.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Studious First-Year.html" target="_blank" rel="noopener noreferrer">Studious First-Year</a></td>
+      <td>4.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>842</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.55</td>
+      <td>57.64</td>
+      <td>1.09</td>
+      <td>229</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102462" target="_blank" rel="noopener noreferrer"><img src="img/Sundering_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundering Archaic.html" target="_blank" rel="noopener noreferrer">Sundering Archaic</a></td>
+      <td>5.64</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81690</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.75</td>
+      <td>56.82</td>
+      <td>1.07</td>
+      <td>352</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>49090</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>52.60</td>
+      <td>53.67</td>
+      <td>1.07</td>
+      <td>177</td>
+      <td>51.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102610" target="_blank" rel="noopener noreferrer"><img src="img/Hungry_Graffalon.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hungry Graffalon.html" target="_blank" rel="noopener noreferrer">Hungry Graffalon</a></td>
+      <td>11.46</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>102880</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.45</td>
+      <td>56.52</td>
+      <td>1.07</td>
+      <td>322</td>
+      <td>56.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102806" target="_blank" rel="noopener noreferrer"><img src="img/Knockout_Maneuver.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Knockout Maneuver.html" target="_blank" rel="noopener noreferrer">Knockout Maneuver</a></td>
+      <td>5.34</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>54632</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.35</td>
+      <td>56.39</td>
+      <td>1.04</td>
+      <td>133</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102627" target="_blank" rel="noopener noreferrer"><img src="img/Wildgrowth_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wildgrowth Archaic.html" target="_blank" rel="noopener noreferrer">Wildgrowth Archaic</a></td>
+      <td>1.91</td>
+      <td>G</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>17468</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.50</td>
+      <td>55.50</td>
+      <td>1.00</td>
+      <td>409</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19424</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.45</td>
+      <td>54.38</td>
+      <td>0.93</td>
+      <td>217</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102519" target="_blank" rel="noopener noreferrer"><img src="img/Muse_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse Seeker.html" target="_blank" rel="noopener noreferrer">Muse Seeker</a></td>
+      <td>6.29</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>78756</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.25</td>
+      <td>56.15</td>
+      <td>0.90</td>
+      <td>187</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>103532</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.05</td>
+      <td>55.85</td>
+      <td>0.80</td>
+      <td>188</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102808" target="_blank" rel="noopener noreferrer"><img src="img/Royal_Treatment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Royal Treatment.html" target="_blank" rel="noopener noreferrer">Royal Treatment</a></td>
+      <td>7.47</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>53002</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.20</td>
+      <td>53.79</td>
+      <td>0.59</td>
+      <td>145</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102622" target="_blank" rel="noopener noreferrer"><img src="img/Tenured_Concocter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tenured Concocter.html" target="_blank" rel="noopener noreferrer">Tenured Concocter</a></td>
+      <td>10.55</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>62130</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.00</td>
+      <td>54.50</td>
+      <td>0.50</td>
+      <td>3044</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td>6.15</td>
+      <td>UG</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>1494</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.65</td>
+      <td>55.88</td>
+      <td>0.23</td>
+      <td>170</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102464" target="_blank" rel="noopener noreferrer"><img src="img/Transcendent_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Transcendent Archaic.html" target="_blank" rel="noopener noreferrer">Transcendent Archaic</a></td>
+      <td>7.13</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>15186</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.60</td>
+      <td>55.78</td>
+      <td>0.18</td>
+      <td>597</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>83320</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.05</td>
+      <td>55.17</td>
+      <td>0.12</td>
+      <td>116</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102715" target="_blank" rel="noopener noreferrer"><img src="img/Forum_of_Amity.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Forum of Amity.html" target="_blank" rel="noopener noreferrer">Forum of Amity</a></td>
+      <td>7.95</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86254</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.35</td>
+      <td>55.36</td>
+      <td>0.01</td>
+      <td>466</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>33768</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.95</td>
+      <td>54.89</td>
+      <td>-0.06</td>
+      <td>133</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102563" target="_blank" rel="noopener noreferrer"><img src="img/Wander_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wander Off.html" target="_blank" rel="noopener noreferrer">Wander Off</a></td>
+      <td>5.21</td>
+      <td>B</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44852</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>52.55</td>
+      <td>52.48</td>
+      <td>-0.07</td>
+      <td>141</td>
+      <td>51.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102597" target="_blank" rel="noopener noreferrer"><img src="img/Aberrant_Manawurm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Aberrant Manawurm.html" target="_blank" rel="noopener noreferrer">Aberrant Manawurm</a></td>
+      <td>8.91</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60500</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.20</td>
+      <td>55.07</td>
+      <td>-0.13</td>
+      <td>710</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>19750</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.40</td>
+      <td>53.21</td>
+      <td>-0.19</td>
+      <td>109</td>
+      <td>52.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102520" target="_blank" rel="noopener noreferrer"><img src="img/Muse's_Encouragement.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse's Encouragement.html" target="_blank" rel="noopener noreferrer">Muse's Encouragement</a></td>
+      <td>10.29</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>16490</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>52.85</td>
+      <td>52.50</td>
+      <td>-0.35</td>
+      <td>240</td>
+      <td>51.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102510" target="_blank" rel="noopener noreferrer"><img src="img/Fractalize.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fractalize.html" target="_blank" rel="noopener noreferrer">Fractalize</a></td>
+      <td>10.13</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>45830</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.75</td>
+      <td>54.35</td>
+      <td>-0.40</td>
+      <td>563</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102600" target="_blank" rel="noopener noreferrer"><img src="img/Burrog_Barrage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burrog Barrage.html" target="_blank" rel="noopener noreferrer">Burrog Barrage</a></td>
+      <td>7.66</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>94404</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>57.00</td>
+      <td>56.52</td>
+      <td>-0.48</td>
+      <td>299</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>22684</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.20</td>
+      <td>52.65</td>
+      <td>-0.55</td>
+      <td>283</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102529" target="_blank" rel="noopener noreferrer"><img src="img/Textbook_Tabulator.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Textbook Tabulator.html" target="_blank" rel="noopener noreferrer">Textbook Tabulator</a></td>
+      <td>10.59</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>20076</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.65</td>
+      <td>52.84</td>
+      <td>-0.81</td>
+      <td>229</td>
+      <td>53.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102521" target="_blank" rel="noopener noreferrer"><img src="img/Orysa,_Tide_Choreographer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Orysa, Tide Choreographer.html" target="_blank" rel="noopener noreferrer">Orysa, Tide Choreographer</a></td>
+      <td>7.25</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82016</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.70</td>
+      <td>55.71</td>
+      <td>-0.99</td>
+      <td>210</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>104184</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.75</td>
+      <td>53.68</td>
+      <td>-1.07</td>
+      <td>285</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102810" target="_blank" rel="noopener noreferrer"><img src="img/Shared_Roots.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shared Roots.html" target="_blank" rel="noopener noreferrer">Shared Roots</a></td>
+      <td>5.39</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>21054</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.15</td>
+      <td>53.82</td>
+      <td>-1.33</td>
+      <td>314</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>59522</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.15</td>
+      <td>53.71</td>
+      <td>-1.44</td>
+      <td>499</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102642" target="_blank" rel="noopener noreferrer"><img src="img/Cuboid_Colony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Cuboid Colony.html" target="_blank" rel="noopener noreferrer">Cuboid Colony</a></td>
+      <td>5.79</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>13882</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.10</td>
+      <td>54.58</td>
+      <td>-1.52</td>
+      <td>295</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102502" target="_blank" rel="noopener noreferrer"><img src="img/Divergent_Equation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Divergent Equation.html" target="_blank" rel="noopener noreferrer">Divergent Equation</a></td>
+      <td>6.14</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>23662</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>57.15</td>
+      <td>55.33</td>
+      <td>-1.82</td>
+      <td>150</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102532" target="_blank" rel="noopener noreferrer"><img src="img/Arcane_Omens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arcane Omens.html" target="_blank" rel="noopener noreferrer">Arcane Omens</a></td>
+      <td>6.89</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>62456</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.40</td>
+      <td>53.11</td>
+      <td>-2.29</td>
+      <td>177</td>
+      <td>56.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102651" target="_blank" rel="noopener noreferrer"><img src="img/Grapple_with_Death.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Grapple with Death.html" target="_blank" rel="noopener noreferrer">Grapple with Death</a></td>
+      <td>5.38</td>
+      <td>BG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21706</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.65</td>
+      <td>53.19</td>
+      <td>-2.46</td>
+      <td>141</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102526" target="_blank" rel="noopener noreferrer"><img src="img/Skycoach_Conductor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Skycoach Conductor.html" target="_blank" rel="noopener noreferrer">Skycoach Conductor</a></td>
+      <td>2.58</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>50068</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.70</td>
+      <td>50.96</td>
+      <td>-2.74</td>
+      <td>157</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102613" target="_blank" rel="noopener noreferrer"><img src="img/Mindful_Biomancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mindful Biomancer.html" target="_blank" rel="noopener noreferrer">Mindful Biomancer</a></td>
+      <td>9.33</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>62782</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>50.70</td>
+      <td>47.62</td>
+      <td>-3.08</td>
+      <td>126</td>
+      <td>47.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102652" target="_blank" rel="noopener noreferrer"><img src="img/Growth_Curve.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Growth Curve.html" target="_blank" rel="noopener noreferrer">Growth Curve</a></td>
+      <td>10.80</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>51698</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>53.75</td>
+      <td>50.40</td>
+      <td>-3.35</td>
+      <td>125</td>
+      <td>53.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102618" target="_blank" rel="noopener noreferrer"><img src="img/Shopkeeper's_Bane.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Shopkeeper's Bane.html" target="_blank" rel="noopener noreferrer">Shopkeeper's Bane</a></td>
+      <td>9.83</td>
+      <td>G</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>93752</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.00</td>
+      <td>51.59</td>
+      <td>-3.41</td>
+      <td>126</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102774" target="_blank" rel="noopener noreferrer"><img src="img/Sleight_of_Hand.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sleight of Hand.html" target="_blank" rel="noopener noreferrer">Sleight of Hand</a></td>
+      <td>7.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>81038</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>54.00</td>
+      <td>49.00</td>
+      <td>-5.00</td>
+      <td>100</td>
+      <td>54.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102708" target="_blank" rel="noopener noreferrer"><img src="img/Mage_Tower_Referee.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mage Tower Referee.html" target="_blank" rel="noopener noreferrer">Mage Tower Referee</a></td>
+      <td>10.65</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44200</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.95</td>
+      <td>50.42</td>
+      <td>-5.53</td>
+      <td>119</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>18446</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>55.95</td>
+      <td>50.00</td>
+      <td>-5.95</td>
+      <td>124</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102516" target="_blank" rel="noopener noreferrer"><img src="img/Mana_Sculpt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mana Sculpt.html" target="_blank" rel="noopener noreferrer">Mana Sculpt</a></td>
+      <td>4.24</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>15512</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>57.50</td>
+      <td>51.13</td>
+      <td>-6.37</td>
+      <td>133</td>
+      <td>61.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102507" target="_blank" rel="noopener noreferrer"><img src="img/Exhibition_Tidecaller.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Exhibition Tidecaller.html" target="_blank" rel="noopener noreferrer">Exhibition Tidecaller</a></td>
+      <td>2.48</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>12578</th>
+      <td>rare</td>
+      <td>UG</td>
+      <td>6.15</td>
+      <td><a href=".//Geometer's Arthropod.html" target="_blank" rel="noopener noreferrer">Geometer's Arthropod</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102650" target="_blank" rel="noopener noreferrer"><img src="img/Geometer's_Arthropod.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>54.0</td>
+      <td>56.05</td>
+      <td>48.92</td>
+      <td>-7.13</td>
+      <td>186</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102498" target="_blank" rel="noopener noreferrer"><img src="img/Brush_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Brush Off.html" target="_blank" rel="noopener noreferrer">Brush Off</a></td>
+      <td>6.79</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+  </tbody>
+</table>

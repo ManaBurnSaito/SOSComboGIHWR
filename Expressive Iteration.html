@@ -1,0 +1,1613 @@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.css" rel="stylesheet"/>
+
+    <style>
+    /* ヘッダー全体 */
+    .header-links {
+        background-color: #f3f3f3;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    /* All / Uncommon の各行 */
+    .row-title-link {
+        font-weight: bold;
+        margin-right: 12px;
+        white-space: nowrap;
+    }
+
+    .row {
+        display: flex;                /* 横並び */
+        justify-content: center;      /* ← 中央寄せ */
+        align-items: center;
+        gap: 16px;                    /* ← 各リンクの間隔 */
+        margin: 6px 0;
+        flex-wrap: wrap;              /* 画面が狭い時に折り返す */
+    }
+
+    /* 行タイトル */
+    .row-title {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    /* リンク */
+    .header-links a {
+        padding: 2px 6px;             /* ← クリックしやすく */
+        color: #0078d4;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 現在ページ */
+    .header-links a.active {
+        color: #d40000;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    .my-table {
+            width: 100%;
+            table-layout: fixed; /* 各列幅を均等に */
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Arial Narrow", "Helvetica Neue Condensed Bold", sans-serif;
+            word-wrap: break-word; /* 長いテキストを折り返す */
+        }
+        .my-table img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+
+    <script src="https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/fh-3.3.2/sb-1.4.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+    <script defer>
+        $(document).ready(function() {
+            var table = $('.my-table').DataTable({
+                pageLength: 150,
+                select: true,
+                fixedHeader: true,
+                dom: 'iQfrtBlp',
+            });
+
+            // URLのクエリパラメータから検索文字列を取得
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q');
+            if (query) {
+                table.search(query).draw();
+                $('.dataTables_filter input').val(query);
+            }
+        });
+    </script>
+    <div class="header-links"><div class="row"><a href="ALL.html" class="row-title-link">ALL</a><a href="WU.html">WU</a><a href="WB.html">WB</a><a href="WR.html">WR</a><a href="WG.html">WG</a><a href="UB.html">UB</a><a href="UR.html">UR</a><a href="UG.html">UG</a><a href="BR.html">BR</a><a href="BG.html">BG</a><a href="RG.html">RG</a></div><div class="row"><a href="uncommon.html" class="row-title-link">Uncommon</a><a href="WU_c.html">WU</a><a href="WB_c.html">WB</a><a href="WR_c.html">WR</a><a href="WG_c.html">WG</a><a href="UB_c.html">UB</a><a href="UR_c.html">UR</a><a href="UG_c.html">UG</a><a href="BR_c.html">BR</a><a href="BG_c.html">BG</a><a href="RG_c.html">RG</a></div><div class="row"><a href="rare.html" class="row-title-link">Rare</a><a href="WU_r.html">WU</a><a href="WB_r.html">WB</a><a href="WR_r.html">WR</a><a href="WG_r.html">WG</a><a href="UB_r.html">UB</a><a href="UR_r.html">UR</a><a href="UG_r.html">UG</a><a href="BR_r.html">BR</a><a href="BG_r.html">BG</a><a href="RG_r.html">RG</a></div><div class="row"><a href="ALL_3.html" class="row-title-link">Combo+3</a><a href="WU_3.html">WU</a><a href="WB_3.html">WB</a><a href="WR_3.html">WR</a><a href="WG_3.html">WG</a><a href="UB_3.html">UB</a><a href="UR_3.html">UR</a><a href="UG_3.html">UG</a><a href="BR_3.html">BR</a><a href="BG_3.html">BG</a><a href="RG_3.html">RG</a></div></div><table border="1" class="dataframe my-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rarity</th>
+      <th>color</th>
+      <th>avg_pick</th>
+      <th>card_A</th>
+      <th>img_A</th>
+      <th>GIHWR_A</th>
+      <th>AB_AveWR</th>
+      <th>comboWR</th>
+      <th>combo+-</th>
+      <th>combo_ct</th>
+      <th>GIHWR_B</th>
+      <th>img_B</th>
+      <th>card_B</th>
+      <th>avg_pick_B</th>
+      <th>color_B</th>
+      <th>rarity_B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>23796</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>59.45</td>
+      <td>73.79</td>
+      <td>14.34</td>
+      <td>103</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102532" target="_blank" rel="noopener noreferrer"><img src="img/Arcane_Omens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Arcane Omens.html" target="_blank" rel="noopener noreferrer">Arcane Omens</a></td>
+      <td>6.89</td>
+      <td>B</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>12712</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.35</td>
+      <td>69.37</td>
+      <td>11.02</td>
+      <td>222</td>
+      <td>58.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102498" target="_blank" rel="noopener noreferrer"><img src="img/Brush_Off.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Brush Off.html" target="_blank" rel="noopener noreferrer">Brush Off</a></td>
+      <td>6.79</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>58678</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>60.60</td>
+      <td>71.05</td>
+      <td>10.45</td>
+      <td>152</td>
+      <td>62.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102639" target="_blank" rel="noopener noreferrer"><img src="img/Colorstorm_Stallion.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Colorstorm Stallion.html" target="_blank" rel="noopener noreferrer">Colorstorm Stallion</a></td>
+      <td>2.06</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>1302</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>62.15</td>
+      <td>72.55</td>
+      <td>10.40</td>
+      <td>102</td>
+      <td>65.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102463" target="_blank" rel="noopener noreferrer"><img src="img/Together_as_One.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Together as One.html" target="_blank" rel="noopener noreferrer">Together as One</a></td>
+      <td>2.04</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>1628</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.95</td>
+      <td>67.86</td>
+      <td>9.91</td>
+      <td>112</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102464" target="_blank" rel="noopener noreferrer"><img src="img/Transcendent_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Transcendent Archaic.html" target="_blank" rel="noopener noreferrer">Transcendent Archaic</a></td>
+      <td>7.13</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>52484</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>60.25</td>
+      <td>69.77</td>
+      <td>9.52</td>
+      <td>172</td>
+      <td>61.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102620" target="_blank" rel="noopener noreferrer"><img src="img/Snarl_Song.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Snarl Song.html" target="_blank" rel="noopener noreferrer">Snarl Song</a></td>
+      <td>4.65</td>
+      <td>G</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>75304</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>59.80</td>
+      <td>68.82</td>
+      <td>9.02</td>
+      <td>186</td>
+      <td>61.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102690" target="_blank" rel="noopener noreferrer"><img src="img/Splatter_Technique.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Splatter Technique.html" target="_blank" rel="noopener noreferrer">Splatter Technique</a></td>
+      <td>2.38</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>976</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.85</td>
+      <td>67.63</td>
+      <td>8.78</td>
+      <td>139</td>
+      <td>59.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102462" target="_blank" rel="noopener noreferrer"><img src="img/Sundering_Archaic.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sundering Archaic.html" target="_blank" rel="noopener noreferrer">Sundering Archaic</a></td>
+      <td>5.64</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>19232</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.55</td>
+      <td>67.18</td>
+      <td>8.63</td>
+      <td>259</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102518" target="_blank" rel="noopener noreferrer"><img src="img/Matterbending_Mage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Matterbending Mage.html" target="_blank" rel="noopener noreferrer">Matterbending Mage</a></td>
+      <td>4.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>80846</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>55.10</td>
+      <td>63.72</td>
+      <td>8.62</td>
+      <td>113</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102707" target="_blank" rel="noopener noreferrer"><img src="img/Diary_of_Dreams.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Diary of Dreams.html" target="_blank" rel="noopener noreferrer">Diary of Dreams</a></td>
+      <td>7.82</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>13690</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>55.40</td>
+      <td>63.78</td>
+      <td>8.38</td>
+      <td>254</td>
+      <td>52.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102501" target="_blank" rel="noopener noreferrer"><img src="img/Deluge_Virtuoso.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deluge Virtuoso.html" target="_blank" rel="noopener noreferrer">Deluge Virtuoso</a></td>
+      <td>9.53</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>74652</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>55.45</td>
+      <td>63.72</td>
+      <td>8.27</td>
+      <td>226</td>
+      <td>52.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102688" target="_blank" rel="noopener noreferrer"><img src="img/Spectacular_Skywhale.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacular Skywhale.html" target="_blank" rel="noopener noreferrer">Spectacular Skywhale</a></td>
+      <td>5.86</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>43356</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>55.80</td>
+      <td>63.95</td>
+      <td>8.15</td>
+      <td>233</td>
+      <td>53.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102592" target="_blank" rel="noopener noreferrer"><img src="img/Tackle_Artist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tackle Artist.html" target="_blank" rel="noopener noreferrer">Tackle Artist</a></td>
+      <td>9.60</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>60634</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.50</td>
+      <td>65.57</td>
+      <td>8.07</td>
+      <td>122</td>
+      <td>56.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102645" target="_blank" rel="noopener noreferrer"><img src="img/Embrace_the_Paradox.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Embrace the Paradox.html" target="_blank" rel="noopener noreferrer">Embrace the Paradox</a></td>
+      <td>8.57</td>
+      <td>UG</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>23144</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.20</td>
+      <td>66.22</td>
+      <td>8.02</td>
+      <td>148</td>
+      <td>57.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102530" target="_blank" rel="noopener noreferrer"><img src="img/Wisdom_of_Ages.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wisdom of Ages.html" target="_blank" rel="noopener noreferrer">Wisdom of Ages</a></td>
+      <td>4.74</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>38140</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>56.40</td>
+      <td>64.13</td>
+      <td>7.73</td>
+      <td>407</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102576" target="_blank" rel="noopener noreferrer"><img src="img/Goblin_Glasswright.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Goblin Glasswright.html" target="_blank" rel="noopener noreferrer">Goblin Glasswright</a></td>
+      <td>7.47</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>69436</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.30</td>
+      <td>66.00</td>
+      <td>7.70</td>
+      <td>100</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102672" target="_blank" rel="noopener noreferrer"><img src="img/Proctor's_Gaze.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Proctor's Gaze.html" target="_blank" rel="noopener noreferrer">Proctor's Gaze</a></td>
+      <td>5.12</td>
+      <td>UG</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>72044</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.15</td>
+      <td>64.66</td>
+      <td>7.51</td>
+      <td>133</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102680" target="_blank" rel="noopener noreferrer"><img src="img/Resonating_Lute.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Resonating Lute.html" target="_blank" rel="noopener noreferrer">Resonating Lute</a></td>
+      <td>2.90</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>21514</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.10</td>
+      <td>65.56</td>
+      <td>7.46</td>
+      <td>453</td>
+      <td>57.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102525" target="_blank" rel="noopener noreferrer"><img src="img/Run_Behind.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Run Behind.html" target="_blank" rel="noopener noreferrer">Run Behind</a></td>
+      <td>8.11</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>35858</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.00</td>
+      <td>65.38</td>
+      <td>7.38</td>
+      <td>156</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102569" target="_blank" rel="noopener noreferrer"><img src="img/Charging_Strifeknight.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Charging Strifeknight.html" target="_blank" rel="noopener noreferrer">Charging Strifeknight</a></td>
+      <td>5.77</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>85410</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.65</td>
+      <td>64.92</td>
+      <td>7.27</td>
+      <td>781</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102721" target="_blank" rel="noopener noreferrer"><img src="img/Spectacle_Summit.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spectacle Summit.html" target="_blank" rel="noopener noreferrer">Spectacle Summit</a></td>
+      <td>7.24</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>13038</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>56.40</td>
+      <td>63.48</td>
+      <td>7.08</td>
+      <td>178</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102499" target="_blank" rel="noopener noreferrer"><img src="img/Campus_Composer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Campus Composer.html" target="_blank" rel="noopener noreferrer">Campus Composer</a></td>
+      <td>6.28</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>78238</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.75</td>
+      <td>65.54</td>
+      <td>6.79</td>
+      <td>386</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102699" target="_blank" rel="noopener noreferrer"><img src="img/Vibrant_Outburst.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Vibrant Outburst.html" target="_blank" rel="noopener noreferrer">Vibrant Outburst</a></td>
+      <td>4.13</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>97798</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.55</td>
+      <td>65.11</td>
+      <td>6.56</td>
+      <td>278</td>
+      <td>58.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102789" target="_blank" rel="noopener noreferrer"><img src="img/Abrade.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abrade.html" target="_blank" rel="noopener noreferrer">Abrade</a></td>
+      <td>3.40</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>14016</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.40</td>
+      <td>64.80</td>
+      <td>6.40</td>
+      <td>250</td>
+      <td>58.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102502" target="_blank" rel="noopener noreferrer"><img src="img/Divergent_Equation.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Divergent Equation.html" target="_blank" rel="noopener noreferrer">Divergent Equation</a></td>
+      <td>6.14</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>82150</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>59.00</td>
+      <td>65.29</td>
+      <td>6.29</td>
+      <td>121</td>
+      <td>59.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102711" target="_blank" rel="noopener noreferrer"><img src="img/Strixhaven_Skycoach.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Strixhaven Skycoach.html" target="_blank" rel="noopener noreferrer">Strixhaven Skycoach</a></td>
+      <td>4.75</td>
+      <td></td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>76608</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>59.45</td>
+      <td>65.66</td>
+      <td>6.21</td>
+      <td>396</td>
+      <td>60.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102694" target="_blank" rel="noopener noreferrer"><img src="img/Stress_Dream.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stress Dream.html" target="_blank" rel="noopener noreferrer">Stress Dream</a></td>
+      <td>3.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>99102</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.80</td>
+      <td>64.89</td>
+      <td>6.09</td>
+      <td>262</td>
+      <td>59.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102793" target="_blank" rel="noopener noreferrer"><img src="img/Burst_Lightning.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Burst Lightning.html" target="_blank" rel="noopener noreferrer">Burst Lightning</a></td>
+      <td>3.28</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>40748</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>59.25</td>
+      <td>65.14</td>
+      <td>5.89</td>
+      <td>109</td>
+      <td>59.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102584" target="_blank" rel="noopener noreferrer"><img src="img/Molten-Core_Maestro.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Molten-Core Maestro.html" target="_blank" rel="noopener noreferrer">Molten-Core Maestro</a></td>
+      <td>1.93</td>
+      <td>R</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>44008</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.15</td>
+      <td>63.90</td>
+      <td>5.75</td>
+      <td>518</td>
+      <td>57.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102594" target="_blank" rel="noopener noreferrer"><img src="img/Tome_Blast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tome Blast.html" target="_blank" rel="noopener noreferrer">Tome Blast</a></td>
+      <td>5.37</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>81824</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.05</td>
+      <td>63.78</td>
+      <td>5.73</td>
+      <td>392</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102710" target="_blank" rel="noopener noreferrer"><img src="img/Potioner's_Trove.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Potioner's Trove.html" target="_blank" rel="noopener noreferrer">Potioner's Trove</a></td>
+      <td>6.13</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15320</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.90</td>
+      <td>63.52</td>
+      <td>5.62</td>
+      <td>562</td>
+      <td>57.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102506" target="_blank" rel="noopener noreferrer"><img src="img/Essence_Scatter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Essence Scatter.html" target="_blank" rel="noopener noreferrer">Essence Scatter</a></td>
+      <td>6.78</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>79216</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.05</td>
+      <td>63.64</td>
+      <td>5.59</td>
+      <td>143</td>
+      <td>57.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102702" target="_blank" rel="noopener noreferrer"><img src="img/Wilt_in_the_Heat.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Wilt in the Heat.html" target="_blank" rel="noopener noreferrer">Wilt in the Heat</a></td>
+      <td>6.96</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17602</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>56.80</td>
+      <td>62.36</td>
+      <td>5.56</td>
+      <td>457</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102513" target="_blank" rel="noopener noreferrer"><img src="img/Hydro-Channeler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Hydro-Channeler.html" target="_blank" rel="noopener noreferrer">Hydro-Channeler</a></td>
+      <td>8.12</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>42052</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>56.90</td>
+      <td>62.33</td>
+      <td>5.43</td>
+      <td>300</td>
+      <td>55.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102588" target="_blank" rel="noopener noreferrer"><img src="img/Seize_the_Spoils.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Seize the Spoils.html" target="_blank" rel="noopener noreferrer">Seize the Spoils</a></td>
+      <td>9.13</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>66502</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>59.20</td>
+      <td>64.49</td>
+      <td>5.29</td>
+      <td>107</td>
+      <td>59.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102663" target="_blank" rel="noopener noreferrer"><img src="img/Molten_Note.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Molten Note.html" target="_blank" rel="noopener noreferrer">Molten Note</a></td>
+      <td>4.73</td>
+      <td>WR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>83128</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.00</td>
+      <td>63.26</td>
+      <td>5.26</td>
+      <td>362</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102714" target="_blank" rel="noopener noreferrer"><img src="img/Fields_of_Strife.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Fields of Strife.html" target="_blank" rel="noopener noreferrer">Fields of Strife</a></td>
+      <td>7.77</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>20536</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.75</td>
+      <td>63.89</td>
+      <td>5.14</td>
+      <td>108</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102522" target="_blank" rel="noopener noreferrer"><img src="img/Pensive_Professor.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pensive Professor.html" target="_blank" rel="noopener noreferrer">Pensive Professor</a></td>
+      <td>2.11</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>44334</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.25</td>
+      <td>63.29</td>
+      <td>5.04</td>
+      <td>504</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102595" target="_blank" rel="noopener noreferrer"><img src="img/Unsubtle_Mockery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Unsubtle Mockery.html" target="_blank" rel="noopener noreferrer">Unsubtle Mockery</a></td>
+      <td>4.68</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>43030</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.85</td>
+      <td>62.88</td>
+      <td>5.03</td>
+      <td>229</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102591" target="_blank" rel="noopener noreferrer"><img src="img/Tablet_of_Discovery.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Tablet of Discovery.html" target="_blank" rel="noopener noreferrer">Tablet of Discovery</a></td>
+      <td>5.53</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>19558</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>55.75</td>
+      <td>60.62</td>
+      <td>4.87</td>
+      <td>160</td>
+      <td>52.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102519" target="_blank" rel="noopener noreferrer"><img src="img/Muse_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse Seeker.html" target="_blank" rel="noopener noreferrer">Muse Seeker</a></td>
+      <td>6.29</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>15646</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>59.80</td>
+      <td>64.46</td>
+      <td>4.66</td>
+      <td>121</td>
+      <td>61.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102507" target="_blank" rel="noopener noreferrer"><img src="img/Exhibition_Tidecaller.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Exhibition Tidecaller.html" target="_blank" rel="noopener noreferrer">Exhibition Tidecaller</a></td>
+      <td>2.48</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>72696</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.70</td>
+      <td>63.00</td>
+      <td>4.30</td>
+      <td>327</td>
+      <td>58.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102682" target="_blank" rel="noopener noreferrer"><img src="img/Sanar,_Unfinished_Genius.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sanar, Unfinished Genius.html" target="_blank" rel="noopener noreferrer">Sanar, Unfinished Genius</a></td>
+      <td>4.32</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>35206</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.00</td>
+      <td>62.17</td>
+      <td>4.17</td>
+      <td>267</td>
+      <td>57.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102567" target="_blank" rel="noopener noreferrer"><img src="img/Artistic_Process.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Artistic Process.html" target="_blank" rel="noopener noreferrer">Artistic Process</a></td>
+      <td>4.72</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>38466</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.25</td>
+      <td>61.37</td>
+      <td>4.12</td>
+      <td>365</td>
+      <td>55.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102577" target="_blank" rel="noopener noreferrer"><img src="img/Heated_Argument.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Heated Argument.html" target="_blank" rel="noopener noreferrer">Heated Argument</a></td>
+      <td>7.67</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>78890</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.55</td>
+      <td>61.46</td>
+      <td>3.91</td>
+      <td>659</td>
+      <td>56.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102701" target="_blank" rel="noopener noreferrer"><img src="img/Visionary's_Dance.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Visionary's Dance.html" target="_blank" rel="noopener noreferrer">Visionary's Dance</a></td>
+      <td>7.47</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>44660</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>56.80</td>
+      <td>60.63</td>
+      <td>3.83</td>
+      <td>287</td>
+      <td>55.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102596" target="_blank" rel="noopener noreferrer"><img src="img/Zealous_Lorecaster.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Zealous Lorecaster.html" target="_blank" rel="noopener noreferrer">Zealous Lorecaster</a></td>
+      <td>9.53</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>15972</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.80</td>
+      <td>61.54</td>
+      <td>3.74</td>
+      <td>247</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102508" target="_blank" rel="noopener noreferrer"><img src="img/Flow_State.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Flow State.html" target="_blank" rel="noopener noreferrer">Flow State</a></td>
+      <td>4.58</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>12386</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.05</td>
+      <td>60.75</td>
+      <td>3.70</td>
+      <td>265</td>
+      <td>55.5</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102497" target="_blank" rel="noopener noreferrer"><img src="img/Banishing_Betrayal.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Banishing Betrayal.html" target="_blank" rel="noopener noreferrer">Banishing Betrayal</a></td>
+      <td>8.95</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>38792</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.75</td>
+      <td>62.36</td>
+      <td>3.61</td>
+      <td>271</td>
+      <td>58.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102578" target="_blank" rel="noopener noreferrer"><img src="img/Impractical_Joke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Impractical Joke.html" target="_blank" rel="noopener noreferrer">Impractical Joke</a></td>
+      <td>3.36</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>34880</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.80</td>
+      <td>61.34</td>
+      <td>3.54</td>
+      <td>119</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102566" target="_blank" rel="noopener noreferrer"><img src="img/Archaic's_Agony.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Archaic's Agony.html" target="_blank" rel="noopener noreferrer">Archaic's Agony</a></td>
+      <td>8.19</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>60308</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>56.75</td>
+      <td>60.29</td>
+      <td>3.54</td>
+      <td>418</td>
+      <td>54.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102644" target="_blank" rel="noopener noreferrer"><img src="img/Elemental_Mascot.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Elemental Mascot.html" target="_blank" rel="noopener noreferrer">Elemental Mascot</a></td>
+      <td>8.81</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>68784</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.80</td>
+      <td>61.22</td>
+      <td>3.42</td>
+      <td>343</td>
+      <td>57.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102670" target="_blank" rel="noopener noreferrer"><img src="img/Prismari_Charm.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Prismari Charm.html" target="_blank" rel="noopener noreferrer">Prismari Charm</a></td>
+      <td>5.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>17276</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.35</td>
+      <td>60.73</td>
+      <td>3.38</td>
+      <td>191</td>
+      <td>56.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102512" target="_blank" rel="noopener noreferrer"><img src="img/Homesickness.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Homesickness.html" target="_blank" rel="noopener noreferrer">Homesickness</a></td>
+      <td>6.62</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>85736</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.95</td>
+      <td>61.27</td>
+      <td>3.32</td>
+      <td>142</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102722" target="_blank" rel="noopener noreferrer"><img src="img/Stormcarved_Coast.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stormcarved Coast.html" target="_blank" rel="noopener noreferrer">Stormcarved Coast</a></td>
+      <td>4.76</td>
+      <td></td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>70414</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>59.10</td>
+      <td>62.18</td>
+      <td>3.08</td>
+      <td>119</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102675" target="_blank" rel="noopener noreferrer"><img src="img/Pursue_the_Past.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pursue the Past.html" target="_blank" rel="noopener noreferrer">Pursue the Past</a></td>
+      <td>7.57</td>
+      <td>WR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>55744</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>54.60</td>
+      <td>57.67</td>
+      <td>3.07</td>
+      <td>163</td>
+      <td>50.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102630" target="_blank" rel="noopener noreferrer"><img src="img/Abstract_Paintmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Abstract Paintmage.html" target="_blank" rel="noopener noreferrer">Abstract Paintmage</a></td>
+      <td>7.34</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>94538</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>59.30</td>
+      <td>62.28</td>
+      <td>2.98</td>
+      <td>281</td>
+      <td>60.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102776" target="_blank" rel="noopener noreferrer"><img src="img/Stock_Up.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stock Up.html" target="_blank" rel="noopener noreferrer">Stock Up</a></td>
+      <td>3.17</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>77912</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>59.60</td>
+      <td>62.50</td>
+      <td>2.90</td>
+      <td>152</td>
+      <td>60.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102698" target="_blank" rel="noopener noreferrer"><img src="img/Traumatic_Critique.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Traumatic Critique.html" target="_blank" rel="noopener noreferrer">Traumatic Critique</a></td>
+      <td>2.09</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>19884</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>55.70</td>
+      <td>58.49</td>
+      <td>2.79</td>
+      <td>265</td>
+      <td>52.8</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102520" target="_blank" rel="noopener noreferrer"><img src="img/Muse's_Encouragement.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Muse's Encouragement.html" target="_blank" rel="noopener noreferrer">Muse's Encouragement</a></td>
+      <td>10.29</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>71392</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>56.15</td>
+      <td>58.62</td>
+      <td>2.47</td>
+      <td>174</td>
+      <td>53.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102678" target="_blank" rel="noopener noreferrer"><img src="img/Rapturous_Moment.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rapturous Moment.html" target="_blank" rel="noopener noreferrer">Rapturous Moment</a></td>
+      <td>7.78</td>
+      <td>UR</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>22166</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>54.85</td>
+      <td>57.04</td>
+      <td>2.19</td>
+      <td>142</td>
+      <td>51.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102527" target="_blank" rel="noopener noreferrer"><img src="img/Spellbook_Seeker.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Spellbook Seeker.html" target="_blank" rel="noopener noreferrer">Spellbook Seeker</a></td>
+      <td>10.09</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>75630</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>56.40</td>
+      <td>58.53</td>
+      <td>2.13</td>
+      <td>299</td>
+      <td>54.2</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102691" target="_blank" rel="noopener noreferrer"><img src="img/Stadium_Tidalmage.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Stadium Tidalmage.html" target="_blank" rel="noopener noreferrer">Stadium Tidalmage</a></td>
+      <td>10.02</td>
+      <td>UR</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>86388</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.65</td>
+      <td>59.73</td>
+      <td>2.08</td>
+      <td>370</td>
+      <td>56.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102724" target="_blank" rel="noopener noreferrer"><img src="img/Terramorphic_Expanse.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Terramorphic Expanse.html" target="_blank" rel="noopener noreferrer">Terramorphic Expanse</a></td>
+      <td>6.10</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>21188</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.45</td>
+      <td>59.42</td>
+      <td>1.97</td>
+      <td>313</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102524" target="_blank" rel="noopener noreferrer"><img src="img/Quick_Study.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Quick Study.html" target="_blank" rel="noopener noreferrer">Quick Study</a></td>
+      <td>8.83</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>43682</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.15</td>
+      <td>58.86</td>
+      <td>1.71</td>
+      <td>175</td>
+      <td>55.7</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102593" target="_blank" rel="noopener noreferrer"><img src="img/Thunderdrum_Soloist.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Thunderdrum Soloist.html" target="_blank" rel="noopener noreferrer">Thunderdrum Soloist</a></td>
+      <td>6.04</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>41726</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.45</td>
+      <td>59.73</td>
+      <td>1.28</td>
+      <td>298</td>
+      <td>58.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102587" target="_blank" rel="noopener noreferrer"><img src="img/Rubble_Rouser.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Rubble Rouser.html" target="_blank" rel="noopener noreferrer">Rubble Rouser</a></td>
+      <td>6.61</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>105948</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.60</td>
+      <td>59.84</td>
+      <td>1.24</td>
+      <td>2196</td>
+      <td>58.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td>3.80</td>
+      <td>UR</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>92256</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.85</td>
+      <td>58.97</td>
+      <td>1.12</td>
+      <td>234</td>
+      <td>57.1</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102769" target="_blank" rel="noopener noreferrer"><img src="img/Disdainful_Stroke.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Disdainful Stroke.html" target="_blank" rel="noopener noreferrer">Disdainful Stroke</a></td>
+      <td>6.56</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>84106</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.45</td>
+      <td>58.31</td>
+      <td>0.86</td>
+      <td>307</td>
+      <td>56.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102717" target="_blank" rel="noopener noreferrer"><img src="img/Paradox_Gardens.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Paradox Gardens.html" target="_blank" rel="noopener noreferrer">Paradox Gardens</a></td>
+      <td>7.32</td>
+      <td></td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>37162</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.10</td>
+      <td>57.95</td>
+      <td>0.85</td>
+      <td>264</td>
+      <td>55.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102573" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Firedancer.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Expressive Firedancer.html" target="_blank" rel="noopener noreferrer">Expressive Firedancer</a></td>
+      <td>8.59</td>
+      <td>R</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>18580</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.25</td>
+      <td>59.06</td>
+      <td>0.81</td>
+      <td>127</td>
+      <td>57.9</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102516" target="_blank" rel="noopener noreferrer"><img src="img/Mana_Sculpt.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Mana Sculpt.html" target="_blank" rel="noopener noreferrer">Mana Sculpt</a></td>
+      <td>4.24</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>91930</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.95</td>
+      <td>58.50</td>
+      <td>0.55</td>
+      <td>200</td>
+      <td>57.3</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102768" target="_blank" rel="noopener noreferrer"><img src="img/Deduce.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Deduce.html" target="_blank" rel="noopener noreferrer">Deduce</a></td>
+      <td>6.89</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>20862</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>55.50</td>
+      <td>55.90</td>
+      <td>0.40</td>
+      <td>161</td>
+      <td>52.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102523" target="_blank" rel="noopener noreferrer"><img src="img/Procrastinate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Procrastinate.html" target="_blank" rel="noopener noreferrer">Procrastinate</a></td>
+      <td>10.07</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>93886</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>57.30</td>
+      <td>57.23</td>
+      <td>-0.07</td>
+      <td>159</td>
+      <td>56.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102774" target="_blank" rel="noopener noreferrer"><img src="img/Sleight_of_Hand.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Sleight of Hand.html" target="_blank" rel="noopener noreferrer">Sleight of Hand</a></td>
+      <td>7.50</td>
+      <td>U</td>
+      <td>uncommon</td>
+    </tr>
+    <tr>
+      <th>18254</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>56.00</td>
+      <td>55.60</td>
+      <td>-0.40</td>
+      <td>277</td>
+      <td>53.4</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102515" target="_blank" rel="noopener noreferrer"><img src="img/Landscape_Painter.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Landscape Painter.html" target="_blank" rel="noopener noreferrer">Landscape Painter</a></td>
+      <td>8.96</td>
+      <td>U</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>17928</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>59.10</td>
+      <td>56.86</td>
+      <td>-2.24</td>
+      <td>102</td>
+      <td>59.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102514" target="_blank" rel="noopener noreferrer"><img src="img/Jadzi,_Steward_of_Fate.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Jadzi, Steward of Fate.html" target="_blank" rel="noopener noreferrer">Jadzi, Steward of Fate</a></td>
+      <td>1.96</td>
+      <td>U</td>
+      <td>rare</td>
+    </tr>
+    <tr>
+      <th>1954</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>58.30</td>
+      <td>55.88</td>
+      <td>-2.42</td>
+      <td>102</td>
+      <td>58.0</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102465" target="_blank" rel="noopener noreferrer"><img src="img/Ajani's_Response.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Ajani's Response.html" target="_blank" rel="noopener noreferrer">Ajani's Response</a></td>
+      <td>6.23</td>
+      <td>W</td>
+      <td>common</td>
+    </tr>
+    <tr>
+      <th>41074</th>
+      <td>rare</td>
+      <td>UR</td>
+      <td>3.8</td>
+      <td><a href=".//Expressive Iteration.html" target="_blank" rel="noopener noreferrer">Expressive Iteration</a></td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102816" target="_blank" rel="noopener noreferrer"><img src="img/Expressive_Iteration.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td>58.6</td>
+      <td>55.10</td>
+      <td>52.34</td>
+      <td>-2.76</td>
+      <td>128</td>
+      <td>51.6</td>
+      <td><a href="https://www.17lands.com/card_data/details?expansion=SOS&format=PremierDraft&start=2025-07-30&card_id=102585" target="_blank" rel="noopener noreferrer"><img src="img/Pigment_Wrangler.png" alt="Image" width="50" height="auto" loading="lazy"></a></td>
+      <td><a href=".//Pigment Wrangler.html" target="_blank" rel="noopener noreferrer">Pigment Wrangler</a></td>
+      <td>5.87</td>
+      <td>R</td>
+      <td>uncommon</td>
+    </tr>
+  </tbody>
+</table>
